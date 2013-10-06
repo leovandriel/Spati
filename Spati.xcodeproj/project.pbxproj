@@ -1,0 +1,1087 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		919418F2A20D454A8427B9BB /* libPods-SpatiTouchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EB3C32C56344539A7C2026 /* libPods-SpatiTouchTests.a */; };
+		B32396E41801F47100931587 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FAD0B1801811500D47C6E /* XCTest.framework */; };
+		B34FACFE1801811500D47C6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FACFD1801811500D47C6E /* Foundation.framework */; };
+		B3694AB2180207C8008A102D /* libSpatiTouchStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FACFA1801811500D47C6E /* libSpatiTouchStatic.a */; };
+		B3694ABA180208A7008A102D /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3694AB9180208A7008A102D /* MessageUI.framework */; };
+		B3694ABC180208AD008A102D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3694ABB180208AD008A102D /* libz.dylib */; };
+		B3694ABE180208C4008A102D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3694ABD180208C4008A102D /* SystemConfiguration.framework */; };
+		B3694ABF18020ED5008A102D /* WDSMemoryCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */; };
+		B376CCD11801AB0A00BD950A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCB81801AB0A00BD950A /* WDSCache.m */; };
+		B376CCD21801AB0A00BD950A /* WDSDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */; };
+		B376CCD31801AB0A00BD950A /* WDSDiskImageNamedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */; };
+		B376CCD41801AB0A00BD950A /* WDSHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */; };
+		B376CCD51801AB0A00BD950A /* WDSMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */; };
+		B376CCD61801AB0A00BD950A /* WDSMultiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC21801AB0A00BD950A /* WDSMultiCache.m */; };
+		B376CCD71801AB0A00BD950A /* NSObject+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC51801AB0A00BD950A /* NSObject+Spati.m */; };
+		B376CCD81801AB0A00BD950A /* UIButton+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC71801AB0A00BD950A /* UIButton+Spati.m */; };
+		B376CCD91801AB0A00BD950A /* UIImageView+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC91801AB0A00BD950A /* UIImageView+Spati.m */; };
+		B376CCDA1801AB0A00BD950A /* WDSImageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCC1801AB0A00BD950A /* WDSImageParser.m */; };
+		B376CCDB1801AB0A00BD950A /* WDSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCE1801AB0A00BD950A /* WDSParser.m */; };
+		B376CCE31801ACB900BD950A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B376CCE21801ACB900BD950A /* Cocoa.framework */; };
+		B376CD061801ACE400BD950A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCB81801AB0A00BD950A /* WDSCache.m */; };
+		B376CD071801ACE400BD950A /* WDSDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */; };
+		B376CD081801ACE400BD950A /* WDSDiskImageNamedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */; };
+		B376CD091801ACE400BD950A /* WDSHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */; };
+		B376CD0A1801ACE400BD950A /* WDSMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */; };
+		B376CD0B1801ACE400BD950A /* WDSMultiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC21801AB0A00BD950A /* WDSMultiCache.m */; };
+		B376CD0F1801ACE400BD950A /* WDSImageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCC1801AB0A00BD950A /* WDSImageParser.m */; };
+		B376CD101801ACE400BD950A /* WDSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCE1801AB0A00BD950A /* WDSParser.m */; };
+		B384E5FE1802156B005F6C15 /* WDSDiskCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */; };
+		B384E5FF1802156B005F6C15 /* WDSDiskCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */; };
+		B398010F1801E373008B811F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FAD0B1801811500D47C6E /* XCTest.framework */; };
+		B39801101801E373008B811F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FACFD1801811500D47C6E /* Foundation.framework */; };
+		B39801111801E373008B811F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FAD0E1801811500D47C6E /* UIKit.framework */; };
+		B3A5BCF11802248B00200272 /* Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCF1801AB0A00BD950A /* Spati.h */; };
+		B3A5BCF21802248B00200272 /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB71801AB0A00BD950A /* WDSCache.h */; };
+		B3A5BCF31802248B00200272 /* WDSDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB91801AB0A00BD950A /* WDSDiskCache.h */; };
+		B3A5BCF41802248B00200272 /* WDSDiskImageNamedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */; };
+		B3A5BCF51802248B00200272 /* WDSHTTPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */; };
+		B3A5BCF61802248B00200272 /* WDSMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */; };
+		B3A5BCF71802248B00200272 /* WDSMultiCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC11801AB0A00BD950A /* WDSMultiCache.h */; };
+		B3A5BCF81802248B00200272 /* NSObject+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC41801AB0A00BD950A /* NSObject+Spati.h */; };
+		B3A5BCF91802248B00200272 /* UIButton+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC61801AB0A00BD950A /* UIButton+Spati.h */; };
+		B3A5BCFA1802248B00200272 /* UIImageView+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC81801AB0A00BD950A /* UIImageView+Spati.h */; };
+		B3A5BCFB1802248B00200272 /* WDSImageParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCB1801AB0A00BD950A /* WDSImageParser.h */; };
+		B3A5BCFC1802248B00200272 /* WDSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCD1801AB0A00BD950A /* WDSParser.h */; };
+		B3A5BCFD1802248B00200272 /* Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCF1801AB0A00BD950A /* Spati.h */; };
+		B3A5BCFE1802248B00200272 /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB71801AB0A00BD950A /* WDSCache.h */; };
+		B3A5BCFF1802248B00200272 /* WDSDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB91801AB0A00BD950A /* WDSDiskCache.h */; };
+		B3A5BD001802248B00200272 /* WDSDiskImageNamedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */; };
+		B3A5BD011802248B00200272 /* WDSHTTPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */; };
+		B3A5BD021802248B00200272 /* WDSMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */; };
+		B3A5BD031802248B00200272 /* WDSMultiCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC11801AB0A00BD950A /* WDSMultiCache.h */; };
+		B3A5BD071802248B00200272 /* WDSImageParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCB1801AB0A00BD950A /* WDSImageParser.h */; };
+		B3A5BD081802248B00200272 /* WDSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCD1801AB0A00BD950A /* WDSParser.h */; };
+		B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC41801AB0A00BD950A /* NSObject+Spati.h */; };
+		B3A5BD0D180224B700200272 /* NSObject+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC51801AB0A00BD950A /* NSObject+Spati.m */; };
+		B3E4DEA51801E79500EAF67E /* WDSMemoryCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */; };
+		B842FB3B1027455890D5C8A7 /* libPods-SpatiCocoaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */; };
+		EFB3FF9A6902482CA29AF70E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D912E6B31AE49279681FA1D /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B32396EE1801F47100931587 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B34FACF01801804600D47C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B376CCE01801ACB900BD950A;
+			remoteInfo = SpatiCocoaStatic;
+		};
+		B398011B1801E373008B811F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B34FACF01801804600D47C6E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B34FACF91801811500D47C6E;
+			remoteInfo = SpatiTouchStatic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B34FACF81801811500D47C6E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3D912E6B31AE49279681FA1D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		51EB3C32C56344539A7C2026 /* libPods-SpatiTouchTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpatiTouchTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpatiCocoaTests.xcconfig"; path = "Pods/Pods-SpatiCocoaTests.xcconfig"; sourceTree = "<group>"; };
+		B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpatiCocoaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32396E31801F47100931587 /* SpatiCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B32396F41801F5E600931587 /* SpatiCocoaTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpatiCocoaTests-Prefix.pch"; sourceTree = "<group>"; };
+		B32396F51801F5E600931587 /* SpatiCocoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpatiCocoaTests-Info.plist"; sourceTree = "<group>"; };
+		B34FACFA1801811500D47C6E /* libSpatiTouchStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSpatiTouchStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B34FACFD1801811500D47C6E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B34FAD0B1801811500D47C6E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B34FAD0E1801811500D47C6E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		B3694AB318020815008A102D /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		B3694AB418020815008A102D /* libPods-NWLogging.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-NWLogging.a"; path = "Pods/build/Debug-iphoneos/libPods-NWLogging.a"; sourceTree = "<group>"; };
+		B3694AB718020829008A102D /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		B3694AB9180208A7008A102D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
+		B3694ABB180208AD008A102D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		B3694ABD180208C4008A102D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		B376CCB71801AB0A00BD950A /* WDSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSCache.h; sourceTree = "<group>"; };
+		B376CCB81801AB0A00BD950A /* WDSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSCache.m; sourceTree = "<group>"; };
+		B376CCB91801AB0A00BD950A /* WDSDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSDiskCache.h; sourceTree = "<group>"; };
+		B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCache.m; sourceTree = "<group>"; };
+		B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSDiskImageNamedCache.h; sourceTree = "<group>"; };
+		B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskImageNamedCache.m; sourceTree = "<group>"; };
+		B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSHTTPCache.h; sourceTree = "<group>"; };
+		B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSHTTPCache.m; sourceTree = "<group>"; };
+		B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMemoryCache.h; sourceTree = "<group>"; };
+		B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCache.m; sourceTree = "<group>"; };
+		B376CCC11801AB0A00BD950A /* WDSMultiCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMultiCache.h; sourceTree = "<group>"; };
+		B376CCC21801AB0A00BD950A /* WDSMultiCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMultiCache.m; sourceTree = "<group>"; };
+		B376CCC41801AB0A00BD950A /* NSObject+Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Spati.h"; sourceTree = "<group>"; };
+		B376CCC51801AB0A00BD950A /* NSObject+Spati.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Spati.m"; sourceTree = "<group>"; };
+		B376CCC61801AB0A00BD950A /* UIButton+Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Spati.h"; sourceTree = "<group>"; };
+		B376CCC71801AB0A00BD950A /* UIButton+Spati.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Spati.m"; sourceTree = "<group>"; };
+		B376CCC81801AB0A00BD950A /* UIImageView+Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Spati.h"; sourceTree = "<group>"; };
+		B376CCC91801AB0A00BD950A /* UIImageView+Spati.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Spati.m"; sourceTree = "<group>"; };
+		B376CCCB1801AB0A00BD950A /* WDSImageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSImageParser.h; sourceTree = "<group>"; };
+		B376CCCC1801AB0A00BD950A /* WDSImageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSImageParser.m; sourceTree = "<group>"; };
+		B376CCCD1801AB0A00BD950A /* WDSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSParser.h; sourceTree = "<group>"; };
+		B376CCCE1801AB0A00BD950A /* WDSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSParser.m; sourceTree = "<group>"; };
+		B376CCCF1801AB0A00BD950A /* Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spati.h; sourceTree = "<group>"; };
+		B376CCD01801AB0A00BD950A /* SpatiTouchStatic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiTouchStatic-Prefix.pch"; sourceTree = "<group>"; };
+		B376CCE11801ACB900BD950A /* libSpatiCocoaStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSpatiCocoaStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B376CCE21801ACB900BD950A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B376CCE51801ACB900BD950A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B376CCE61801ACB900BD950A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B376CCE71801ACB900BD950A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B376CD111801AD8500BD950A /* SpatiCocoaStatic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiCocoaStatic-Prefix.pch"; sourceTree = "<group>"; };
+		B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCacheSpec.m; sourceTree = "<group>"; };
+		B398010E1801E373008B811F /* SpatiTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E4DE9D1801E67C00EAF67E /* SpatiTouchTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SpatiTouchTests-Info.plist"; sourceTree = "<group>"; };
+		B3E4DE9E1801E67C00EAF67E /* SpatiTouchTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiTouchTests-Prefix.pch"; sourceTree = "<group>"; };
+		B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCacheSpec.m; sourceTree = "<group>"; };
+		ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpatiTouchTests.xcconfig"; path = "Pods/Pods-SpatiTouchTests.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B32396E01801F47100931587 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B32396E41801F47100931587 /* XCTest.framework in Frameworks */,
+				B842FB3B1027455890D5C8A7 /* libPods-SpatiCocoaTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B34FACF71801811500D47C6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B34FACFE1801811500D47C6E /* Foundation.framework in Frameworks */,
+				EFB3FF9A6902482CA29AF70E /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B376CCDE1801ACB900BD950A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B376CCE31801ACB900BD950A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B398010B1801E373008B811F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3694ABE180208C4008A102D /* SystemConfiguration.framework in Frameworks */,
+				B3694ABC180208AD008A102D /* libz.dylib in Frameworks */,
+				B3694ABA180208A7008A102D /* MessageUI.framework in Frameworks */,
+				B3694AB2180207C8008A102D /* libSpatiTouchStatic.a in Frameworks */,
+				B398010F1801E373008B811F /* XCTest.framework in Frameworks */,
+				B39801111801E373008B811F /* UIKit.framework in Frameworks */,
+				B39801101801E373008B811F /* Foundation.framework in Frameworks */,
+				919418F2A20D454A8427B9BB /* libPods-SpatiTouchTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B34FACEF1801804600D47C6E = {
+			isa = PBXGroup;
+			children = (
+				B376CCB51801AB0A00BD950A /* Classes */,
+				B3E4DE9C1801E67C00EAF67E /* Tests */,
+				B34FACFC1801811500D47C6E /* Frameworks */,
+				B34FACFB1801811500D47C6E /* Products */,
+				5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */,
+				ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */,
+				6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		B34FACFB1801811500D47C6E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B34FACFA1801811500D47C6E /* libSpatiTouchStatic.a */,
+				B376CCE11801ACB900BD950A /* libSpatiCocoaStatic.a */,
+				B398010E1801E373008B811F /* SpatiTouchTests.xctest */,
+				B32396E31801F47100931587 /* SpatiCocoaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B34FACFC1801811500D47C6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3694ABD180208C4008A102D /* SystemConfiguration.framework */,
+				B3694ABB180208AD008A102D /* libz.dylib */,
+				B3694AB9180208A7008A102D /* MessageUI.framework */,
+				B3694AB718020829008A102D /* libPods.a */,
+				B3694AB318020815008A102D /* libPods-AFNetworking.a */,
+				B3694AB418020815008A102D /* libPods-NWLogging.a */,
+				B34FACFD1801811500D47C6E /* Foundation.framework */,
+				B34FAD0B1801811500D47C6E /* XCTest.framework */,
+				B34FAD0E1801811500D47C6E /* UIKit.framework */,
+				3D912E6B31AE49279681FA1D /* libPods.a */,
+				B376CCE21801ACB900BD950A /* Cocoa.framework */,
+				B376CCE41801ACB900BD950A /* Other Frameworks */,
+				51EB3C32C56344539A7C2026 /* libPods-SpatiTouchTests.a */,
+				B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B376CCB51801AB0A00BD950A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B376CCCF1801AB0A00BD950A /* Spati.h */,
+				B376CCB61801AB0A00BD950A /* Cache */,
+				B376CCC31801AB0A00BD950A /* Categories */,
+				B376CCCA1801AB0A00BD950A /* Parser */,
+				B376CCDC1801AB1800BD950A /* Supporting Files */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		B376CCB61801AB0A00BD950A /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B376CCB71801AB0A00BD950A /* WDSCache.h */,
+				B376CCB81801AB0A00BD950A /* WDSCache.m */,
+				B376CCB91801AB0A00BD950A /* WDSDiskCache.h */,
+				B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */,
+				B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */,
+				B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */,
+				B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */,
+				B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */,
+				B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */,
+				B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */,
+				B376CCC11801AB0A00BD950A /* WDSMultiCache.h */,
+				B376CCC21801AB0A00BD950A /* WDSMultiCache.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		B376CCC31801AB0A00BD950A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				B376CCC41801AB0A00BD950A /* NSObject+Spati.h */,
+				B376CCC51801AB0A00BD950A /* NSObject+Spati.m */,
+				B376CCC61801AB0A00BD950A /* UIButton+Spati.h */,
+				B376CCC71801AB0A00BD950A /* UIButton+Spati.m */,
+				B376CCC81801AB0A00BD950A /* UIImageView+Spati.h */,
+				B376CCC91801AB0A00BD950A /* UIImageView+Spati.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		B376CCCA1801AB0A00BD950A /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				B376CCCB1801AB0A00BD950A /* WDSImageParser.h */,
+				B376CCCC1801AB0A00BD950A /* WDSImageParser.m */,
+				B376CCCD1801AB0A00BD950A /* WDSParser.h */,
+				B376CCCE1801AB0A00BD950A /* WDSParser.m */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		B376CCDC1801AB1800BD950A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B376CD111801AD8500BD950A /* SpatiCocoaStatic-Prefix.pch */,
+				B376CCD01801AB0A00BD950A /* SpatiTouchStatic-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B376CCE41801ACB900BD950A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B376CCE51801ACB900BD950A /* Foundation.framework */,
+				B376CCE61801ACB900BD950A /* CoreData.framework */,
+				B376CCE71801ACB900BD950A /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B3E4DE9C1801E67C00EAF67E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				B3E4DEA31801E79500EAF67E /* Cache */,
+				B3E4DEA01801E68C00EAF67E /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		B3E4DEA01801E68C00EAF67E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B32396F51801F5E600931587 /* SpatiCocoaTests-Info.plist */,
+				B32396F41801F5E600931587 /* SpatiCocoaTests-Prefix.pch */,
+				B3E4DE9D1801E67C00EAF67E /* SpatiTouchTests-Info.plist */,
+				B3E4DE9E1801E67C00EAF67E /* SpatiTouchTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B3E4DEA31801E79500EAF67E /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */,
+				B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B376CCDF1801ACB900BD950A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */,
+				B3A5BD011802248B00200272 /* WDSHTTPCache.h in Headers */,
+				B3A5BCFE1802248B00200272 /* WDSCache.h in Headers */,
+				B3A5BCFD1802248B00200272 /* Spati.h in Headers */,
+				B3A5BD081802248B00200272 /* WDSParser.h in Headers */,
+				B3A5BD031802248B00200272 /* WDSMultiCache.h in Headers */,
+				B3A5BD071802248B00200272 /* WDSImageParser.h in Headers */,
+				B3A5BD021802248B00200272 /* WDSMemoryCache.h in Headers */,
+				B3A5BCFF1802248B00200272 /* WDSDiskCache.h in Headers */,
+				B3A5BD001802248B00200272 /* WDSDiskImageNamedCache.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3A5BCF01802247500200272 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3A5BCF51802248B00200272 /* WDSHTTPCache.h in Headers */,
+				B3A5BCF21802248B00200272 /* WDSCache.h in Headers */,
+				B3A5BCF81802248B00200272 /* NSObject+Spati.h in Headers */,
+				B3A5BCF11802248B00200272 /* Spati.h in Headers */,
+				B3A5BCFC1802248B00200272 /* WDSParser.h in Headers */,
+				B3A5BCF71802248B00200272 /* WDSMultiCache.h in Headers */,
+				B3A5BCFB1802248B00200272 /* WDSImageParser.h in Headers */,
+				B3A5BCF61802248B00200272 /* WDSMemoryCache.h in Headers */,
+				B3A5BCF31802248B00200272 /* WDSDiskCache.h in Headers */,
+				B3A5BCFA1802248B00200272 /* UIImageView+Spati.h in Headers */,
+				B3A5BCF41802248B00200272 /* WDSDiskImageNamedCache.h in Headers */,
+				B3A5BCF91802248B00200272 /* UIButton+Spati.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B32396E21801F47100931587 /* SpatiCocoaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B32396F21801F47100931587 /* Build configuration list for PBXNativeTarget "SpatiCocoaTests" */;
+			buildPhases = (
+				D74845AE033A459E9844C5A9 /* Check Pods Manifest.lock */,
+				B32396DF1801F47100931587 /* Sources */,
+				B32396E01801F47100931587 /* Frameworks */,
+				B32396E11801F47100931587 /* Resources */,
+				1780913FC5B2406CA2D8B86B /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B32396EF1801F47100931587 /* PBXTargetDependency */,
+			);
+			name = SpatiCocoaTests;
+			productName = SpatiCocoaTests;
+			productReference = B32396E31801F47100931587 /* SpatiCocoaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B34FACF91801811500D47C6E /* SpatiTouchStatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B34FAD1F1801811500D47C6E /* Build configuration list for PBXNativeTarget "SpatiTouchStatic" */;
+			buildPhases = (
+				43EACDCF69A84AA4A2C059A0 /* Check Pods Manifest.lock */,
+				B34FACF61801811500D47C6E /* Sources */,
+				B34FACF71801811500D47C6E /* Frameworks */,
+				B34FACF81801811500D47C6E /* CopyFiles */,
+				C7AE387A10524DF0A1D60055 /* Copy Pods Resources */,
+				B3A5BCF01802247500200272 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpatiTouchStatic;
+			productName = SpatiTouchStatic;
+			productReference = B34FACFA1801811500D47C6E /* libSpatiTouchStatic.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B376CCE01801ACB900BD950A /* SpatiCocoaStatic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B376CD001801ACB900BD950A /* Build configuration list for PBXNativeTarget "SpatiCocoaStatic" */;
+			buildPhases = (
+				B376CCDD1801ACB900BD950A /* Sources */,
+				B376CCDE1801ACB900BD950A /* Frameworks */,
+				B376CCDF1801ACB900BD950A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SpatiCocoaStatic;
+			productName = SpatiCocoaStatic;
+			productReference = B376CCE11801ACB900BD950A /* libSpatiCocoaStatic.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		B398010D1801E373008B811F /* SpatiTouchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B398011F1801E373008B811F /* Build configuration list for PBXNativeTarget "SpatiTouchTests" */;
+			buildPhases = (
+				D0007DD0DA7A4BD3A27C3741 /* Check Pods Manifest.lock */,
+				B398010A1801E373008B811F /* Sources */,
+				B398010B1801E373008B811F /* Frameworks */,
+				B398010C1801E373008B811F /* Resources */,
+				5BB22CC8B37B4510B45BBE29 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B398011C1801E373008B811F /* PBXTargetDependency */,
+			);
+			name = SpatiTouchTests;
+			productName = SpatiTouchTests;
+			productReference = B398010E1801E373008B811F /* SpatiTouchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B34FACF01801804600D47C6E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WD;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = witdot;
+				TargetAttributes = {
+					B32396E21801F47100931587 = {
+						TestTargetID = B376CCE01801ACB900BD950A;
+					};
+					B398010D1801E373008B811F = {
+						TestTargetID = B34FACF91801811500D47C6E;
+					};
+				};
+			};
+			buildConfigurationList = B34FACF31801804600D47C6E /* Build configuration list for PBXProject "Spati" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B34FACEF1801804600D47C6E;
+			productRefGroup = B34FACFB1801811500D47C6E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B34FACF91801811500D47C6E /* SpatiTouchStatic */,
+				B398010D1801E373008B811F /* SpatiTouchTests */,
+				B376CCE01801ACB900BD950A /* SpatiCocoaStatic */,
+				B32396E21801F47100931587 /* SpatiCocoaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B32396E11801F47100931587 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B398010C1801E373008B811F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1780913FC5B2406CA2D8B86B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-SpatiCocoaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EACDCF69A84AA4A2C059A0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5BB22CC8B37B4510B45BBE29 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-SpatiTouchTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7AE387A10524DF0A1D60055 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0007DD0DA7A4BD3A27C3741 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D74845AE033A459E9844C5A9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B32396DF1801F47100931587 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3694ABF18020ED5008A102D /* WDSMemoryCacheSpec.m in Sources */,
+				B384E5FF1802156B005F6C15 /* WDSDiskCacheSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B34FACF61801811500D47C6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B376CCD31801AB0A00BD950A /* WDSDiskImageNamedCache.m in Sources */,
+				B376CCD81801AB0A00BD950A /* UIButton+Spati.m in Sources */,
+				B376CCD91801AB0A00BD950A /* UIImageView+Spati.m in Sources */,
+				B376CCD21801AB0A00BD950A /* WDSDiskCache.m in Sources */,
+				B376CCD51801AB0A00BD950A /* WDSMemoryCache.m in Sources */,
+				B376CCD71801AB0A00BD950A /* NSObject+Spati.m in Sources */,
+				B376CCD11801AB0A00BD950A /* WDSCache.m in Sources */,
+				B376CCDA1801AB0A00BD950A /* WDSImageParser.m in Sources */,
+				B376CCD41801AB0A00BD950A /* WDSHTTPCache.m in Sources */,
+				B376CCDB1801AB0A00BD950A /* WDSParser.m in Sources */,
+				B376CCD61801AB0A00BD950A /* WDSMultiCache.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B376CCDD1801ACB900BD950A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B376CD0F1801ACE400BD950A /* WDSImageParser.m in Sources */,
+				B376CD101801ACE400BD950A /* WDSParser.m in Sources */,
+				B376CD091801ACE400BD950A /* WDSHTTPCache.m in Sources */,
+				B376CD081801ACE400BD950A /* WDSDiskImageNamedCache.m in Sources */,
+				B376CD071801ACE400BD950A /* WDSDiskCache.m in Sources */,
+				B376CD0A1801ACE400BD950A /* WDSMemoryCache.m in Sources */,
+				B3A5BD0D180224B700200272 /* NSObject+Spati.m in Sources */,
+				B376CD061801ACE400BD950A /* WDSCache.m in Sources */,
+				B376CD0B1801ACE400BD950A /* WDSMultiCache.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B398010A1801E373008B811F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3E4DEA51801E79500EAF67E /* WDSMemoryCacheSpec.m in Sources */,
+				B384E5FE1802156B005F6C15 /* WDSDiskCacheSpec.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B32396EF1801F47100931587 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B376CCE01801ACB900BD950A /* SpatiCocoaStatic */;
+			targetProxy = B32396EE1801F47100931587 /* PBXContainerItemProxy */;
+		};
+		B398011C1801E373008B811F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B34FACF91801811500D47C6E /* SpatiTouchStatic */;
+			targetProxy = B398011B1801E373008B811F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B32396F01801F47100931587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/SpatiCocoaTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Tests/SpatiCocoaTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B32396F11801F47100931587 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/SpatiCocoaTests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Tests/SpatiCocoaTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		B34FACF41801804600D47C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		B34FACF51801804600D47C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		B34FAD1B1801811500D47C6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/SpatiTouchStatic.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Classes/SpatiTouchStatic-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B34FAD1C1801811500D47C6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/SpatiTouchStatic.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Classes/SpatiTouchStatic-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B376CD011801ACB900BD950A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Classes/SpatiCocoaStatic-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B376CD021801ACB900BD950A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Classes/SpatiCocoaStatic-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B398011D1801E373008B811F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/SpatiTouchTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Tests/SpatiTouchTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B398011E1801E373008B811F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Tests/SpatiTouchTests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Tests/SpatiTouchTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B32396F21801F47100931587 /* Build configuration list for PBXNativeTarget "SpatiCocoaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B32396F01801F47100931587 /* Debug */,
+				B32396F11801F47100931587 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B34FACF31801804600D47C6E /* Build configuration list for PBXProject "Spati" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B34FACF41801804600D47C6E /* Debug */,
+				B34FACF51801804600D47C6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B34FAD1F1801811500D47C6E /* Build configuration list for PBXNativeTarget "SpatiTouchStatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B34FAD1B1801811500D47C6E /* Debug */,
+				B34FAD1C1801811500D47C6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B376CD001801ACB900BD950A /* Build configuration list for PBXNativeTarget "SpatiCocoaStatic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B376CD011801ACB900BD950A /* Debug */,
+				B376CD021801ACB900BD950A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B398011F1801E373008B811F /* Build configuration list for PBXNativeTarget "SpatiTouchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B398011D1801E373008B811F /* Debug */,
+				B398011E1801E373008B811F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B34FACF01801804600D47C6E /* Project object */;
+}
