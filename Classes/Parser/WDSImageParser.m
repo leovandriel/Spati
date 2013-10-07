@@ -2,7 +2,7 @@
 //  WDSImageParser.m
 //  Spati
 //
-//  Copyright (c) 2013 witdot. All rights reserved.
+//  Copyright (c) 2013 Wit Dot Media Berlin GmbH. All rights reserved.
 //
 
 #import "WDSImageParser.h"
