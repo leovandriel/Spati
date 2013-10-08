@@ -57,11 +57,14 @@
 {
     NSHTTPURLResponse *response = (NSHTTPURLResponse *)_operation.response;
     NSData *data = _operation.responseData;
-    dispatch_async(_serial, ^{
-        _isCancelled = YES;
-        void(^b)(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) = _block; _block = nil;
-        if (b) b(response, data, cancelled);
-    });
+    _isCancelled = YES;
+    void(^b)(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) = _block; _block = nil;
+    if (b) b(response, data, cancelled);
+}
+
+- (void)nilBlock
+{
+    _block = nil;
 }
 
 @end
@@ -121,7 +124,7 @@
         [result start];
     } else {
         [super objectForKey:key block:^(id object) {
-            if (object || result.isCancelled) { if (block) block(object, result.isCancelled); return; }
+            if (object || result.isCancelled) { [result nilBlock]; if (block) block(object, result.isCancelled); return; }
             [result start];
         }];
     }
@@ -136,7 +139,7 @@
         [result start];
     } else {
         [super dataForKey:key block:^(NSData *data) {
-            if (data || result.isCancelled) { if (block) block(data, result.isCancelled); return; }
+            if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
             [result start];
         }];
     }
