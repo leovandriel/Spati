@@ -12,7 +12,6 @@
 
 
 @interface WDSCache ()
-@property (nonatomic, strong) WDSParser *parser;
 @property (nonatomic, readonly) dispatch_queue_t workQueueOrDefault;
 @property (nonatomic, readonly) dispatch_queue_t doneQueueOrDefault;
 @end
@@ -74,23 +73,22 @@
 
 @implementation WDSHTTPCache
 
-- (id)initWithCaches:(NSArray *)caches parser:(WDSParser *)parser
+- (id)initWithCaches:(NSArray *)caches
 {
-    return [self initWithCaches:caches parser:parser concurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
+    return [self initWithCaches:caches concurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
 }
 
-- (id)initWithCaches:(NSArray *)caches parser:(WDSParser *)parser concurrent:(NSUInteger)concurrent
+- (id)initWithCaches:(NSArray *)caches concurrent:(NSUInteger)concurrent
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     queue.maxConcurrentOperationCount = concurrent;
-    return [self initWithCaches:caches parser:parser queue:queue];
+    return [self initWithCaches:caches queue:queue];
 }
 
-- (id)initWithCaches:(NSArray *)caches parser:(WDSParser *)parser queue:(NSOperationQueue *)queue
+- (id)initWithCaches:(NSArray *)caches queue:(NSOperationQueue *)queue
 {
-    self = [self initWithCaches:caches];
+    self = [super initWithCaches:caches];
     if (self) {
-        self.parser = parser;
         _queue = queue;
         _serial = dispatch_queue_create("WDSHTTPCache", DISPATCH_QUEUE_SERIAL);
     }
@@ -149,7 +147,7 @@
 {
     return [self fetchDataForKey:key block:^(NSData *data, BOOL cancelled) {
         dispatch_async(self.workQueueOrDefault, ^{
-            id object = data ? [self.parser parse:data] : nil;
+            id object = data ? [self objectForKey:key] : nil;
             if (block) dispatch_async(self.doneQueueOrDefault, ^{ block(object, cancelled); });
         });
     }];
