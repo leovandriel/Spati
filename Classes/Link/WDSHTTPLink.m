@@ -99,31 +99,36 @@
     return self;
 }
 
-- (void)forceFetchForKey:(NSString *)key
+- (void)forceFetchForRequest:(NSURLRequest *)request
 {
     if (!_forceSet) _forceSet = [NSMutableSet set];
+    NSString *key = request.URL.absoluteString;
     [_forceSet addObject:key];
 }
 
-- (BOOL)removeForceForKey:(NSString *)key
+- (BOOL)removeForceForRequest:(NSURLRequest *)request
 {
+    NSString *key = request.URL.absoluteString;
     BOOL result = [_forceSet containsObject:key];
     [_forceSet removeObject:key];
     return result;
 }
 
-- (NSURL *)urlForKey:(NSString *)key
+#pragma mark - Retrieval
+
+- (id)objectForURL:(NSURL *)url force:(BOOL)force block:(void (^)(id, BOOL))block
 {
-    return _baseURL ? [NSURL URLWithString:key relativeToURL:_baseURL] : [NSURL URLWithString:key];
+    return [self objectForRequest:[NSURLRequest requestWithURL:url] force:force block:block];
 }
 
-- (id)objectForKey:(NSString *)key force:(BOOL)force block:(void(^)(id, BOOL))block
+- (id)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id, BOOL))block
 {
-    if (!key) { if (block) block(nil, NO); return nil; }
-    WDSHTTPConnectionProxy *result = [self fetchObjectForKey:key block:block];
-    if ([self removeForceForKey:key] || force) {
+    if (!request) { if (block) block(nil, NO); return nil; }
+    WDSHTTPConnectionProxy *result = [self fetchObjectForRequest:request block:block];
+    if ([self removeForceForRequest:request] || force) {
         [result start];
     } else {
+        NSString *key = request.URL.absoluteString;
         [_cache objectForKey:key block:^(id object) {
             if (object || result.isCancelled) { [result nilBlock]; if (block) block(object, result.isCancelled); return; }
             [result start];
@@ -132,13 +137,19 @@
     return result;
 }
 
-- (id)dataForKey:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, BOOL))block
+- (id)dataForURL:(NSURL *)url force:(BOOL)force block:(void (^)(NSData *, BOOL))block
 {
-    if (!key) { if (block) block(nil, NO); return nil; }
-    WDSHTTPConnectionProxy *result = [self fetchDataForKey:key block:block];
-    if ([self removeForceForKey:key] || force) {
+    return [self dataForRequest:[NSURLRequest requestWithURL:url] force:force block:block];
+}
+
+- (id)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *, BOOL))block
+{
+    if (!request) { if (block) block(nil, NO); return nil; }
+    WDSHTTPConnectionProxy *result = [self fetchDataForRequest:request block:block];
+    if ([self removeForceForRequest:request] || force) {
         [result start];
     } else {
+        NSString *key = request.URL.absoluteString;
         [_cache dataForKey:key block:^(NSData *data) {
             if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
             [result start];
@@ -147,23 +158,23 @@
     return result;
 }
 
-- (WDSHTTPConnectionProxy *)fetchObjectForKey:(NSString *)key block:(void(^)(id, BOOL))block
+- (WDSHTTPConnectionProxy *)fetchObjectForRequest:(NSURLRequest *)request block:(void(^)(id, BOOL))block
 {
-    return [self fetchDataForKey:key block:^(NSData *data, BOOL cancelled) {
+    return [self fetchDataForRequest:request block:^(NSData *data, BOOL cancelled) {
         dispatch_async(_cache.workQueueOrDefault, ^{
+            NSString *key = request.URL.absoluteString;
             id object = data ? [_cache objectForKey:key] : nil;
             if (block) dispatch_async(_cache.doneQueueOrDefault, ^{ block(object, cancelled); });
         });
     }];
 }
 
-- (WDSHTTPConnectionProxy *)fetchDataForKey:(NSString *)key block:(void(^)(NSData *, BOOL))block
+- (WDSHTTPConnectionProxy *)fetchDataForRequest:(NSURLRequest *)request block:(void(^)(NSData *, BOOL))block
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self urlForKey:key]];
-    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData | NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     return [[WDSHTTPConnectionProxy alloc] initWithRequest:request queue:_queue serial:_serial block:^(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) {
         if (response.statusCode == 200 && !cancelled) {
             dispatch_async(_cache.workQueueOrDefault, ^{
+                NSString *key = request.URL.absoluteString;
                 BOOL success = [_cache setData:data forKey:key];
                 NWAssert(success);
                 if (block) dispatch_async(_cache.doneQueueOrDefault, ^{ block(data, cancelled); });

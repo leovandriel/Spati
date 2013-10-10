@@ -15,10 +15,15 @@ static char kSpatiAssociatedObjectKey;
 
 @implementation NSObject (Spati)
 
-- (void)objectForKey:(NSString *)key link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
+- (void)objectForURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
+{
+    [self objectForRequest:[NSURLRequest requestWithURL:url] link:link force:force block:block];
+}
+
+- (void)objectForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
 {
     [self.Spati_associatedConnection cancel];
-    self.Spati_associatedConnection = [link objectForKey:key force:force block:block];
+    self.Spati_associatedConnection = [link objectForRequest:request force:force block:block];
 }
 
 - (void)cancelObjectFetch

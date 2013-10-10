@@ -20,8 +20,12 @@
 - (id)initWithCache:(WDSCache *)cache;
 - (id)initWithCache:(WDSCache *)cache concurrent:(NSUInteger)concurrent;
 - (id)initWithCache:(WDSCache *)cache queue:(NSOperationQueue *)queue;
-- (id)objectForKey:(NSString *)key force:(BOOL)force block:(void(^)(id object, BOOL cancelled))block;
-- (id)dataForKey:(NSString *)key force:(BOOL)force block:(void(^)(NSData *data, BOOL cancelled))block;
-- (void)forceFetchForKey:(NSString *)key;
+
+- (void)forceFetchForRequest:(NSURLRequest *)request;
+
+- (id)objectForURL:(NSURL *)url force:(BOOL)force block:(void(^)(id object, BOOL cancelled))block;
+- (id)dataForURL:(NSURL *)url force:(BOOL)force block:(void(^)(NSData *data, BOOL cancelled))block;
+- (id)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id object, BOOL cancelled))block;
+- (id)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *data, BOOL cancelled))block;
 
 @end
