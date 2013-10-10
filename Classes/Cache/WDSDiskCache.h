@@ -6,11 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WDSCache.h"
+#import "WDSSyncCache.h"
 
 
-@interface WDSDiskCache : WDSCache
+@interface WDSDiskCache : WDSSyncCache
 
+@property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSTimeInterval expires;
 @property (nonatomic, readonly) NSString *path;
 @property (nonatomic, readonly) NSUInteger count;

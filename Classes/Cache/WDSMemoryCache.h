@@ -6,10 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WDSCache.h"
+#import "WDSSyncCache.h"
+
+@class WDSParser;
 
 
-@interface WDSMemoryCache : WDSCache
+@interface WDSMemoryCache : WDSSyncCache
 
 @property (nonatomic, readonly) NSCache *cache;
 @property (nonatomic, readonly) WDSParser *parser;
