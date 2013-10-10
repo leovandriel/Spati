@@ -6,19 +6,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WDSMultiCache.h"
+#import "WDSCache.h"
 
 @class WDSParser;
 
 
-@interface WDSHTTPCache : WDSMultiCache
+@interface WDSHTTPCache : NSObject
 
 @property (nonatomic, readonly) NSURL *baseURL;
 @property (nonatomic, readonly) NSOperationQueue *queue;
+@property (nonatomic, readonly) WDSCache *cache;
 
-- (id)initWithCaches:(NSArray *)caches;
-- (id)initWithCaches:(NSArray *)caches concurrent:(NSUInteger)concurrent;
-- (id)initWithCaches:(NSArray *)caches queue:(NSOperationQueue *)queue;
+- (id)initWithCache:(WDSCache *)cache;
+- (id)initWithCache:(WDSCache *)cache concurrent:(NSUInteger)concurrent;
+- (id)initWithCache:(WDSCache *)cache queue:(NSOperationQueue *)queue;
 - (id)objectForKey:(NSString *)key force:(BOOL)force block:(void(^)(id object, BOOL cancelled))block;
 - (id)dataForKey:(NSString *)key force:(BOOL)force block:(void(^)(NSData *data, BOOL cancelled))block;
 - (void)forceFetchForKey:(NSString *)key;
