@@ -20,6 +20,7 @@ typedef enum {
 
 @property (nonatomic, readonly) WDSParserImageType type;
 
+- (id)init;
 - (id)initWithType:(WDSParserImageType)type;
 
 @end
