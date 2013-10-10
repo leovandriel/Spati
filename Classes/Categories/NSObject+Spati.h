@@ -12,7 +12,8 @@
 
 @interface NSObject (Spati)
 
-- (void)objectForKey:(NSString *)key link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id object, BOOL cancelled))block;
+- (void)objectForURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block;
+- (void)objectForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block;
 - (void)cancelObjectFetch;
 
 @end
