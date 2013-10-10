@@ -13,6 +13,11 @@
 
 @implementation WDSImageParser
 
+- (id)init
+{
+    return [self initWithType:kWDSParserImageTypeNone];
+}
+
 - (id)initWithType:(WDSParserImageType)type
 {
     self = [super init];
