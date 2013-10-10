@@ -7,11 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class WDSHTTPCache;
+@class WDSHTTPLink;
 
 
 @interface UIImageView (Spati)
 
-- (void)setImageWithURL:(NSURL *)url cache:(WDSHTTPCache *)cache force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *image, BOOL cancelled))block;
+- (void)setImageWithURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *image, BOOL cancelled))block;
 
 @end

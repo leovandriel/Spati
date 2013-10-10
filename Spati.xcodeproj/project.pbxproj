@@ -18,7 +18,6 @@
 		B376CCD11801AB0A00BD950A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCB81801AB0A00BD950A /* WDSCache.m */; };
 		B376CCD21801AB0A00BD950A /* WDSDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */; };
 		B376CCD31801AB0A00BD950A /* WDSDiskImageNamedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */; };
-		B376CCD41801AB0A00BD950A /* WDSHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */; };
 		B376CCD51801AB0A00BD950A /* WDSMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */; };
 		B376CCD61801AB0A00BD950A /* WDSMultiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC21801AB0A00BD950A /* WDSMultiCache.m */; };
 		B376CCD71801AB0A00BD950A /* NSObject+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC51801AB0A00BD950A /* NSObject+Spati.m */; };
@@ -30,7 +29,6 @@
 		B376CD061801ACE400BD950A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCB81801AB0A00BD950A /* WDSCache.m */; };
 		B376CD071801ACE400BD950A /* WDSDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */; };
 		B376CD081801ACE400BD950A /* WDSDiskImageNamedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */; };
-		B376CD091801ACE400BD950A /* WDSHTTPCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */; };
 		B376CD0A1801ACE400BD950A /* WDSMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */; };
 		B376CD0B1801ACE400BD950A /* WDSMultiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC21801AB0A00BD950A /* WDSMultiCache.m */; };
 		B376CD0F1801ACE400BD950A /* WDSImageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCC1801AB0A00BD950A /* WDSImageParser.m */; };
@@ -44,7 +42,6 @@
 		B3A5BCF21802248B00200272 /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB71801AB0A00BD950A /* WDSCache.h */; };
 		B3A5BCF31802248B00200272 /* WDSDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB91801AB0A00BD950A /* WDSDiskCache.h */; };
 		B3A5BCF41802248B00200272 /* WDSDiskImageNamedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */; };
-		B3A5BCF51802248B00200272 /* WDSHTTPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */; };
 		B3A5BCF61802248B00200272 /* WDSMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */; };
 		B3A5BCF71802248B00200272 /* WDSMultiCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC11801AB0A00BD950A /* WDSMultiCache.h */; };
 		B3A5BCF81802248B00200272 /* NSObject+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC41801AB0A00BD950A /* NSObject+Spati.h */; };
@@ -56,13 +53,16 @@
 		B3A5BCFE1802248B00200272 /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB71801AB0A00BD950A /* WDSCache.h */; };
 		B3A5BCFF1802248B00200272 /* WDSDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB91801AB0A00BD950A /* WDSDiskCache.h */; };
 		B3A5BD001802248B00200272 /* WDSDiskImageNamedCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */; };
-		B3A5BD011802248B00200272 /* WDSHTTPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */; };
 		B3A5BD021802248B00200272 /* WDSMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */; };
 		B3A5BD031802248B00200272 /* WDSMultiCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC11801AB0A00BD950A /* WDSMultiCache.h */; };
 		B3A5BD071802248B00200272 /* WDSImageParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCB1801AB0A00BD950A /* WDSImageParser.h */; };
 		B3A5BD081802248B00200272 /* WDSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCD1801AB0A00BD950A /* WDSParser.h */; };
 		B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC41801AB0A00BD950A /* NSObject+Spati.h */; };
 		B3A5BD0D180224B700200272 /* NSObject+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC51801AB0A00BD950A /* NSObject+Spati.m */; };
+		B3D671921806C412000CE99A /* WDSHTTPLink.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D671901806C412000CE99A /* WDSHTTPLink.h */; };
+		B3D671931806C412000CE99A /* WDSHTTPLink.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D671901806C412000CE99A /* WDSHTTPLink.h */; };
+		B3D671941806C412000CE99A /* WDSHTTPLink.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D671911806C412000CE99A /* WDSHTTPLink.m */; };
+		B3D671951806C412000CE99A /* WDSHTTPLink.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D671911806C412000CE99A /* WDSHTTPLink.m */; };
 		B3E4DEA51801E79500EAF67E /* WDSMemoryCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */; };
 		B842FB3B1027455890D5C8A7 /* libPods-SpatiCocoaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */; };
 		EFB3FF9A6902482CA29AF70E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D912E6B31AE49279681FA1D /* libPods.a */; };
@@ -122,8 +122,6 @@
 		B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCache.m; sourceTree = "<group>"; };
 		B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSDiskImageNamedCache.h; sourceTree = "<group>"; };
 		B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskImageNamedCache.m; sourceTree = "<group>"; };
-		B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSHTTPCache.h; sourceTree = "<group>"; };
-		B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSHTTPCache.m; sourceTree = "<group>"; };
 		B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMemoryCache.h; sourceTree = "<group>"; };
 		B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCache.m; sourceTree = "<group>"; };
 		B376CCC11801AB0A00BD950A /* WDSMultiCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMultiCache.h; sourceTree = "<group>"; };
@@ -149,6 +147,8 @@
 		B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCacheSpec.m; sourceTree = "<group>"; };
 		B398010E1801E373008B811F /* SpatiTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B3346C1802DC300045D55D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		B3D671901806C412000CE99A /* WDSHTTPLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSHTTPLink.h; sourceTree = "<group>"; };
+		B3D671911806C412000CE99A /* WDSHTTPLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSHTTPLink.m; sourceTree = "<group>"; };
 		B3E4DE9D1801E67C00EAF67E /* SpatiTouchTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SpatiTouchTests-Info.plist"; sourceTree = "<group>"; };
 		B3E4DE9E1801E67C00EAF67E /* SpatiTouchTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiTouchTests-Prefix.pch"; sourceTree = "<group>"; };
 		B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCacheSpec.m; sourceTree = "<group>"; };
@@ -252,6 +252,7 @@
 				B376CCCF1801AB0A00BD950A /* Spati.h */,
 				B376CCB61801AB0A00BD950A /* Cache */,
 				B376CCC31801AB0A00BD950A /* Categories */,
+				B3D6718F1806C412000CE99A /* Link */,
 				B376CCCA1801AB0A00BD950A /* Parser */,
 				B376CCDC1801AB1800BD950A /* Supporting Files */,
 			);
@@ -267,8 +268,6 @@
 				B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */,
 				B376CCBB1801AB0A00BD950A /* WDSDiskImageNamedCache.h */,
 				B376CCBC1801AB0A00BD950A /* WDSDiskImageNamedCache.m */,
-				B376CCBD1801AB0A00BD950A /* WDSHTTPCache.h */,
-				B376CCBE1801AB0A00BD950A /* WDSHTTPCache.m */,
 				B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */,
 				B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */,
 				B376CCC11801AB0A00BD950A /* WDSMultiCache.h */,
@@ -320,6 +319,15 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		B3D6718F1806C412000CE99A /* Link */ = {
+			isa = PBXGroup;
+			children = (
+				B3D671901806C412000CE99A /* WDSHTTPLink.h */,
+				B3D671911806C412000CE99A /* WDSHTTPLink.m */,
+			);
+			path = Link;
+			sourceTree = "<group>";
+		};
 		B3E4DE9C1801E67C00EAF67E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,8 +364,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D671931806C412000CE99A /* WDSHTTPLink.h in Headers */,
 				B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */,
-				B3A5BD011802248B00200272 /* WDSHTTPCache.h in Headers */,
 				B3A5BCFE1802248B00200272 /* WDSCache.h in Headers */,
 				B3A5BCFD1802248B00200272 /* Spati.h in Headers */,
 				B3A5BD081802248B00200272 /* WDSParser.h in Headers */,
@@ -373,7 +381,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3A5BCF51802248B00200272 /* WDSHTTPCache.h in Headers */,
 				B3A5BCF21802248B00200272 /* WDSCache.h in Headers */,
 				B3A5BCF81802248B00200272 /* NSObject+Spati.h in Headers */,
 				B3A5BCF11802248B00200272 /* Spati.h in Headers */,
@@ -384,6 +391,7 @@
 				B3A5BCF31802248B00200272 /* WDSDiskCache.h in Headers */,
 				B3A5BCFA1802248B00200272 /* UIImageView+Spati.h in Headers */,
 				B3A5BCF41802248B00200272 /* WDSDiskImageNamedCache.h in Headers */,
+				B3D671921806C412000CE99A /* WDSHTTPLink.h in Headers */,
 				B3A5BCF91802248B00200272 /* UIButton+Spati.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,11 +642,11 @@
 				B376CCD81801AB0A00BD950A /* UIButton+Spati.m in Sources */,
 				B376CCD91801AB0A00BD950A /* UIImageView+Spati.m in Sources */,
 				B376CCD21801AB0A00BD950A /* WDSDiskCache.m in Sources */,
+				B3D671941806C412000CE99A /* WDSHTTPLink.m in Sources */,
 				B376CCD51801AB0A00BD950A /* WDSMemoryCache.m in Sources */,
 				B376CCD71801AB0A00BD950A /* NSObject+Spati.m in Sources */,
 				B376CCD11801AB0A00BD950A /* WDSCache.m in Sources */,
 				B376CCDA1801AB0A00BD950A /* WDSImageParser.m in Sources */,
-				B376CCD41801AB0A00BD950A /* WDSHTTPCache.m in Sources */,
 				B376CCDB1801AB0A00BD950A /* WDSParser.m in Sources */,
 				B376CCD61801AB0A00BD950A /* WDSMultiCache.m in Sources */,
 			);
@@ -650,8 +658,8 @@
 			files = (
 				B376CD0F1801ACE400BD950A /* WDSImageParser.m in Sources */,
 				B376CD101801ACE400BD950A /* WDSParser.m in Sources */,
-				B376CD091801ACE400BD950A /* WDSHTTPCache.m in Sources */,
 				B376CD081801ACE400BD950A /* WDSDiskImageNamedCache.m in Sources */,
+				B3D671951806C412000CE99A /* WDSHTTPLink.m in Sources */,
 				B376CD071801ACE400BD950A /* WDSDiskCache.m in Sources */,
 				B376CD0A1801ACE400BD950A /* WDSMemoryCache.m in Sources */,
 				B3A5BD0D180224B700200272 /* NSObject+Spati.m in Sources */,
