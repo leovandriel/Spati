@@ -148,6 +148,7 @@
 		B376CD111801AD8500BD950A /* SpatiCocoaStatic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiCocoaStatic-Prefix.pch"; sourceTree = "<group>"; };
 		B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCacheSpec.m; sourceTree = "<group>"; };
 		B398010E1801E373008B811F /* SpatiTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3B3346C1802DC300045D55D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		B3E4DE9D1801E67C00EAF67E /* SpatiTouchTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SpatiTouchTests-Info.plist"; sourceTree = "<group>"; };
 		B3E4DE9E1801E67C00EAF67E /* SpatiTouchTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiTouchTests-Prefix.pch"; sourceTree = "<group>"; };
 		B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCacheSpec.m; sourceTree = "<group>"; };
@@ -206,6 +207,7 @@
 				B3E4DE9C1801E67C00EAF67E /* Tests */,
 				B34FACFC1801811500D47C6E /* Frameworks */,
 				B34FACFB1801811500D47C6E /* Products */,
+				B3B3346C1802DC300045D55D /* README.md */,
 				5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */,
 				ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */,
 				6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */,
@@ -472,9 +474,9 @@
 		B34FACF01801804600D47C6E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = WD;
+				CLASSPREFIX = WDS;
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = witdot;
+				ORGANIZATIONNAME = "Wit Dot Media Berlin GmbH";
 				TargetAttributes = {
 					B32396E21801F47100931587 = {
 						TestTargetID = B376CCE01801ACB900BD950A;
