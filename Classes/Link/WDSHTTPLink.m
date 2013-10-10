@@ -15,20 +15,18 @@
 @interface WDSHTTPConnectionProxy : NSObject
 @property (nonatomic, readonly) NSURLRequest *request;
 @property (nonatomic, readonly) NSOperationQueue *queue;
-@property (nonatomic, readonly) dispatch_queue_t serial;
 @property (nonatomic, readonly) void(^block)(NSHTTPURLResponse *response, NSData *data, BOOL cancelled);
 @property (nonatomic, readonly) AFURLConnectionOperation *operation;
 @property (nonatomic, readonly) BOOL isCancelled;
 @end
 @implementation WDSHTTPConnectionProxy
 
-- (id)initWithRequest:(NSURLRequest *)request queue:(NSOperationQueue *)queue serial:(dispatch_queue_t)serial block:(void(^)(NSHTTPURLResponse *response, NSData *data, BOOL cancelled))block
+- (id)initWithRequest:(NSURLRequest *)request queue:(NSOperationQueue *)queue block:(void(^)(NSHTTPURLResponse *response, NSData *data, BOOL cancelled))block
 {
     self = [super init];
     if (self) {
         _request = request;
         _queue = queue;
-        _serial = serial;
         _block = [block copy];
     }
     return self;
@@ -66,30 +64,29 @@
 
 @interface WDSHTTPLink ()
 @property (nonatomic, readonly) NSMutableSet *forceSet;
-@property (nonatomic, readonly) dispatch_queue_t serial;
 @end
 
 @implementation WDSHTTPLink
 
-- (id)initWithCache:(WDSSyncCache *)cache
+- (id)initWithCache:(WDSSyncCache *)cache parser:(WDSParser *)parser
 {
-    return [self initWithCache:cache concurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
+    return [self initWithCache:cache parser:parser concurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
 }
 
-- (id)initWithCache:(WDSSyncCache *)cache concurrent:(NSUInteger)concurrent
+- (id)initWithCache:(WDSSyncCache *)cache parser:(WDSParser *)parser concurrent:(NSUInteger)concurrent
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     queue.maxConcurrentOperationCount = concurrent;
-    return [self initWithCache:cache queue:queue];
+    return [self initWithCache:cache parser:parser queue:queue];
 }
 
-- (id)initWithCache:(WDSSyncCache *)cache queue:(NSOperationQueue *)queue
+- (id)initWithCache:(WDSSyncCache *)cache parser:(WDSParser *)parser queue:(NSOperationQueue *)queue
 {
     self = [super init];
     if (self) {
         _cache = cache;
+        _parser = parser;
         _queue = queue;
-        _serial = dispatch_queue_create("WDSHTTPLink", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -156,28 +153,19 @@
 - (WDSHTTPConnectionProxy *)fetchObjectForRequest:(NSURLRequest *)request block:(void(^)(id, BOOL))block
 {
     return [self fetchDataForRequest:request block:^(NSData *data, BOOL cancelled) {
-        dispatch_async(_cache.workQueue, ^{
-            NSString *key = request.URL.absoluteString;
-            id object = data ? [_cache objectForKey:key] : nil;
-            if (block) dispatch_async(_cache.doneQueue, ^{
-                block(object, cancelled); });
-        });
+        if (block) block([_parser parse:data], cancelled);
     }];
 }
 
 - (WDSHTTPConnectionProxy *)fetchDataForRequest:(NSURLRequest *)request block:(void(^)(NSData *, BOOL))block
 {
-    return [[WDSHTTPConnectionProxy alloc] initWithRequest:request queue:_queue serial:_serial block:^(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) {
+    return [[WDSHTTPConnectionProxy alloc] initWithRequest:request queue:_queue block:^(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) {
         if (response.statusCode == 200 && !cancelled) {
-            dispatch_async(_cache.workQueue, ^{
-                NSString *key = request.URL.absoluteString;
-                BOOL success = [_cache setData:data forKey:key];
-                NWAssert(success);
-                if (block) dispatch_async(_cache.doneQueue, ^{ block(data, cancelled); });
-            });
+            [_cache setData:data forKey:request.URL.absoluteString block:^(BOOL done) { NWAssert(done); }];
+            if (block) block(data, cancelled);
         } else {
             NWLogWarnIfNot(response.statusCode == 0 || cancelled, @"HTTP status code %i", (int)response.statusCode);
-            if (block) dispatch_async(_cache.doneQueue, ^{ block(nil, cancelled); });
+            if (block) block(nil, cancelled);
         }
     }];
 }

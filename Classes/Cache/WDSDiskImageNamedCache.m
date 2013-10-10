@@ -21,10 +21,10 @@
 
 - (NSString *)relative:(NSString *)file
 {
-    return [[@"../Library/Caches" stringByAppendingPathComponent:self.name?:@"spati"] stringByAppendingPathComponent:file];
+    return [[@"../Library/Caches" stringByAppendingPathComponent:self.name?:@"WDSDiskCache"] stringByAppendingPathComponent:file];
 }
 
-- (id)objectForKey:(NSString *)key
+- (UIImage *)imageNamedForKey:(NSString *)key
 {
     if (!key) return nil;
     NSString *file = [self fileForKey:key];
@@ -34,6 +34,19 @@
 #else
     return [NSImage imageNamed:[self relative:file]];
 #endif
+}
+
+- (id)objectForKey:(NSString *)key
+{
+    return [self imageNamedForKey:key];
+}
+
+- (void)objectForKey:(NSString *)key block:(void(^)(id))block
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        id result = [self imageNamedForKey:key];
+        if (block) dispatch_async(self.doneQueue, ^{ block(result); });
+    });
 }
 
 @end
