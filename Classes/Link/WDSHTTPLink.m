@@ -1,11 +1,11 @@
 //
-//  WDSHTTPCache.m
+//  WDSHTTPLink.m
 //  Spati
 //
 //  Copyright (c) 2013 Wit Dot Media Berlin GmbH. All rights reserved.
 //
 
-#import "WDSHTTPCache.h"
+#import "WDSHTTPLink.h"
 #import "AFURLConnectionOperation.h"
 #import "NWLCore.h"
 #import "WDSParser.h"
@@ -69,12 +69,12 @@
 
 @end
 
-@interface WDSHTTPCache ()
+@interface WDSHTTPLink ()
 @property (nonatomic, readonly) NSMutableSet *forceSet;
 @property (nonatomic, readonly) dispatch_queue_t serial;
 @end
 
-@implementation WDSHTTPCache
+@implementation WDSHTTPLink
 
 - (id)initWithCache:(WDSCache *)cache
 {
@@ -94,7 +94,7 @@
     if (self) {
         _cache = cache;
         _queue = queue;
-        _serial = dispatch_queue_create("WDSHTTPCache", DISPATCH_QUEUE_SERIAL);
+        _serial = dispatch_queue_create("WDSHTTPLink", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }

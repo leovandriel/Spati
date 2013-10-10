@@ -7,7 +7,7 @@
 
 #import "NSObject+Spati.h"
 #import <objc/runtime.h>
-#import "WDSHTTPCache.h"
+#import "WDSHTTPLink.h"
 
 
 static char kSpatiAssociatedObjectKey;
@@ -15,10 +15,10 @@ static char kSpatiAssociatedObjectKey;
 
 @implementation NSObject (Spati)
 
-- (void)objectForKey:(NSString *)key cache:(WDSHTTPCache *)cache force:(BOOL)force block:(void (^)(id, BOOL))block
+- (void)objectForKey:(NSString *)key link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
 {
     [self.Spati_associatedConnection cancel];
-    self.Spati_associatedConnection = [cache objectForKey:key force:force block:block];
+    self.Spati_associatedConnection = [link objectForKey:key force:force block:block];
 }
 
 - (void)cancelObjectFetch

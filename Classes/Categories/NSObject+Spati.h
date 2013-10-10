@@ -7,12 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class WDSHTTPCache;
+@class WDSHTTPLink;
 
 
 @interface NSObject (Spati)
 
-- (void)objectForKey:(NSString *)key cache:(WDSHTTPCache *)cache force:(BOOL)force block:(void (^)(id object, BOOL cancelled))block;
+- (void)objectForKey:(NSString *)key link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id object, BOOL cancelled))block;
 - (void)cancelObjectFetch;
 
 @end

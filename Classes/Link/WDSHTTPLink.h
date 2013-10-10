@@ -1,5 +1,5 @@
 //
-//  WDSHTTPCache.h
+//  WDSHTTPLink.h
 //  Spati
 //
 //  Copyright (c) 2013 Wit Dot Media Berlin GmbH. All rights reserved.
@@ -11,7 +11,7 @@
 @class WDSParser;
 
 
-@interface WDSHTTPCache : NSObject
+@interface WDSHTTPLink : NSObject
 
 @property (nonatomic, readonly) NSURL *baseURL;
 @property (nonatomic, readonly) NSOperationQueue *queue;

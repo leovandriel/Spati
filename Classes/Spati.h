@@ -9,9 +9,10 @@
 #import "WDSCache.h"
 #import "WDSDiskCache.h"
 #import "WDSDiskImageNamedCache.h"
-#import "WDSHTTPCache.h"
 #import "WDSMemoryCache.h"
 #import "WDSMultiCache.h"
+
+#import "WDSHTTPLink.h"
 
 #import "NSObject+Spati.h"
 #if	TARGET_OS_IPHONE
