@@ -158,7 +158,8 @@
 
 - (WDSHTTPConnectionProxy *)fetchDataForKey:(NSString *)key block:(void(^)(NSData *, BOOL))block
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[self urlForKey:key]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[self urlForKey:key]];
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData | NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     return [[WDSHTTPConnectionProxy alloc] initWithRequest:request queue:_queue serial:_serial block:^(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) {
         if (response.statusCode == 200 && !cancelled) {
             dispatch_async(self.workQueueOrDefault, ^{
