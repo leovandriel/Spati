@@ -76,22 +76,23 @@
 
 @implementation WDSHTTPCache
 
-- (id)initWithCaches:(NSArray *)caches
+- (id)initWithCache:(WDSCache *)cache
 {
-    return [self initWithCaches:caches concurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
+    return [self initWithCache:cache concurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
 }
 
-- (id)initWithCaches:(NSArray *)caches concurrent:(NSUInteger)concurrent
+- (id)initWithCache:(WDSCache *)cache concurrent:(NSUInteger)concurrent
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     queue.maxConcurrentOperationCount = concurrent;
-    return [self initWithCaches:caches queue:queue];
+    return [self initWithCache:cache queue:queue];
 }
 
-- (id)initWithCaches:(NSArray *)caches queue:(NSOperationQueue *)queue
+- (id)initWithCache:(WDSCache *)cache queue:(NSOperationQueue *)queue
 {
-    self = [super initWithCaches:caches];
+    self = [super init];
     if (self) {
+        _cache = cache;
         _queue = queue;
         _serial = dispatch_queue_create("WDSHTTPCache", DISPATCH_QUEUE_SERIAL);
     }
@@ -123,7 +124,7 @@
     if ([self removeForceForKey:key] || force) {
         [result start];
     } else {
-        [super objectForKey:key block:^(id object) {
+        [_cache objectForKey:key block:^(id object) {
             if (object || result.isCancelled) { [result nilBlock]; if (block) block(object, result.isCancelled); return; }
             [result start];
         }];
@@ -138,7 +139,7 @@
     if ([self removeForceForKey:key] || force) {
         [result start];
     } else {
-        [super dataForKey:key block:^(NSData *data) {
+        [_cache dataForKey:key block:^(NSData *data) {
             if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
             [result start];
         }];
@@ -149,9 +150,9 @@
 - (WDSHTTPConnectionProxy *)fetchObjectForKey:(NSString *)key block:(void(^)(id, BOOL))block
 {
     return [self fetchDataForKey:key block:^(NSData *data, BOOL cancelled) {
-        dispatch_async(self.workQueueOrDefault, ^{
-            id object = data ? [self objectForKey:key] : nil;
-            if (block) dispatch_async(self.doneQueueOrDefault, ^{ block(object, cancelled); });
+        dispatch_async(_cache.workQueueOrDefault, ^{
+            id object = data ? [_cache objectForKey:key] : nil;
+            if (block) dispatch_async(_cache.doneQueueOrDefault, ^{ block(object, cancelled); });
         });
     }];
 }
@@ -162,14 +163,14 @@
     request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData | NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
     return [[WDSHTTPConnectionProxy alloc] initWithRequest:request queue:_queue serial:_serial block:^(NSHTTPURLResponse *response, NSData *data, BOOL cancelled) {
         if (response.statusCode == 200 && !cancelled) {
-            dispatch_async(self.workQueueOrDefault, ^{
-                BOOL success = [self setData:data forKey:key];
+            dispatch_async(_cache.workQueueOrDefault, ^{
+                BOOL success = [_cache setData:data forKey:key];
                 NWAssert(success);
-                if (block) dispatch_async(self.doneQueueOrDefault, ^{ block(data, cancelled); });
+                if (block) dispatch_async(_cache.doneQueueOrDefault, ^{ block(data, cancelled); });
             });
         } else {
             NWLogWarnIfNot(response.statusCode == 0 || cancelled, @"HTTP status code %i", (int)response.statusCode);
-            if (block) dispatch_async(self.doneQueueOrDefault, ^{ block(nil, cancelled); });
+            if (block) dispatch_async(_cache.doneQueueOrDefault, ^{ block(nil, cancelled); });
         }
     }];
 }
