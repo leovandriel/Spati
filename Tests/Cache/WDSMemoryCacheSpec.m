@@ -9,7 +9,7 @@
 #import "WDSMemoryCache.h"
 
 
-SPEC_BEGIN(MemoryCacheSpec)
+SPEC_BEGIN(WDSMemoryCacheSpec)
 
 describe(@"accessing objects", ^{
     __block WDSMemoryCache *cache;

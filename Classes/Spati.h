@@ -11,7 +11,9 @@
 #import "WDSDiskImageNamedCache.h"
 #import "WDSMemoryCache.h"
 #import "WDSMultiCache.h"
+#import "WDSSyncCache.h"
 
+#import "WDSAFNetworkingHTTPSession.h"
 #import "WDSHTTPLink.h"
 
 #import "NSObject+Spati.h"
