@@ -9,7 +9,7 @@
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #endif
-
+#import "NWLCore.h"
 
 @interface WDSDiskCache ()
 - (NSString *)fileForKey:(NSString *)key;
@@ -26,6 +26,7 @@
 
 - (UIImage *)imageNamedForKey:(NSString *)key
 {
+    NWAssertMainThread();
     if (!key) return nil;
     NSString *file = [self fileForKey:key];
     if ([self expirationOfFile:file]) return nil;

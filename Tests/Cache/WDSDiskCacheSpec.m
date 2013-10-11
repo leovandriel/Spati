@@ -9,7 +9,7 @@
 #import "WDSDiskCache.h"
 
 
-SPEC_BEGIN(DiskCacheSpec)
+SPEC_BEGIN(WDSDiskCacheSpec)
 
 describe(@"accessing data", ^{
     __block WDSDiskCache *cache;
