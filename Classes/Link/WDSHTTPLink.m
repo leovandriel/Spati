@@ -110,11 +110,11 @@
         [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
     } else {
         if (_hasSyncCache) {
-            NSData *data = [self cachedObjectForKey:key dataOnly:dataOnly block:nil];
+            NSData *data = [(WDSSyncCache *)_cache objectForKey:key dataOnly:dataOnly];
             if (data) { if (block) block(data, NO); return nil; }
             [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
         } else {
-            [self cachedObjectForKey:key dataOnly:dataOnly block:^(NSData *data) {
+            [_cache objectForKey:key dataOnly:dataOnly block:^(NSData *data) {
                 if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
                 [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
             }];
@@ -123,25 +123,18 @@
     return result;
 }
 
-- (id)cachedObjectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(id))block
-{
-    if (block) {
-        if (dataOnly) [_cache dataForKey:key block:block];
-        else [_cache objectForKey:key block:block];
-        return nil;
-    } else {
-        if (dataOnly) return [(WDSSyncCache *)_cache dataForKey:key];
-        else return [(WDSSyncCache *)_cache objectForKey:key];
-    }
-}
-
 - (void)fetchObjectForRequest:(NSURLRequest *)request key:(NSString *)key process:(WDSHTTPProcess *)process dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
 {
     process.block = ^(NSData *data, BOOL isCancelled) {
         if (data && !isCancelled) {
-            [_cache setData:data forKey:key block:^(BOOL done) { NWAssert(done); }];
-            id object = dataOnly ? data : [_parser parse:data];
-            if (block) block(object, isCancelled);
+            [_cache setObject:data forKey:key dataOnly:YES block:^(BOOL done) { NWAssert(done); }];
+            if (dataOnly) {
+                if (block) block(data, isCancelled);
+            } else {
+                id object = [_parser parse:data];
+                [_cache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
+                if (block) block(object, isCancelled);
+            }
         } else {
             NWAssert(isCancelled);
             if (block) block(nil, isCancelled);

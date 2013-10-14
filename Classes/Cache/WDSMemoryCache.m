@@ -41,15 +41,15 @@
 
 #pragma mark Cache Cache
 
-- (id)objectForKey:(NSString *)key
+- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    if (!key) return nil;
+    if (!key || dataOnly) return nil;
     return [_cache objectForKey:key];
 }
 
-- (BOOL)setObject:(id)object forKey:(NSString *)key
+- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    if (!key) return NO;
+    if (!key || dataOnly) return NO;
     if (object) [_cache setObject:object forKey:key cost:(NSUInteger)[_parser size:object]];
     else [_cache removeObjectForKey:key];
     return YES;

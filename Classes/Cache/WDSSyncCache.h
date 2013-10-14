@@ -14,10 +14,8 @@
 @property (nonatomic, readonly) dispatch_queue_t workQueue;
 @property (nonatomic, readonly) dispatch_queue_t doneQueue;
 
-- (id)objectForKey:(NSString *)key;
-- (NSData *)dataForKey:(NSString *)key;
-- (BOOL)setObject:(id)object forKey:(NSString *)key;
-- (BOOL)setData:(NSData *)data forKey:(NSString *)key;
+- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly;
+- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly;
 - (BOOL)removeObjectForKey:(NSString *)key;
 - (BOOL)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey;
 - (BOOL)removeAllObjects;
