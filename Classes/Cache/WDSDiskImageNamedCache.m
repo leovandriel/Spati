@@ -24,10 +24,10 @@
     return [[@"../Library/Caches" stringByAppendingPathComponent:self.name?:@"WDSDiskCache"] stringByAppendingPathComponent:file];
 }
 
-- (UIImage *)imageNamedForKey:(NSString *)key
+- (UIImage *)imageNamedForKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
     NWAssertMainThread();
-    if (!key) return nil;
+    if (!key || dataOnly) return nil;
     NSString *file = [self fileForKey:key];
     if ([self expirationOfFile:file]) return nil;
 #if TARGET_OS_IPHONE
@@ -37,15 +37,15 @@
 #endif
 }
 
-- (id)objectForKey:(NSString *)key
+- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    return [self imageNamedForKey:key];
+    return [self imageNamedForKey:key dataOnly:dataOnly];
 }
 
-- (void)objectForKey:(NSString *)key block:(void(^)(id))block
+- (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(id))block
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        id result = [self imageNamedForKey:key];
+        id result = [self imageNamedForKey:key dataOnly:dataOnly];
         if (block) dispatch_async(self.doneQueue, ^{ block(result); });
     });
 }

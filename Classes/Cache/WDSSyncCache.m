@@ -26,22 +26,12 @@
     return self;
 }
 
-- (id)objectForKey:(NSString *)key
+- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
     return nil;
 }
 
-- (id)dataForKey:(NSString *)key
-{
-    return nil;
-}
-
-- (BOOL)setObject:(id)object forKey:(NSString *)key
-{
-    return NO;
-}
-
-- (BOOL)setData:(NSData *)data forKey:(NSString *)key
+- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
     return NO;
 }
@@ -61,34 +51,18 @@
     return YES;
 }
 
-- (void)objectForKey:(NSString *)key block:(void(^)(id))block
+- (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(id))block
 {
     dispatch_async(self.workQueue, ^{
-        id result = [self objectForKey:key];
+        id result = [self objectForKey:key dataOnly:dataOnly];
         if (block) dispatch_async(self.doneQueue, ^{ block(result); });
     });
 }
 
-- (void)dataForKey:(NSString *)key block:(void (^)(NSData *))block
+- (void)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(BOOL))block
 {
     dispatch_async(self.workQueue, ^{
-        id result = [self dataForKey:key];
-        if (block) dispatch_async(self.doneQueue, ^{ block(result); });
-    });
-}
-
-- (void)setObject:(id)object forKey:(NSString *)key block:(void(^)(BOOL))block
-{
-    dispatch_async(self.workQueue, ^{
-        BOOL result = [self setObject:object forKey:key];
-        if (block) dispatch_async(self.doneQueue, ^{ block(result); });
-    });
-}
-
-- (void)setData:(NSData *)data forKey:(NSString *)key block:(void (^)(BOOL))block
-{
-    dispatch_async(self.workQueue, ^{
-        BOOL result = [self setData:data forKey:key];
+        BOOL result = [self setObject:object forKey:key dataOnly:dataOnly];
         if (block) dispatch_async(self.doneQueue, ^{ block(result); });
     });
 }

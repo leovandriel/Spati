@@ -122,18 +122,18 @@
     return [_path stringByAppendingPathComponent:[self fileForKey:key]];
 }
 
-- (NSData *)dataForKey:(NSString *)key
+- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    if (!key) return nil;
+    if (!key || !dataOnly) return nil;
     NSString *file = [self fileForKey:key];
     if ([self expirationOfFile:file]) return nil;
     return [NSData dataWithContentsOfFile:[_path stringByAppendingPathComponent:file]];
 }
 
-- (BOOL)setData:(NSData *)data forKey:(NSString *)key
+- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    if (!key) return NO;
-    return [data writeToFile:[self path:key] atomically:NO];
+    if (!key || !dataOnly) return NO;
+    return [object writeToFile:[self path:key] atomically:NO];
 }
 
 - (BOOL)removeObjectForKey:(NSString *)key

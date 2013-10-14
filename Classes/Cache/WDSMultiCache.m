@@ -83,57 +83,30 @@
 //    return result;
 //}
 
-- (void)objectForKey:(NSString *)key block:(void(^)(id))block
+- (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void (^)(id))block
 {
-    [self objectForKey:key index:0 block:block];
+    [self objectForKey:key dataOnly:dataOnly index:0 block:block];
 }
 
-- (void)objectForKey:(NSString *)key index:(NSUInteger)index block:(void(^)(id))block
+- (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly index:(NSUInteger)index block:(void(^)(id))block
 {
     if (index >= _caches.count) { if (block) block(nil); return; }
-    [_caches[index] objectForKey:key block:^(id object) {
+    [_caches[index] objectForKey:key dataOnly:dataOnly block:^(id object) {
         if (object) { if (block) block(object); return; }
-        [self objectForKey:key index:index + 1 block:block];
+        [self objectForKey:key dataOnly:dataOnly index:index + 1 block:block];
     }];
 }
 
-- (void)dataForKey:(NSString *)key block:(void (^)(NSData *))block
+- (void)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(BOOL))block
 {
-    [self dataForKey:key index:0 block:block];
+    [self setObject:object forKey:key dataOnly:dataOnly index:0 result:NO block:block];
 }
 
-- (void)dataForKey:(NSString *)key index:(NSUInteger)index block:(void(^)(id))block
-{
-    if (index >= _caches.count) { if (block) block(nil); return; }
-    [_caches[index] dataForKey:key block:^(NSData *data) {
-        if (data) { if (block) block(data); return; }
-        [self dataForKey:key index:index + 1 block:block];
-    }];
-}
-
-- (void)setObject:(id)object forKey:(NSString *)key block:(void(^)(BOOL))block
-{
-    [self setObject:object forKey:key index:0 result:NO block:block];
-}
-
-- (void)setObject:(id)object forKey:(NSString *)key index:(NSUInteger)index result:(BOOL)result block:(void(^)(BOOL))block
+- (void)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly index:(NSUInteger)index result:(BOOL)result block:(void(^)(BOOL))block
 {
     if (index >= _caches.count) { if (block) block(result); return; }
-    [_caches[index] setObject:object forKey:key block:^(BOOL done) {
-        [self setObject:object forKey:key index:index + 1 result:(result || done) block:block];
-    }];
-}
-
-- (void)setData:(NSData *)data forKey:(NSString *)key block:(void (^)(BOOL))block
-{
-    [self setData:data forKey:key index:0 result:NO block:block];
-}
-
-- (void)setData:(NSData *)data forKey:(NSString *)key index:(NSUInteger)index result:(BOOL)result block:(void(^)(BOOL))block
-{
-    if (index >= _caches.count) { if (block) block(result); return; }
-    [_caches[index] setData:data forKey:key block:^(BOOL done) {
-        [self setData:data forKey:key index:index + 1 result:(result || done) block:block];
+    [_caches[index] setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) {
+        [self setObject:object forKey:key dataOnly:dataOnly index:index + 1 result:(result || done) block:block];
     }];
 }
 
