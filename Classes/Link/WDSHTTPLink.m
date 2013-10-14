@@ -84,7 +84,7 @@
 
 - (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(id, BOOL))block
 {
-    return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:NO block:block];
+    return [self objectForRequest:request key:key force:force dataOnly:NO block:block];
 }
 
 - (id)dataForURL:(NSURL *)url force:(BOOL)force block:(void (^)(NSData *, BOOL))block
@@ -99,7 +99,7 @@
 
 - (id)dataForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, BOOL))block
 {
-    return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:YES block:block];
+    return [self objectForRequest:request key:key force:force dataOnly:YES block:block];
 }
 
 - (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
