@@ -69,6 +69,7 @@
 
 - (WDSHTTPConnection *)startWithRequest:(NSURLRequest *)request block:(void (^)(NSData *, BOOL))block
 {
+    if (!request) { if (block) block(nil, NO); return nil; }
     WDSAFNetworkingHTTPConnection *result = [[WDSAFNetworkingHTTPConnection alloc] initWithRequest:request block:block];
     [result startWithQueue:_queue];
     return result;
