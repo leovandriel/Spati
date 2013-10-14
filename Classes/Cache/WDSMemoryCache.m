@@ -16,15 +16,21 @@
 
 - (id)init
 {
-    return [self initWithParser:nil];
+    return [self initWithName:@"WDSMemoryCache" parser:nil];
 }
 
-- (id)initWithParser:(WDSParser *)parser
+- (id)initWithName:(NSString *)name
+{
+    return [self initWithName:name parser:nil];
+}
+
+- (id)initWithName:(NSString *)name parser:(WDSParser *)parser
 {
     self = [super init];
     if (self) {
         _parser = parser;
         _cache = [[NSCache alloc] init];
+        _cache.name = name;
 #if TARGET_OS_IPHONE
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllObjects) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 #endif
