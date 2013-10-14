@@ -20,33 +20,33 @@ describe(@"accessing data", ^{
     
     it(@"forwards gets to the internal cache", ^{
         [[[NSData should] receive] dataWithContentsOfFile:any()];
-        [cache dataForKey:@"k"];
+        [cache objectForKey:@"k" dataOnly:YES];
     });
     
     it(@"forwards sets to the internal cache", ^{
         [[[data should] receive] writeToFile:any() atomically:NO];
-        [cache setData:data forKey:@"k"];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
     });
     
     it(@"retrieves data after storing", ^{
-        [cache setData:data forKey:@"k"];
-        [[[cache dataForKey:@"k"] should] equal:data];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
+        [[[cache objectForKey:@"k" dataOnly:YES] should] equal:data];
     });
     
     it(@"returns nil for nil key", ^{
-        [[[cache dataForKey:nil] should] beNil];
+        [[[cache objectForKey:nil dataOnly:YES] should] beNil];
     });
     
     it(@"allows setting nil", ^{
-        [cache setData:data forKey:@"k"];
-        [cache setData:nil forKey:@"k"];
-        [[[cache dataForKey:nil] should] beNil];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
+        [cache setObject:nil forKey:@"k" dataOnly:YES];
+        [[[cache objectForKey:nil dataOnly:YES] should] beNil];
     });
     
     it(@"returns YES iff valid key", ^{
-        [[theValue((int)[cache setData:data forKey:@"k"]) should] beYes];
+        [[theValue((int)[cache setObject:data forKey:@"k" dataOnly:YES]) should] beYes];
         [[theValue((int)[cache removeObjectForKey:@"k"]) should] beYes];
-        [[theValue((int)[cache setData:data forKey:nil]) should] beNo];
+        [[theValue((int)[cache setObject:data forKey:nil dataOnly:YES]) should] beNo];
     });
 });
 
@@ -68,32 +68,32 @@ describe(@"(re)moving data", ^{
     });
     
     it(@"removed data after storing", ^{
-        [cache setData:data forKey:@"k"];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
         [cache removeObjectForKey:@"k"];
-        [[[cache dataForKey:@"k"] should] beNil];
+        [[[cache objectForKey:@"k" dataOnly:YES] should] beNil];
     });
     
     it(@"moved data after storing", ^{
-        [cache setData:data forKey:@"k"];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
         [cache moveObjectForKey:@"k" toKey:@"l"];
-        [[[cache dataForKey:@"k"] should] beNil];
-        [[[cache dataForKey:@"l"] should] equal:data];
+        [[[cache objectForKey:@"k" dataOnly:YES] should] beNil];
+        [[[cache objectForKey:@"l" dataOnly:YES] should] equal:data];
     });
     
     it(@"removed all data after storing", ^{
-        [cache setData:data forKey:@"k"];
-        [cache setData:[@"p" dataUsingEncoding:NSUTF8StringEncoding] forKey:@"l"];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
+        [cache setObject:[@"p" dataUsingEncoding:NSUTF8StringEncoding] forKey:@"l" dataOnly:YES];
         [cache removeAllObjects];
-        [[[cache dataForKey:@"k"] should] beNil];
-        [[[cache dataForKey:@"l"] should] beNil];
+        [[[cache objectForKey:@"k" dataOnly:YES] should] beNil];
+        [[[cache objectForKey:@"l" dataOnly:YES] should] beNil];
     });
 
     it(@"returns YES iff valid key", ^{
-        [cache setData:data forKey:@"k"];
+        [cache setObject:data forKey:@"k" dataOnly:YES];
         [[theValue((int)[cache moveObjectForKey:@"k" toKey:@"l"]) should] beYes];
         [[theValue((int)[cache moveObjectForKey:nil toKey:@"l"]) should] beNo];
         [[theValue((int)[cache moveObjectForKey:@"k" toKey:nil]) should] beNo];
-        [cache setData:nil forKey:@"k"];
+        [cache setObject:nil forKey:@"k" dataOnly:YES];
         [[theValue((int)[cache moveObjectForKey:@"k" toKey:@"l"]) should] beNo];
         [[theValue((int)[cache removeAllObjects]) should] beYes];
         [[theValue((int)[cache removeObjectForKey:nil]) should] beNo];
