@@ -74,79 +74,74 @@
 
 - (id)objectForURL:(NSURL *)url force:(BOOL)force block:(void (^)(id, BOOL))block
 {
-    return [self objectForRequest:[NSURLRequest requestWithURL:url] force:force block:block];
+    return [self objectForRequest:[NSURLRequest requestWithURL:url] key:url.absoluteString force:force dataOnly:NO block:block];
 }
 
 - (id)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id, BOOL))block
 {
-    return [self objectForRequest:request key:request.URL.absoluteString force:force block:block];
+    return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:NO block:block];
 }
 
 - (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(id, BOOL))block
 {
-    if (!request) { if (block) block(nil, NO); return nil; }
-    WDSHTTPProcess *result = [[WDSHTTPProcess alloc] init];
-    if ([self removeForceForKey:key] || force) {
-        [self fetchObjectForRequest:request key:key process:result block:block];
-    } else {
-        if (_hasSyncCache) {
-            id object = [(WDSSyncCache *)_cache objectForKey:key];
-            if (object) { if (block) block(object, NO); return nil; }
-            [self fetchObjectForRequest:request key:key process:result block:block];
-        } else {
-            [_cache objectForKey:key block:^(id object) {
-                if (object || result.isCancelled) { [result nilBlock]; if (block) block(object, result.isCancelled); return; }
-                [self fetchObjectForRequest:request key:key process:result block:block];
-            }];
-        }
-    }
-    return result;
+    return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:NO block:block];
 }
 
 - (id)dataForURL:(NSURL *)url force:(BOOL)force block:(void (^)(NSData *, BOOL))block
 {
-    return [self dataForRequest:[NSURLRequest requestWithURL:url] force:force block:block];
+    return [self objectForRequest:[NSURLRequest requestWithURL:url] key:url.absoluteString force:force dataOnly:YES block:block];
 }
 
 - (id)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *, BOOL))block
 {
-    return [self dataForRequest:request key:request.URL.absoluteString force:force block:block];
+    return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:YES block:block];
 }
 
 - (id)dataForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, BOOL))block
 {
+    return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:YES block:block];
+}
+
+- (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
+{
     if (!request) { if (block) block(nil, NO); return nil; }
     WDSHTTPProcess *result = [[WDSHTTPProcess alloc] init];
     if ([self removeForceForKey:key] || force) {
-        [self fetchDataForRequest:request key:key process:result block:block];
+        [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
     } else {
         if (_hasSyncCache) {
-            NSData *data = [(WDSSyncCache *)_cache dataForKey:key];
+            NSData *data = [self cachedObjectForKey:key dataOnly:dataOnly block:nil];
             if (data) { if (block) block(data, NO); return nil; }
-            [self fetchDataForRequest:request key:key process:result block:block];
+            [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
         } else {
-            [_cache objectForKey:key block:^(NSData *data) {
+            [self cachedObjectForKey:key dataOnly:dataOnly block:^(NSData *data) {
                 if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
-                [self fetchDataForRequest:request key:key process:result block:block];
+                [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
             }];
         }
     }
     return result;
 }
 
-- (void)fetchObjectForRequest:(NSURLRequest *)request key:(NSString *)key process:(WDSHTTPProcess *)process block:(void(^)(id, BOOL))block
+- (id)cachedObjectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(id))block
 {
-    return [self fetchDataForRequest:request key:key process:process block:^(NSData *data, BOOL cancelled) {
-        if (block) block([_parser parse:data], cancelled);
-    }];
+    if (block) {
+        if (dataOnly) [_cache dataForKey:key block:block];
+        else [_cache objectForKey:key block:block];
+        return nil;
+    } else {
+        if (dataOnly) return [(WDSSyncCache *)_cache dataForKey:key];
+        else return [(WDSSyncCache *)_cache objectForKey:key];
+    }
 }
 
-- (void)fetchDataForRequest:(NSURLRequest *)request key:(NSString *)key process:(WDSHTTPProcess *)process block:(void(^)(NSData *, BOOL))block
+- (void)fetchObjectForRequest:(NSURLRequest *)request key:(NSString *)key process:(WDSHTTPProcess *)process dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
 {
     process.block = ^(NSData *data, BOOL isCancelled) {
         if (data && !isCancelled) {
             [_cache setData:data forKey:key block:^(BOOL done) { NWAssert(done); }];
-            if (block) block(data, isCancelled);
+            id object = dataOnly ? data : [_parser parse:data];
+            if (block) block(object, isCancelled);
         } else {
             NWAssert(isCancelled);
             if (block) block(nil, isCancelled);
