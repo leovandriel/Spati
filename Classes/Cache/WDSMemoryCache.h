@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) WDSParser *parser;
 
 - (id)init;
-- (id)initWithParser:(WDSParser *)parser;
+- (id)initWithName:(NSString *)name;
+- (id)initWithName:(NSString *)name parser:(WDSParser *)parser;
 
 @end
