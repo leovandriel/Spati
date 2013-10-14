@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WDSCache.h"
+#import "WDSSyncCache.h"
 
-@interface WDSMultiCache : WDSCache
+@interface WDSMultiCache : WDSSyncCache
 
 @property (nonatomic, readonly) NSArray *caches;
 

@@ -11,6 +11,8 @@
 #import "WDSDiskImageNamedCache.h"
 #import "WDSMemoryCache.h"
 #import "WDSMultiCache.h"
+#import "WDSProxyCache.h"
+#import "WDSProxySyncCache.h"
 #import "WDSSyncCache.h"
 
 #import "WDSAFNetworkingHTTPSession.h"

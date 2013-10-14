@@ -25,21 +25,32 @@
     NSMutableSet *_forceSet;
 }
 
-- (id)initWithSession:(WDSHTTPSession *)session syncCache:(WDSSyncCache *)syncCache parser:(WDSParser *)parser
-{
-    return [self initWithSession:session cache:syncCache hasSyncCache:YES parser:parser];
-}
-
 - (id)initWithSession:(WDSHTTPSession *)session cache:(WDSCache *)cache parser:(WDSParser *)parser
 {
-    return [self initWithSession:session cache:cache hasSyncCache:NO parser:parser];
+    return [self initWithSession:session readCache:cache writeCache:cache hasSyncCache:NO parser:parser];
 }
 
-- (id)initWithSession:(WDSHTTPSession *)session cache:(WDSCache *)cache hasSyncCache:(BOOL)hasSyncCache parser:(WDSParser *)parser
+- (id)initWithSession:(WDSHTTPSession *)session syncCache:(WDSSyncCache *)syncCache parser:(WDSParser *)parser
+{
+    return [self initWithSession:session readCache:syncCache writeCache:syncCache hasSyncCache:YES parser:parser];
+}
+
+- (id)initWithSession:(WDSHTTPSession *)session readCache:(WDSCache *)readCache writeCache:(WDSCache *)writeCache parser:(WDSParser *)parser
+{
+    return [self initWithSession:session readCache:readCache writeCache:writeCache hasSyncCache:NO parser:parser];
+}
+
+- (id)initWithSession:(WDSHTTPSession *)session readSyncCache:(WDSSyncCache *)readSyncCache writeCache:(WDSCache *)writeCache parser:(WDSParser *)parser
+{
+    return [self initWithSession:session readCache:readSyncCache writeCache:writeCache hasSyncCache:YES parser:parser];
+}
+
+- (id)initWithSession:(WDSHTTPSession *)session readCache:(WDSCache *)readCache writeCache:(WDSCache *)writeCache hasSyncCache:(BOOL)hasSyncCache parser:(WDSParser *)parser
 {
     self = [super init];
     if (self) {
-        _cache = cache;
+        _readCache = readCache;
+        _writeCache = writeCache;
         _parser = parser;
         _session = session;
         _hasSyncCache = hasSyncCache;
@@ -110,11 +121,11 @@
         [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
     } else {
         if (_hasSyncCache) {
-            NSData *data = [(WDSSyncCache *)_cache objectForKey:key dataOnly:dataOnly];
+            NSData *data = [(WDSSyncCache *)_readCache objectForKey:key dataOnly:dataOnly];
             if (data) { if (block) block(data, NO); return nil; }
             [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
         } else {
-            [_cache objectForKey:key dataOnly:dataOnly block:^(NSData *data) {
+            [_readCache objectForKey:key dataOnly:dataOnly block:^(NSData *data) {
                 if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
                 [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
             }];
@@ -127,12 +138,12 @@
 {
     process.block = ^(NSData *data, BOOL isCancelled) {
         if (data && !isCancelled) {
-            [_cache setObject:data forKey:key dataOnly:YES block:^(BOOL done) { NWAssert(done); }];
+            [_writeCache setObject:data forKey:key dataOnly:YES block:^(BOOL done) { NWAssert(done); }];
             if (dataOnly) {
                 if (block) block(data, isCancelled);
             } else {
                 id object = [_parser parse:data];
-                [_cache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
+                [_writeCache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
                 if (block) block(object, isCancelled);
             }
         } else {
