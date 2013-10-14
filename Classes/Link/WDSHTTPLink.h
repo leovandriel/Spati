@@ -23,13 +23,16 @@
 @interface WDSHTTPLink : NSObject
 
 @property (nonatomic, readonly) WDSHTTPSession *session;
-@property (nonatomic, readonly) WDSCache *cache;
+@property (nonatomic, readonly) WDSCache *readCache;
+@property (nonatomic, readonly) WDSCache *writeCache;
 @property (nonatomic, readonly) WDSParser *parser;
 @property (nonatomic, readonly) NSSet *forceSet;
 @property (nonatomic, readonly) BOOL hasSyncCache;
 
 - (id)initWithSession:(WDSHTTPSession *)session cache:(WDSCache *)cache parser:(WDSParser *)parser;
 - (id)initWithSession:(WDSHTTPSession *)session syncCache:(WDSSyncCache *)syncCache parser:(WDSParser *)parser;
+- (id)initWithSession:(WDSHTTPSession *)session readCache:(WDSCache *)readCache writeCache:(WDSCache *)writeCache parser:(WDSParser *)parser;
+- (id)initWithSession:(WDSHTTPSession *)session readSyncCache:(WDSSyncCache *)readSyncCache writeCache:(WDSCache *)writeCache parser:(WDSParser *)parser;
 
 - (void)forceKey:(NSString *)key;
 - (void)forceURL:(NSURL *)url;

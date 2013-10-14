@@ -11,6 +11,8 @@
 @implementation WDSMultiCache
 
 
+#pragma mark - Sync Cache
+
 - (id)initWithCaches:(NSArray *)caches
 {
     self = [super init];
@@ -20,68 +22,53 @@
     return self;
 }
 
-//- (id)objectForKey:(NSString *)key
-//{
-//    for (WDSCache *cache in _caches) {
-//        id result = [cache objectForKey:key];
-//        if (result) return result;
-//    }
-//    return nil;
-//}
-//
-//- (id)dataForKey:(NSString *)key
-//{
-//    for (WDSCache *cache in _caches) {
-//        id result = [cache dataForKey:key];
-//        if (result) return result;
-//    }
-//    return nil;
-//}
-//
-//- (BOOL)setObject:(id)object forKey:(NSString *)key
-//{
-//    BOOL result = NO;
-//    for (WDSCache *cache in _caches) {
-//        result |= [cache setObject:object forKey:key];
-//    }
-//    return result;
-//}
-//
-//- (BOOL)setData:(NSData *)data forKey:(NSString *)key
-//{
-//    BOOL result = NO;
-//    for (WDSCache *cache in _caches) {
-//        result |= [cache setData:data forKey:key];
-//    }
-//    return result;
-//}
-//
-//- (BOOL)removeObjectForKey:(NSString *)key
-//{
-//    BOOL result = YES;
-//    for (WDSCache *cache in _caches) {
-//        result &= [cache removeObjectForKey:key];
-//    }
-//    return result;
-//}
-//
-//- (BOOL)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey
-//{
-//    BOOL result = YES;
-//    for (WDSCache *cache in _caches) {
-//        result &= [cache moveObjectForKey:key toKey:toKey];
-//    }
-//    return result;
-//}
-//
-//- (BOOL)removeAllObjects
-//{
-//    BOOL result = YES;
-//    for (WDSCache *cache in _caches) {
-//        result &= [cache removeAllObjects];
-//    }
-//    return result;
-//}
+- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
+{
+    for (WDSSyncCache *cache in _caches) {
+        id result = [cache objectForKey:key dataOnly:dataOnly];
+        if (result) return result;
+    }
+    return nil;
+}
+
+- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
+{
+    BOOL result = NO;
+    for (WDSSyncCache *cache in _caches) {
+        result |= [cache setObject:object forKey:key dataOnly:dataOnly];
+    }
+    return result;
+}
+
+- (BOOL)removeObjectForKey:(NSString *)key
+{
+    BOOL result = YES;
+    for (WDSSyncCache *cache in _caches) {
+        result &= [cache removeObjectForKey:key];
+    }
+    return result;
+}
+
+- (BOOL)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey
+{
+    BOOL result = YES;
+    for (WDSSyncCache *cache in _caches) {
+        result &= [cache moveObjectForKey:key toKey:toKey];
+    }
+    return result;
+}
+
+- (BOOL)removeAllObjects
+{
+    BOOL result = YES;
+    for (WDSSyncCache *cache in _caches) {
+        result &= [cache removeAllObjects];
+    }
+    return result;
+}
+
+
+#pragma mark - A-Sync Cache
 
 - (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void (^)(id))block
 {
