@@ -25,13 +25,24 @@
     NSMutableSet *_forceSet;
 }
 
+- (id)initWithSession:(WDSHTTPSession *)session syncCache:(WDSSyncCache *)syncCache parser:(WDSParser *)parser
+{
+    return [self initWithSession:session cache:syncCache hasSyncCache:YES parser:parser];
+}
+
 - (id)initWithSession:(WDSHTTPSession *)session cache:(WDSCache *)cache parser:(WDSParser *)parser
+{
+    return [self initWithSession:session cache:cache hasSyncCache:NO parser:parser];
+}
+
+- (id)initWithSession:(WDSHTTPSession *)session cache:(WDSCache *)cache hasSyncCache:(BOOL)hasSyncCache parser:(WDSParser *)parser
 {
     self = [super init];
     if (self) {
         _cache = cache;
         _parser = parser;
         _session = session;
+        _hasSyncCache = hasSyncCache;
     }
     return self;
 }
@@ -78,10 +89,16 @@
     if ([self removeForceForKey:key] || force) {
         [self fetchObjectForRequest:request key:key process:result block:block];
     } else {
-        [_cache objectForKey:key block:^(id object) {
-            if (object || result.isCancelled) { [result nilBlock]; if (block) block(object, result.isCancelled); return; }
+        if (_hasSyncCache) {
+            id object = [(WDSSyncCache *)_cache objectForKey:key];
+            if (object) { if (block) block(object, NO); return nil; }
             [self fetchObjectForRequest:request key:key process:result block:block];
-        }];
+        } else {
+            [_cache objectForKey:key block:^(id object) {
+                if (object || result.isCancelled) { [result nilBlock]; if (block) block(object, result.isCancelled); return; }
+                [self fetchObjectForRequest:request key:key process:result block:block];
+            }];
+        }
     }
     return result;
 }
@@ -103,10 +120,16 @@
     if ([self removeForceForKey:key] || force) {
         [self fetchDataForRequest:request key:key process:result block:block];
     } else {
-        [_cache dataForKey:key block:^(NSData *data) {
-            if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
+        if (_hasSyncCache) {
+            NSData *data = [(WDSSyncCache *)_cache dataForKey:key];
+            if (data) { if (block) block(data, NO); return nil; }
             [self fetchDataForRequest:request key:key process:result block:block];
-        }];
+        } else {
+            [_cache objectForKey:key block:^(NSData *data) {
+                if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
+                [self fetchDataForRequest:request key:key process:result block:block];
+            }];
+        }
     }
     return result;
 }

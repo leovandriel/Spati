@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WDSCache, WDSParser;
+@class WDSCache, WDSSyncCache, WDSParser;
 
 
 @interface WDSHTTPConnection : NSObject
@@ -26,8 +26,10 @@
 @property (nonatomic, readonly) WDSCache *cache;
 @property (nonatomic, readonly) WDSParser *parser;
 @property (nonatomic, readonly) NSSet *forceSet;
+@property (nonatomic, readonly) BOOL hasSyncCache;
 
 - (id)initWithSession:(WDSHTTPSession *)session cache:(WDSCache *)cache parser:(WDSParser *)parser;
+- (id)initWithSession:(WDSHTTPSession *)session syncCache:(WDSSyncCache *)syncCache parser:(WDSParser *)parser;
 
 - (void)forceKey:(NSString *)key;
 - (void)forceURL:(NSURL *)url;
