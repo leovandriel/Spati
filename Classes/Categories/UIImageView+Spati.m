@@ -24,7 +24,7 @@
         if (!cancelled && object) _self.image = object;
         if (block) block(object, cancelled);
     }];
-    if (result) self.image = placeholder;
+    if (result && placeholder) self.image = placeholder;
     return result;
 }
 
