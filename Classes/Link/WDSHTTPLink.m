@@ -76,6 +76,7 @@
 
 - (BOOL)removeForceForKey:(NSString *)key
 {
+    if (!key) return NO;
     BOOL result = [_forceSet containsObject:key];
     [_forceSet removeObject:key];
     return result;
@@ -115,7 +116,6 @@
 
 - (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
 {
-    if (!request) { if (block) block(nil, NO); return nil; }
     WDSHTTPProcess *result = [[WDSHTTPProcess alloc] init];
     if ([self removeForceForKey:key] || force) {
         [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
@@ -198,6 +198,7 @@
 
 - (WDSHTTPConnection *)startWithRequest:(NSURLRequest *)request block:(void(^)(NSData *, BOOL))block
 {
+    if (block) block(nil, NO);
     return nil;
 }
 
