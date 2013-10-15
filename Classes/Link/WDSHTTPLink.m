@@ -78,7 +78,7 @@
 {
     if (!key) return NO;
     BOOL result = [_forceSet containsObject:key];
-    [_forceSet removeObject:key];
+    if (result) [_forceSet removeObject:key];
     return result;
 }
 
