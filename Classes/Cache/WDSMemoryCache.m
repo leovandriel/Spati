@@ -16,19 +16,13 @@
 
 - (id)init
 {
-    return [self initWithName:@"WDSMemoryCache" parser:nil];
+    return [self initWithName:@"WDSMemoryCache"];
 }
 
 - (id)initWithName:(NSString *)name
 {
-    return [self initWithName:name parser:nil];
-}
-
-- (id)initWithName:(NSString *)name parser:(WDSParser *)parser
-{
     self = [super init];
     if (self) {
-        _parser = parser;
         _cache = [[NSCache alloc] init];
         _cache.name = name;
 #if TARGET_OS_IPHONE
@@ -56,7 +50,7 @@
 - (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
     if (!key || dataOnly) return NO;
-    if (object) [_cache setObject:object forKey:key cost:(NSUInteger)[_parser size:object]];
+    if (object) [_cache setObject:object forKey:key cost:(_costBlock ? _costBlock(object) : 0)];
     else [_cache removeObjectForKey:key];
     return YES;
 }
