@@ -10,6 +10,7 @@
 #import "WDSDiskCache.h"
 #import "WDSImageNamedDiskCache.h"
 #import "WDSMemoryCache.h"
+#import "WDSMemoryDiskCache.h"
 #import "WDSMultiCache.h"
 #import "WDSProxyCache.h"
 #import "WDSProxySyncCache.h"
