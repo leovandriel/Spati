@@ -17,7 +17,7 @@
 
 - (id)init;
 - (id)initWithName:(NSString *)name;
-- (id)initWithName:(NSString *)name parser:(WDSParser *)parser expires:(NSTimeInterval)expires;
+- (id)initWithName:(NSString *)name expires:(NSTimeInterval)expires;
 - (id)initWithMemoryCache:(WDSMemoryCache *)memoryCache diskCache:(WDSDiskCache *)diskCache;
 
 @end

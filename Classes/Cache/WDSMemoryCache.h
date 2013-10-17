@@ -14,10 +14,9 @@
 @interface WDSMemoryCache : WDSSyncCache
 
 @property (nonatomic, readonly) NSCache *cache;
-@property (nonatomic, readonly) WDSParser *parser;
+@property (nonatomic, readonly) NSUInteger(^costBlock)(id);
 
 - (id)init;
 - (id)initWithName:(NSString *)name;
-- (id)initWithName:(NSString *)name parser:(WDSParser *)parser;
 
 @end

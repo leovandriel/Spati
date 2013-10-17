@@ -19,12 +19,12 @@
 
 - (id)initWithName:(NSString *)name
 {
-    return [self initWithName:name parser:nil expires:0];
+    return [self initWithName:name expires:0];
 }
 
-- (id)initWithName:(NSString *)name parser:(WDSParser *)parser expires:(NSTimeInterval)expires
+- (id)initWithName:(NSString *)name expires:(NSTimeInterval)expires
 {
-    WDSMemoryCache *memoryCache = [[WDSMemoryCache alloc] initWithName:name parser:parser];
+    WDSMemoryCache *memoryCache = [[WDSMemoryCache alloc] initWithName:name];
     WDSDiskCache *diskCache = [[WDSDiskCache alloc] initWithName:name expires:expires];
     return [self initWithMemoryCache:memoryCache diskCache:diskCache];
 }
