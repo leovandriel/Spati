@@ -1,11 +1,11 @@
 //
-//  WDSDiskImageNamedCache.m
+//  WDSImageNamedDiskCache.m
 //  Spati
 //
 //  Copyright (c) 2013 Wit Dot Media Berlin GmbH. All rights reserved.
 //
 
-#import "WDSDiskImageNamedCache.h"
+#import "WDSImageNamedDiskCache.h"
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #endif
@@ -17,7 +17,7 @@
 @end
 
 
-@implementation WDSDiskImageNamedCache
+@implementation WDSImageNamedDiskCache
 
 - (NSString *)relative:(NSString *)file
 {

@@ -1,5 +1,5 @@
 //
-//  WDSDiskImageNamedCache.h
+//  WDSImageNamedDiskCache.h
 //  Spati
 //
 //  Copyright (c) 2013 Wit Dot Media Berlin GmbH. All rights reserved.
@@ -9,6 +9,6 @@
 #import "WDSDiskCache.h"
 
 
-@interface WDSDiskImageNamedCache : WDSDiskCache
+@interface WDSImageNamedDiskCache : WDSDiskCache
 
 @end

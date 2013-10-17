@@ -8,7 +8,7 @@
 
 #import "WDSCache.h"
 #import "WDSDiskCache.h"
-#import "WDSDiskImageNamedCache.h"
+#import "WDSImageNamedDiskCache.h"
 #import "WDSMemoryCache.h"
 #import "WDSMultiCache.h"
 #import "WDSProxyCache.h"
