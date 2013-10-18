@@ -14,10 +14,11 @@
 
 @property (nonatomic, readonly) WDSMemoryCache *memoryCache;
 @property (nonatomic, readonly) WDSDiskCache *diskCache;
+@property (nonatomic, readonly) WDSParser *parser;
 
 - (id)init;
 - (id)initWithName:(NSString *)name;
-- (id)initWithName:(NSString *)name expires:(NSTimeInterval)expires;
-- (id)initWithMemoryCache:(WDSMemoryCache *)memoryCache diskCache:(WDSDiskCache *)diskCache;
+- (id)initWithName:(NSString *)name parser:(WDSParser *)parser expires:(NSTimeInterval)expires;
+- (id)initWithMemoryCache:(WDSMemoryCache *)memoryCache diskCache:(WDSDiskCache *)diskCache parser:(WDSParser *)parser;
 
 @end

@@ -139,11 +139,11 @@
     process.block = ^(NSData *data, BOOL isCancelled) {
         if (data && !isCancelled) {
             [_writeCache setObject:data forKey:key dataOnly:YES block:^(BOOL done) { NWAssert(done); }];
+            id object = [_parser parse:data];
+            if (_parser) [_writeCache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
             if (dataOnly) {
                 if (block) block(data, isCancelled);
             } else {
-                id object = [_parser parse:data];
-                [_writeCache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
                 if (block) block(object, isCancelled);
             }
         } else {
