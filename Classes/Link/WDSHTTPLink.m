@@ -11,11 +11,10 @@
 #import "WDSSyncCache.h"
 
 
-@interface WDSHTTPProcess : NSObject
+@interface WDSHTTPFetch ()
 @property (nonatomic, strong) WDSHTTPConnection *connection;
-@property (nonatomic, copy) void(^block)(NSData *data, BOOL cancelled);
-@property (nonatomic, readonly) BOOL isCancelled;
-- (void)cancel;
+@property (nonatomic, copy) void(^block)(NSData *data, WDSHTTPFetch *fetch);
+@property (nonatomic, assign) BOOL isCancelled;
 - (void)callBlockWithData:(NSData *)data isCancelled:(BOOL)isCancelled;
 - (void)nilBlock;
 @end
@@ -84,49 +83,49 @@
 
 #pragma mark - Retrieval
 
-- (id)objectForURL:(NSURL *)url force:(BOOL)force block:(void (^)(id, BOOL))block
+- (WDSHTTPFetch *)objectForURL:(NSURL *)url force:(BOOL)force block:(void (^)(id, WDSHTTPFetch *))block
 {
     return [self objectForRequest:[NSURLRequest requestWithURL:url] key:url.absoluteString force:force dataOnly:NO block:block];
 }
 
-- (id)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id, BOOL))block
+- (WDSHTTPFetch *)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id, WDSHTTPFetch *))block
 {
     return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:NO block:block];
 }
 
-- (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(id, BOOL))block
+- (WDSHTTPFetch *)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(id, WDSHTTPFetch *))block
 {
     return [self objectForRequest:request key:key force:force dataOnly:NO block:block];
 }
 
-- (id)dataForURL:(NSURL *)url force:(BOOL)force block:(void (^)(NSData *, BOOL))block
+- (WDSHTTPFetch *)dataForURL:(NSURL *)url force:(BOOL)force block:(void (^)(NSData *, WDSHTTPFetch *))block
 {
     return [self objectForRequest:[NSURLRequest requestWithURL:url] key:url.absoluteString force:force dataOnly:YES block:block];
 }
 
-- (id)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *, BOOL))block
+- (WDSHTTPFetch *)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *, WDSHTTPFetch *))block
 {
     return [self objectForRequest:request key:request.URL.absoluteString force:force dataOnly:YES block:block];
 }
 
-- (id)dataForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, BOOL))block
+- (WDSHTTPFetch *)dataForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, WDSHTTPFetch *))block
 {
     return [self objectForRequest:request key:key force:force dataOnly:YES block:block];
 }
 
-- (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
+- (WDSHTTPFetch *)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, WDSHTTPFetch *))block
 {
-    WDSHTTPProcess *result = [[WDSHTTPProcess alloc] init];
+    WDSHTTPFetch *result = [[WDSHTTPFetch alloc] init];
     if ([self removeForceForKey:key] || force) {
         [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
     } else {
         if (_hasSyncCache) {
             NSData *data = [(WDSSyncCache *)_readCache objectForKey:key dataOnly:dataOnly];
-            if (data) { if (block) block(data, NO); return nil; }
+            if (data) { if (block) block(data, nil); return nil; }
             [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
         } else {
             [_readCache objectForKey:key dataOnly:dataOnly block:^(NSData *data) {
-                if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result.isCancelled); return; }
+                if (data || result.isCancelled) { [result nilBlock]; if (block) block(data, result); return; }
                 [self fetchObjectForRequest:request key:key process:result dataOnly:dataOnly block:block];
             }];
         }
@@ -134,32 +133,28 @@
     return result;
 }
 
-- (void)fetchObjectForRequest:(NSURLRequest *)request key:(NSString *)key process:(WDSHTTPProcess *)process dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block
+- (void)fetchObjectForRequest:(NSURLRequest *)request key:(NSString *)key process:(WDSHTTPFetch *)fetch dataOnly:(BOOL)dataOnly block:(void(^)(id, WDSHTTPFetch *))block
 {
-    process.block = ^(NSData *data, BOOL isCancelled) {
-        if (data && !isCancelled) {
+    fetch.block = ^(NSData *data, WDSHTTPFetch *fetch) {
+        if (data && !fetch.isCancelled) {
             [_writeCache setObject:data forKey:key dataOnly:YES block:^(BOOL done) { NWAssert(done); }];
             id object = [_parser parse:data];
             if (_parser) [_writeCache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
-            if (dataOnly) {
-                if (block) block(data, isCancelled);
-            } else {
-                if (block) block(object, isCancelled);
-            }
+            if (block) block(dataOnly ? data : object, fetch);
         } else {
-            NWAssert(isCancelled);
-            if (block) block(nil, isCancelled);
+            NWAssert(fetch.isCancelled);
+            if (block) block(nil, fetch);
         }
     };
-    process.connection = [_session startWithRequest:request block:^(NSData *data, BOOL isCancelled) {
-        [process callBlockWithData:data isCancelled:isCancelled];
+    fetch.connection = [_session startWithRequest:request block:^(NSData *data, BOOL isCancelled) {
+        [fetch callBlockWithData:data isCancelled:isCancelled];
     }];
 }
 
 @end
 
 
-@implementation WDSHTTPProcess
+@implementation WDSHTTPFetch
 
 - (void)cancel
 {
@@ -173,8 +168,8 @@
 - (void)callBlockWithData:(NSData *)data isCancelled:(BOOL)isCancelled
 {
     _isCancelled |= isCancelled;
-    void(^b)(NSData *data, BOOL cancelled) = _block; _block = nil;
-    if (b) b(data, isCancelled);
+    void(^b)(NSData *, WDSHTTPFetch *) = _block; _block = nil;
+    if (b) b(data, self);
 }
 
 - (void)nilBlock
