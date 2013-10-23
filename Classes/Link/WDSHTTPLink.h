@@ -20,6 +20,12 @@
 @end
 
 
+@interface WDSHTTPFetch : NSObject
+- (BOOL)isCancelled;
+- (void)cancel;
+@end
+
+
 @interface WDSHTTPLink : NSObject
 
 @property (nonatomic, readonly) WDSHTTPSession *session;
@@ -38,12 +44,12 @@
 - (void)forceURL:(NSURL *)url;
 - (void)forceRequest:(NSURLRequest *)request;
 
-- (id)objectForURL:(NSURL *)url force:(BOOL)force block:(void(^)(id object, BOOL cancelled))block;
-- (id)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id object, BOOL cancelled))block;
-- (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(id, BOOL))block;
-- (id)dataForURL:(NSURL *)url force:(BOOL)force block:(void(^)(NSData *data, BOOL cancelled))block;
-- (id)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *data, BOOL cancelled))block;
-- (id)dataForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, BOOL))block;
-- (id)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, BOOL))block;
+- (WDSHTTPFetch *)objectForURL:(NSURL *)url force:(BOOL)force block:(void(^)(id object, WDSHTTPFetch *fetch))block;
+- (WDSHTTPFetch *)objectForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(id object, WDSHTTPFetch *fetch))block;
+- (WDSHTTPFetch *)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(id, WDSHTTPFetch *fetch))block;
+- (WDSHTTPFetch *)dataForURL:(NSURL *)url force:(BOOL)force block:(void(^)(NSData *data, WDSHTTPFetch *fetch))block;
+- (WDSHTTPFetch *)dataForRequest:(NSURLRequest *)request force:(BOOL)force block:(void(^)(NSData *data, WDSHTTPFetch *fetch))block;
+- (WDSHTTPFetch *)dataForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force block:(void(^)(NSData *, WDSHTTPFetch *fetch))block;
+- (WDSHTTPFetch *)objectForRequest:(NSURLRequest *)request key:(NSString *)key force:(BOOL)force dataOnly:(BOOL)dataOnly block:(void(^)(id, WDSHTTPFetch *fetch))block;
 
 @end

@@ -22,6 +22,13 @@ static char kSpatiAssociatedObjectKey;
 
 - (id)objectForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
 {
+    return [self objectAndFetchForRequest:request link:link force:force block:^(id object, WDSHTTPFetch *fetch) {
+        if (block) block(object, [fetch isCancelled]);
+    }];
+}
+
+- (WDSHTTPFetch *)objectAndFetchForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, WDSHTTPFetch *))block
+{
     [self.Spati_associatedConnection cancel];
     id result = [link objectForRequest:request force:force block:block];
     if (result) self.Spati_associatedConnection = result;

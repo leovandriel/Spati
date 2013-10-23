@@ -19,10 +19,14 @@
 - (id)setImageWithRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *, BOOL))block
 {
     __weak __typeof(self)weakSelf = self;
-    id result = [self objectForRequest:request link:link force:NO block:^(id object, BOOL cancelled) {
+    id result = [self objectAndFetchForRequest:request link:link force:NO block:^(id object, id fetch) {
         __strong __typeof(weakSelf)_self = weakSelf;
-        if (!cancelled) [_self setImage:object?:placeholder forState:UIControlStateNormal];
-        if (block) block(object, cancelled);
+        BOOL isCancelled = [fetch isCancelled];
+        if (!isCancelled) {
+            if (object) [_self setImage:object forState:UIControlStateNormal];
+            else if (!fetch) [_self setImage:placeholder forState:UIControlStateNormal];
+        }
+        if (block) block(object, isCancelled);
     }];
     if (result) [self setImage:placeholder forState:UIControlStateNormal];
     return result;
