@@ -24,7 +24,7 @@
         if (!cancelled && object) [_self setImage:object forState:UIControlStateNormal];
         if (block) block(object, cancelled);
     }];
-    if (result && placeholder) [self setImage:placeholder forState:UIControlStateNormal];
+    if (result) [self setImage:placeholder forState:UIControlStateNormal];
     return result;
 }
 
