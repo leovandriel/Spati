@@ -21,7 +21,7 @@
     __weak __typeof(self)weakSelf = self;
     id result = [self objectForRequest:request link:link force:NO block:^(id object, BOOL cancelled) {
         __strong __typeof(weakSelf)_self = weakSelf;
-        if (!cancelled && object) _self.image = object;
+        if (!cancelled) _self.image = object?:placeholder;
         if (block) block(object, cancelled);
     }];
     if (result) self.image = placeholder;

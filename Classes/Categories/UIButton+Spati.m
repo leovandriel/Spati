@@ -21,7 +21,7 @@
     __weak __typeof(self)weakSelf = self;
     id result = [self objectForRequest:request link:link force:NO block:^(id object, BOOL cancelled) {
         __strong __typeof(weakSelf)_self = weakSelf;
-        if (!cancelled && object) [_self setImage:object forState:UIControlStateNormal];
+        if (!cancelled) [_self setImage:object?:placeholder forState:UIControlStateNormal];
         if (block) block(object, cancelled);
     }];
     if (result) [self setImage:placeholder forState:UIControlStateNormal];
