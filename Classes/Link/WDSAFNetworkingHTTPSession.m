@@ -24,8 +24,10 @@
         AFURLConnectionOperation *operation = _operation;
         _operation.completionBlock = ^{
             operation.completionBlock = nil;
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)operation.response;
+            NSData *data = response.statusCode == 200 ? operation.responseData : nil;
             BOOL isCancelled = operation.isCancelled || (operation.error.code == NSURLErrorCancelled);
-            if (block) block(operation.responseData, isCancelled);
+            if (block) block(data, isCancelled);
         };
     }
     return self;
