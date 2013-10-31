@@ -21,7 +21,7 @@
 
 
 @interface WDSHTTPFetch : NSObject
-- (BOOL)isCancelled;
+@property (nonatomic, readonly) BOOL isCancelled;
 - (void)cancel;
 @end
 

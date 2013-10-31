@@ -158,16 +158,13 @@
 
 - (void)cancel
 {
-    _isCancelled = YES;
+    [self markCancelled];
     [_connection cancel];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [self callBlockWithData:nil isCancelled:YES];
-//    });
 }
 
 - (void)callBlockWithData:(NSData *)data isCancelled:(BOOL)isCancelled
 {
-    _isCancelled |= isCancelled;
+    if (isCancelled) [self markCancelled];
     void(^b)(NSData *, WDSHTTPFetch *) = _block; _block = nil;
     if (b) b(data, self);
 }
@@ -175,6 +172,11 @@
 - (void)nilBlock
 {
     _block = nil;
+}
+
+- (void)markCancelled
+{
+    if (!_isCancelled) self.isCancelled = YES;
 }
 
 @end
