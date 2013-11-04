@@ -160,6 +160,7 @@
 {
     [self markCancelled];
     [_connection cancel];
+    [self callBlockWithData:nil isCancelled:YES];
 }
 
 - (void)callBlockWithData:(NSData *)data isCancelled:(BOOL)isCancelled

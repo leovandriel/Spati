@@ -24,7 +24,7 @@ PODS:
   - Kiwi/XCTest (2.2.2):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - NWLogging (1.2)
+  - NWLogging (1.2.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0.0)
@@ -38,6 +38,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   Kiwi: 03539aeb004ccd42bdbc31253617b26364315df4
-  NWLogging: 0fd6cdbe4d73bcda1859270def561892a7b8dd53
+  NWLogging: a8f4c30bd187fea5acb742557ae66982079f77e3
 
-COCOAPODS: 0.25.0
+COCOAPODS: 0.27.1
