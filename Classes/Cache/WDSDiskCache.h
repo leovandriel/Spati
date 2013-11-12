@@ -21,4 +21,6 @@
 - (id)initWithName:(NSString *)name;
 - (id)initWithName:(NSString *)name expires:(NSTimeInterval)expires;
 
+- (unsigned long long)trimToSize:(unsigned long long)size;
+
 @end

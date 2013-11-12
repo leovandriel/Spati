@@ -86,24 +86,38 @@
     return _expires > 0 && -[[self modifcationDateOfFile:file] timeIntervalSinceNow] > _expires;
 }
 
-- (void)trimToSize:(unsigned long long)size
+- (unsigned long long)trimToSize:(unsigned long long)size
 {
+    NSFileManager *manager = NSFileManager.defaultManager;
+    NSDirectoryEnumerator *enumerator = [manager enumeratorAtURL:[NSURL URLWithString:_path] includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLContentAccessDateKey, NSURLFileSizeKey] options:0 errorHandler:^BOOL(NSURL *url, NSError *error) {
+        if (url) NWError(error);
+        return YES;
+    }];
     NSMutableArray *pairs = @[].mutableCopy;
     unsigned long long slack = 0;
-    for (NSString *file in self.files) {
-        unsigned long long s = [self sizeOfFile:file];
-        [pairs addObject:@[file, ([self modifcationDateOfFile:file] ?: NSDate.date), @(s)]];
-        slack += s;
+    for (NSURL *url in enumerator) {
+        NSNumber *directory = nil;
+        [url getResourceValue:&directory forKey:NSURLIsDirectoryKey error:NULL];
+        if (directory.boolValue) continue;
+        NSDate *date = nil;
+        [url getResourceValue:&date forKey:NSURLContentAccessDateKey error:NULL];
+        NSNumber *size = nil;
+        [url getResourceValue:&size forKey:NSURLFileSizeKey error:NULL];
+        [pairs addObject:@[url, date ?: NSDate.date, size ?: @(0)]];
+        slack += size.longLongValue;
+        //NWLog(@"found: %@ %@ %@", url.lastPathComponent, date, size);
     }
-    if (slack <= size) return;
-    [pairs sortUsingComparator:^NSComparisonResult(NSArray *a, NSArray *b) { return [b[1] compare:a[1]]; }];
+    if (slack <= size) return 0;
+    [pairs sortUsingComparator:^NSComparisonResult(NSArray *a, NSArray *b) { return [a[1] compare:b[1]]; }];
     slack -= size;
     unsigned long long removed = 0;
     for (NSArray *pair in pairs) {
-        if ([self removeFile:pair[0]]) removed += [pair[2] longLongValue];
+        //NWLog(@"removing %@ %@ %@", [pair[0] lastPathComponent], pair[1], pair[2]);
+        if ([manager removeItemAtURL:pair[0] error:NULL]) removed += [pair[2] longLongValue];
         if (removed > slack) break;
     }
     NWAssert(removed > slack);
+    return removed;
 }
 
 
