@@ -89,7 +89,7 @@
 - (unsigned long long)trimToSize:(unsigned long long)size
 {
     NSFileManager *manager = NSFileManager.defaultManager;
-    NSDirectoryEnumerator *enumerator = [manager enumeratorAtURL:[NSURL URLWithString:_path] includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLContentAccessDateKey, NSURLFileSizeKey] options:0 errorHandler:^BOOL(NSURL *url, NSError *error) {
+    NSDirectoryEnumerator *enumerator = [manager enumeratorAtURL:[NSURL fileURLWithPath:_path] includingPropertiesForKeys:@[NSURLIsDirectoryKey, NSURLContentAccessDateKey, NSURLFileSizeKey] options:0 errorHandler:^BOOL(NSURL *url, NSError *error) {
         if (url) NWError(error);
         return YES;
     }];
