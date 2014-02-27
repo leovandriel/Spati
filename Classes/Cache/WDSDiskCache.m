@@ -138,32 +138,66 @@
 
 - (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    if (!key || !dataOnly) return nil;
+    if (!key) return nil;
+    if (!dataOnly) {
+        NWLogInfo(@"[%@] miss: data-only", self.name);
+        return nil;
+    }
     NSString *file = [self fileForKey:key];
-    if ([self expirationOfFile:file]) return nil;
-    return [NSData dataWithContentsOfFile:[_path stringByAppendingPathComponent:file]];
+    if ([self expirationOfFile:file]) {
+        NWLogInfo(@"[%@] miss: expired", self.name);
+        return nil;
+    }
+    id result = [NSData dataWithContentsOfFile:[_path stringByAppendingPathComponent:file]];
+    if (result) {
+        NWLogInfo(@"[%@] hit: %@ = %@", self.name, key, [result class]);
+    } else {
+        NWLogInfo(@"[%@] miss: %@", self.name, key);
+    }
+    return result;
 }
 
 - (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
 {
-    if (!key || !dataOnly) return NO;
-    return [object writeToFile:[self path:key] atomically:NO];
+    if (!key) return NO;
+    if (!dataOnly) {
+        NWLogInfo(@"[%@] noset: data-only", self.name);
+        return NO;
+    }
+    NSString *file = [self fileForKey:key];
+    BOOL result = NO;
+    if (object) {
+        result = [object writeToFile:[_path stringByAppendingPathComponent:file] atomically:NO];
+        NWLogInfo(@"[%@] set: %@ = %@  file: %@ = %@", self.name, key, [object class], file, result ? @"success" : @"failed");
+    } else {
+        result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
+        NWLogInfo(@"[%@] unset: %@  file: %@ = %@", self.name, key, file, result ? @"success" : @"failed");
+    }
+    return result;
 }
 
 - (BOOL)removeObjectForKey:(NSString *)key
 {
     if (!key) return NO;
-    return [NSFileManager.defaultManager removeItemAtPath:[self path:key] error:nil];
+    NSString *file = [self fileForKey:key];
+    BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
+    NWLogInfo(@"[%@] remove: %@  file: %@ = %@", self.name, key, file, result ? @"success" : @"failed");
+    return result;
 }
 
 - (BOOL)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey
 {
     if (!key || !toKey) return NO;
-    return [NSFileManager.defaultManager moveItemAtPath:[self path:key] toPath:[self path:toKey] error:nil];
+    NSString *file = [self fileForKey:key];
+    NSString *toFile = [self fileForKey:toKey];
+    BOOL result = [NSFileManager.defaultManager moveItemAtPath:[_path stringByAppendingPathComponent:file] toPath:[_path stringByAppendingPathComponent:toFile] error:nil];
+    NWLogInfo(@"[%@] move: %@ -> %@  file: %@ = %@", self.name, key, toKey, file, result ? @"success" : @"failed");
+    return result;
 }
 
 - (BOOL)removeAllObjects
 {
+    NWLogInfo(@"[%@] remove-all", self.name);
     return [self removeDirectory] & [self ensureDirectory];
 }
 
