@@ -6,9 +6,9 @@
 //
 
 #import "WDSHTTPLink.h"
-#import "NWLCore.h"
 #import "WDSParser.h"
 #import "WDSSyncCache.h"
+#import "NWLCore.h"
 
 
 @interface WDSHTTPFetch ()
@@ -146,7 +146,9 @@
             if (block) block(nil, fetch);
         }
     };
+    NWLogInfo(@"fetching %@ ..", request.URL);
     fetch.connection = [_session startWithRequest:request block:^(NSData *data, BOOL isCancelled) {
+        NWLogInfo(@".. fetched %@", request.URL);
         [fetch callBlockWithData:data isCancelled:isCancelled];
     }];
 }

@@ -15,6 +15,7 @@
 
 @property (nonatomic, readonly) NSCache *cache;
 @property (nonatomic, readonly) NSUInteger(^costBlock)(id);
+@property (nonatomic, readonly) NSString *name;
 
 - (id)init;
 - (id)initWithName:(NSString *)name;
