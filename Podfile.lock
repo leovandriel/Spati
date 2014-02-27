@@ -24,20 +24,16 @@ PODS:
   - Kiwi/XCTest (2.2.2):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - NWLogging (1.2.1)
+  - NWLogging (1.2.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0.0)
   - Kiwi/XCTest
-  - NWLogging (from `https://github.com/noodlewerk/NWLogging.git`)
-
-EXTERNAL SOURCES:
-  NWLogging:
-    :git: https://github.com/noodlewerk/NWLogging.git
+  - NWLogging (~> 1.2.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 3fa983b1beaba69566a3374612511e2a6e3fe845
   Kiwi: 03539aeb004ccd42bdbc31253617b26364315df4
-  NWLogging: a8f4c30bd187fea5acb742557ae66982079f77e3
+  NWLogging: 007728ff9d18f63d82a4a8013a3f8853859c8b38
 
-COCOAPODS: 0.27.1
+COCOAPODS: 0.29.0

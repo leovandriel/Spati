@@ -125,6 +125,7 @@
 		5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpatiCocoaTests.xcconfig"; path = "Pods/Pods-SpatiCocoaTests.xcconfig"; sourceTree = "<group>"; };
 		B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpatiCocoaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3126A9318BF82E100337E2E /* Spati.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Spati.podspec; sourceTree = "<group>"; };
 		B32396E31801F47100931587 /* SpatiCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32396F41801F5E600931587 /* SpatiCocoaTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpatiCocoaTests-Prefix.pch"; sourceTree = "<group>"; };
 		B32396F51801F5E600931587 /* SpatiCocoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpatiCocoaTests-Info.plist"; sourceTree = "<group>"; };
@@ -236,6 +237,7 @@
 		B34FACEF1801804600D47C6E = {
 			isa = PBXGroup;
 			children = (
+				B3126A9318BF82E100337E2E /* Spati.podspec */,
 				B376CCB51801AB0A00BD950A /* Classes */,
 				B3E4DE9C1801E67C00EAF67E /* Tests */,
 				B34FACFC1801811500D47C6E /* Frameworks */,
