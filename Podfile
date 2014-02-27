@@ -1,5 +1,5 @@
 pod 'AFNetworking', '~> 2.0.0'
-pod 'NWLogging', :git => 'https://github.com/noodlewerk/NWLogging.git'
+pod 'NWLogging', '~> 1.2.0'
 
 target :SpatiTouchStatic do
   platform :ios
@@ -14,5 +14,5 @@ target :SpatiTouchTests, :exclusive => true do
 end
 
 target :SpatiCocoaTests, :exclusive => true do
-    pod 'Kiwi/XCTest'
+  pod 'Kiwi/XCTest'
 end
