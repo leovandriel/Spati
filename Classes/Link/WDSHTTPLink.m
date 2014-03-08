@@ -142,7 +142,7 @@
             [_writeCache setObject:data forKey:key dataOnly:YES block:^(BOOL done) {
                 NWAssert(done);
                 id object = [parser parse:data];
-                if (parser) [cache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
+                if (parser) [cache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) {}];
                 if (block) block(dataOnly ? data : object, fetch);
             }];
         } else {
