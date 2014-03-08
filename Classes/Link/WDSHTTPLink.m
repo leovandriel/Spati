@@ -137,10 +137,14 @@
 {
     fetch.block = ^(NSData *data, WDSHTTPFetch *fetch) {
         if (data && !fetch.isCancelled) {
-            [_writeCache setObject:data forKey:key dataOnly:YES block:^(BOOL done) { NWAssert(done); }];
-            id object = [_parser parse:data];
-            if (_parser) [_writeCache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
-            if (block) block(dataOnly ? data : object, fetch);
+            WDSParser *parser = _parser;
+            WDSCache *cache = _writeCache;
+            [_writeCache setObject:data forKey:key dataOnly:YES block:^(BOOL done) {
+                NWAssert(done);
+                id object = [parser parse:data];
+                if (parser) [cache setObject:object forKey:key dataOnly:dataOnly block:^(BOOL done) { NWAssert(done); }];
+                if (block) block(dataOnly ? data : object, fetch);
+            }];
         } else {
             NWAssert(fetch.isCancelled);
             if (block) block(nil, fetch);
