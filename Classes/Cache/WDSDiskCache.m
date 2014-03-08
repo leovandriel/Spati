@@ -167,7 +167,9 @@
     NSString *file = [self fileForKey:key];
     BOOL result = NO;
     if (object) {
-        result = [object writeToFile:[_path stringByAppendingPathComponent:file] atomically:NO];
+        NSError *error = nil;
+        result = [object writeToFile:[_path stringByAppendingPathComponent:file] options:NSDataWritingAtomic error:&error];
+        NWError(error);
         NWLogInfo(@"[%@] set: %@ = %@  file: %@ = %@", self.name, key, [object class], file, result ? @"success" : @"failed");
     } else {
         result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
