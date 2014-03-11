@@ -9,17 +9,16 @@
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #endif
-#import "WDSParser.h"
 #import "NWLCore.h"
 
 @implementation WDSMemoryCache
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithName:@"WDSMemoryCache"];
 }
 
-- (id)initWithName:(NSString *)name
+- (instancetype)initWithName:(NSString *)name
 {
     self = [super init];
     if (self) {
@@ -46,13 +45,9 @@
 
 #pragma mark Cache Cache
 
-- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
+- (id)objectForKey:(NSString *)key
 {
     if (!key) return nil;
-    if (dataOnly) {
-        NWLogInfo(@"[%@] miss: memory-only", self.name);
-        return nil;
-    }
     id result = [_cache objectForKey:key];;
     if (result) {
         NWLogInfo(@"[%@] hit: %@ = %@", self.name, key, [result class]);
@@ -62,13 +57,9 @@
     return result;
 }
 
-- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
+- (id)setObject:(id)object forKey:(NSString *)key
 {
-    if (!key) return NO;
-    if (dataOnly) {
-        NWLogInfo(@"[%@] noset: memory-only", self.name);
-        return NO;
-    }
+    if (!key) return nil;
     if (object) {
         [_cache setObject:object forKey:key cost:(_costBlock ? _costBlock(object) : 0)];
         NWLogInfo(@"[%@] set: %@ = %@", self.name, key, [object class]);
@@ -76,7 +67,7 @@
         [_cache removeObjectForKey:key];
         NWLogInfo(@"[%@] unset: %@", self.name, key);
     }
-    return YES;
+    return object;
 }
 
 - (BOOL)removeObjectForKey:(NSString *)key

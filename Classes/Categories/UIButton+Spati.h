@@ -7,12 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class WDSHTTPLink;
+@class WDSPipe;
+@protocol WDSCancel;
 
 
 @interface UIButton (Spati)
 
-- (id)setImageWithURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *image, BOOL cancelled))block;
-- (id)setImageWithRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *, BOOL))block;
+- (id<WDSCancel>)setImageWithKey:(id)key pipe:(WDSPipe *)pipe placeholder:(UIImage *)placeholder block:(void(^)(UIImage *image, BOOL cancelled))block;
 
 @end

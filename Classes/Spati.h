@@ -10,11 +10,6 @@
 #import "WDSDiskCache.h"
 #import "WDSImageNamedDiskCache.h"
 #import "WDSMemoryCache.h"
-#import "WDSMemoryDiskCache.h"
-#import "WDSMultiCache.h"
-#import "WDSProxyCache.h"
-#import "WDSProxySyncCache.h"
-#import "WDSSyncCache.h"
 
 #import "WDSAFNetworkingHTTPSession.h"
 #import "WDSHTTPLink.h"
@@ -25,5 +20,11 @@
 #import "UIImageView+Spati.h"
 #endif
 
-#import "WDSImageParser.h"
-#import "WDSParser.h"
+#import "WDSImageTransform.h"
+#import "WDSScaleTransform.h"
+
+#import "WDSPipe.h"
+#import "WDSSyncStorePipe.h"
+#import "WDSAsyncStorePipe.h"
+#import "WDSTransformPipe.h"
+

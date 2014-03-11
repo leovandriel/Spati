@@ -7,15 +7,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class WDSHTTPLink, WDSHTTPFetch;
-
+@class WDSPipe;
+@protocol WDSCancel;
 
 @interface NSObject (Spati)
 
-- (id)objectForURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL isCancelled))block;
-- (id)objectForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL isCancelled))block;
-- (WDSHTTPFetch *)objectAndFetchForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, WDSHTTPFetch *fetch))block;
+- (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id object, BOOL isCancelled))block;
 - (void)cancelObjectFetch;
+- (BOOL)isObjectFetchCancelled;
 
 @end
 

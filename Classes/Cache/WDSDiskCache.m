@@ -12,22 +12,16 @@
 
 @implementation WDSDiskCache
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithName:@"WDSDiskCache"];
 }
 
-- (id)initWithName:(NSString *)name
-{
-    return [self initWithName:name expires:0];
-}
-
-- (id)initWithName:(NSString *)name expires:(NSTimeInterval)expires
+- (instancetype)initWithName:(NSString *)name
 {
     self = [super init];
     if (self) {
         _name = name;
-        _expires = expires;
         _path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:name?:@"spati"];
         BOOL success = [self ensureDirectory];
         NWAssert(success);
@@ -120,35 +114,57 @@
     return removed;
 }
 
+- (NSString *)filenamePartForKey:(NSString *)key
+{
+    switch (_filenameFormat) {
+        case kWDSFilenameFormatSame: {
+            return key;
+        } break;
+        case kWDSFilenameFormatMD5: {
+            const char *string = key.UTF8String;
+            unsigned char d[CC_MD5_DIGEST_LENGTH];
+            CC_MD5(string, (CC_LONG)strlen(string), d);
+            return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",d[0],d[1],d[2],d[3],d[4],d[5],d[6],d[7],d[8],d[9],d[10],d[11],d[12],d[13],d[14],d[15]];
+        } break;
+        case kWDSFilenameFormatAlphaNumeric: {
+            return [key stringByReplacingOccurrencesOfString:@"[^A-Za-z0-9]+" withString:@"_" options:NSRegularExpressionSearch range:NSMakeRange(0, key.length)];
+        } break;
+        case kWDSFilenameFormatURLEncoded: {
+            return CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)key, NULL, CFSTR("*'();:@&=+$,/?!%#[]"), kCFStringEncodingUTF8));
+        } break;
+    }
+    return nil;
+}
 
 #pragma mark Cache Cache
 
-- (NSString *)fileForKey:(NSString *)key
+- (NSString *)filenameForKey:(NSString *)key
 {
-    const char *string = key.UTF8String;
-    unsigned char d[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(string, (CC_LONG)strlen(string), d);
-    return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",d[0],d[1],d[2],d[3],d[4],d[5],d[6],d[7],d[8],d[9],d[10],d[11],d[12],d[13],d[14],d[15]];
+    NSString *part = [self filenamePartForKey:key];
+    return [NSString stringWithFormat:@"%@%@%@", part, _extension ? @"." : @"", _extension?:@""];
 }
 
 - (NSString *)path:(NSString *)key
 {
-    return [_path stringByAppendingPathComponent:[self fileForKey:key]];
+    return [_path stringByAppendingPathComponent:[self filenameForKey:key]];
 }
 
-- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
+- (id)objectForKey:(NSString *)key
 {
     if (!key) return nil;
-    if (!dataOnly) {
-        NWLogInfo(@"[%@] miss: data-only", self.name);
-        return nil;
-    }
-    NSString *file = [self fileForKey:key];
+    NSString *file = [self filenameForKey:key];
     if ([self expirationOfFile:file]) {
         NWLogInfo(@"[%@] miss: expired", self.name);
         return nil;
     }
-    id result = [NSData dataWithContentsOfFile:[_path stringByAppendingPathComponent:file]];
+    NSString *path = [_path stringByAppendingPathComponent:file];
+    id result = nil;
+    if (_pathInsteadOfData) {
+        BOOL exists = [NSFileManager.defaultManager fileExistsAtPath:path];
+        result = exists ? path : nil;
+    } else {
+        result = [NSData dataWithContentsOfFile:path];
+    }
     if (result) {
         NWLogInfo(@"[%@] hit: %@ = %@", self.name, key, [result class]);
     } else {
@@ -157,23 +173,25 @@
     return result;
 }
 
-- (BOOL)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly
+- (id)setObject:(id)object forKey:(NSString *)key
 {
-    if (!key) return NO;
-    if (!dataOnly) {
-        NWLogInfo(@"[%@] noset: data-only", self.name);
-        return NO;
-    }
-    NSString *file = [self fileForKey:key];
-    BOOL result = NO;
+    if (!key) return nil;
+    NSString *file = [self filenameForKey:key];
+    id result = nil;
     if (object) {
         NSError *error = nil;
-        result = [object writeToFile:[_path stringByAppendingPathComponent:file] options:NSDataWritingAtomic error:&error];
+        NSString *path = [_path stringByAppendingPathComponent:file];
+        BOOL written = [object writeToFile:path options:NSDataWritingAtomic error:&error];
+        if (_pathInsteadOfData) {
+            result = written ? path : nil;
+        } else {
+            result = written ? object : nil;
+        }
         NWError(error);
         NWLogInfo(@"[%@] set: %@ = %@  file: %@ = %@", self.name, key, [object class], file, result ? @"success" : @"failed");
     } else {
-        result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
-        NWLogInfo(@"[%@] unset: %@  file: %@ = %@", self.name, key, file, result ? @"success" : @"failed");
+        BOOL removed = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
+        NWLogInfo(@"[%@] unset: %@  file: %@ = %@", self.name, key, file, removed ? @"success" : @"failed");
     }
     return result;
 }
@@ -181,7 +199,7 @@
 - (BOOL)removeObjectForKey:(NSString *)key
 {
     if (!key) return NO;
-    NSString *file = [self fileForKey:key];
+    NSString *file = [self filenameForKey:key];
     BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
     NWLogInfo(@"[%@] remove: %@  file: %@ = %@", self.name, key, file, result ? @"success" : @"failed");
     return result;
@@ -190,8 +208,8 @@
 - (BOOL)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey
 {
     if (!key || !toKey) return NO;
-    NSString *file = [self fileForKey:key];
-    NSString *toFile = [self fileForKey:toKey];
+    NSString *file = [self filenameForKey:key];
+    NSString *toFile = [self filenameForKey:toKey];
     BOOL result = [NSFileManager.defaultManager moveItemAtPath:[_path stringByAppendingPathComponent:file] toPath:[_path stringByAppendingPathComponent:toFile] error:nil];
     NWLogInfo(@"[%@] move: %@ -> %@  file: %@ = %@", self.name, key, toKey, file, result ? @"success" : @"failed");
     return result;
