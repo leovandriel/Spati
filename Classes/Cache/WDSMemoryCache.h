@@ -6,18 +6,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WDSSyncCache.h"
+#import "WDSCache.h"
+#import "WDSSyncStorePipe.h"
 
-@class WDSParser;
 
-
-@interface WDSMemoryCache : WDSSyncCache
+@interface WDSMemoryCache : WDSCache
 
 @property (nonatomic, readonly) NSCache *cache;
 @property (nonatomic, readonly) NSUInteger(^costBlock)(id);
 @property (nonatomic, readonly) NSString *name;
 
-- (id)init;
-- (id)initWithName:(NSString *)name;
+- (instancetype)init;
+- (instancetype)initWithName:(NSString *)name;
 
 @end

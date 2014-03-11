@@ -12,38 +12,38 @@
 
 SPEC_BEGIN(WDSHTTPLinkSpec)
 
-describe(@"force set", ^{
-    __block WDSHTTPLink *link;
-    beforeEach(^{
-        link = [[WDSHTTPLink alloc] init];
-    });
-    
-    it(@"adds key to force set", ^{
-        [link forceURL:[NSURL URLWithString:@"k"]];
-        [[link.forceSet should] contain:@"k"];
-    });
-    
-    it(@"remove key upon fetching", ^{
-        [link forceKey:@"k"];
-        [link objectForRequest:[NSURLRequest mock] key:@"k" force:NO block:nil];
-        [[link.forceSet shouldNot] contain:@"k"];
-    });
-    
-    it(@"remove key upon forced fetching", ^{
-        [link forceKey:@"k"];
-        [link objectForRequest:[NSURLRequest mock] key:@"k" force:YES block:nil];
-        [[link.forceSet shouldNot] contain:@"k"];
-    });
-});
+//describe(@"force set", ^{
+//    __block WDSHTTPLink *link;
+//    beforeEach(^{
+//        link = [[WDSHTTPLink alloc] init];
+//    });
+//    
+//    it(@"adds key to force set", ^{
+//        [link forceURL:[NSURL URLWithString:@"k"]];
+//        [[link.forceSet should] contain:@"k"];
+//    });
+//    
+//    it(@"remove key upon fetching", ^{
+//        [link forceKey:@"k"];
+//        [link objectForRequest:[NSURLRequest mock] key:@"k" force:NO block:nil];
+//        [[link.forceSet shouldNot] contain:@"k"];
+//    });
+//    
+//    it(@"remove key upon forced fetching", ^{
+//        [link forceKey:@"k"];
+//        [link objectForRequest:[NSURLRequest mock] key:@"k" force:YES block:nil];
+//        [[link.forceSet shouldNot] contain:@"k"];
+//    });
+//});
+//
+//describe(@"forced fetching", ^{
+//    __block WDSHTTPLink *link;
+//    beforeEach(^{
+//        link = [[WDSHTTPLink alloc] initWithSession:[id<WDSHTTPSession> mock] cache:[[WDSMemoryCache alloc] init] parser:nil];
+//    });
 
-describe(@"forced fetching", ^{
-    __block WDSHTTPLink *link;
-    beforeEach(^{
-        link = [[WDSHTTPLink alloc] initWithSession:[WDSHTTPSession mock] cache:[[WDSMemoryCache alloc] init] parser:nil];
-    });
-    
 //    it(@"uses cached object if not forced", ^{
-//        [(WDSSyncCache *)link.cache setObject:@"o" forKey:@"k"];
+//        [(WDSCache *)link.cache setObject:@"o" forKey:@"k"];
 //        __block id o = nil;
 //        [[o shouldEventually] equal:@"o"];
 //        [[[link.session shouldNot] receive] startWithRequest:nil block:nil];
@@ -53,17 +53,17 @@ describe(@"forced fetching", ^{
 //    });
 //    
 //    it(@"uses session object if forced", ^{
-//        [(WDSSyncCache *)link.cache setObject:@"o" forKey:@"k"];
+//        [(WDSCache *)link.cache setObject:@"o" forKey:@"k"];
 //        [[link.session should] receive:@selector(startWithRequest:block:)];
 //        [link objectForRequest:[NSURLRequest mock] key:@"k" force:YES block:nil];
 //    });
 //    
 //    it(@"uses session object if forced indirectly", ^{
-//        [(WDSSyncCache *)link.cache setObject:@"o" forKey:@"k"];
+//        [(WDSCache *)link.cache setObject:@"o" forKey:@"k"];
 //        [link forceKey:@"k"];
 //        [[link.session should] receive:@selector(startWithRequest:block:)];
 //        [link objectForRequest:[NSURLRequest mock] key:@"k" force:NO block:nil];
 //    });
-});
+//});
 
 SPEC_END

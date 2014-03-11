@@ -12,7 +12,7 @@
 #import "NWLCore.h"
 
 @interface WDSDiskCache ()
-- (NSString *)fileForKey:(NSString *)key;
+- (NSString *)filenameForKey:(NSString *)key;
 - (BOOL)expirationOfFile:(NSString *)file;
 @end
 
@@ -28,7 +28,7 @@
 {
     NWAssertMainThread();
     if (!key) return nil;
-    NSString *file = [self fileForKey:key];
+    NSString *file = [self filenameForKey:key];
     if ([self expirationOfFile:file]) return nil;
 #if TARGET_OS_IPHONE
     return [UIImage imageNamed:[self relative:file]];
@@ -37,19 +37,9 @@
 #endif
 }
 
-- (id)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly
+- (id)objectForKey:(NSString *)key
 {
-    if (dataOnly) return [super objectForKey:key dataOnly:dataOnly];
-    else return [self imageNamedForKey:key];
-}
-
-- (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(id))block
-{
-    if (dataOnly) [super objectForKey:key dataOnly:dataOnly block:block];
-    else dispatch_async(dispatch_get_main_queue(), ^{
-        id result = [self imageNamedForKey:key];
-        if (block) dispatch_async(self.doneQueue, ^{ block(result); });
-    });
+    return [self imageNamedForKey:key];
 }
 
 @end

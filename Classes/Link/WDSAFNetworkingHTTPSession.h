@@ -7,11 +7,11 @@
 
 #import "WDSHTTPLink.h"
 
-@interface WDSAFNetworkingHTTPSession : WDSHTTPSession
+@interface WDSAFNetworkingHTTPSession : NSObject<WDSHTTPSession>
 
 @property (nonatomic, readonly) NSOperationQueue *queue;
 
-- (id)initWithConcurrent:(NSUInteger)concurrent;
-- (id)initWithQueue:(NSOperationQueue *)queue;
+- (instancetype)initWithConcurrent:(NSUInteger)concurrent;
+- (instancetype)initWithQueue:(NSOperationQueue *)queue;
 
 @end

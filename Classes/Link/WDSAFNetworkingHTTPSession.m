@@ -9,14 +9,14 @@
 #import "AFURLConnectionOperation.h"
 
 
-@interface WDSAFNetworkingHTTPConnection : WDSHTTPConnection
+@interface WDSAFNetworkingHTTPConnection : NSObject<WDSCancel>
 @property (nonatomic, readonly) AFURLConnectionOperation *operation;
 @end
 
 
 @implementation WDSAFNetworkingHTTPConnection
 
-- (id)initWithRequest:(NSURLRequest *)request block:(void(^)(NSData *, BOOL))block
+- (instancetype)initWithRequest:(NSURLRequest *)request block:(void(^)(NSData *, BOOL))block
 {
     self = [super init];
     if (self) {
@@ -43,24 +43,29 @@
     [_operation cancel];
 }
 
+- (BOOL)isCancelled
+{
+    return _operation.isCancelled || (_operation.error.code == NSURLErrorCancelled);
+}
+
 @end
 
 
 @implementation WDSAFNetworkingHTTPSession
 
-- (id)init
+- (instancetype)init
 {
     return [self initWithConcurrent:NSOperationQueueDefaultMaxConcurrentOperationCount];
 }
 
-- (id)initWithConcurrent:(NSUInteger)concurrent
+- (instancetype)initWithConcurrent:(NSUInteger)concurrent
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     queue.maxConcurrentOperationCount = concurrent;
     return [self initWithQueue:queue];
 }
 
-- (id)initWithQueue:(NSOperationQueue *)queue
+- (instancetype)initWithQueue:(NSOperationQueue *)queue
 {
     self = [super init];
     if (self) {
@@ -69,7 +74,7 @@
     return self;
 }
 
-- (WDSHTTPConnection *)startWithRequest:(NSURLRequest *)request block:(void (^)(NSData *, BOOL))block
+- (id<WDSCancel>)startWithRequest:(NSURLRequest *)request block:(void (^)(NSData *, BOOL))block
 {
     if (!request || !request.URL) { if (block) block(nil, NO); return nil; }
     WDSAFNetworkingHTTPConnection *result = [[WDSAFNetworkingHTTPConnection alloc] initWithRequest:request block:block];

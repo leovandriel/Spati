@@ -11,22 +11,16 @@
 
 @implementation UIButton (Spati)
 
-- (id)setImageWithURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *, BOOL))block
-{
-    return [self setImageWithRequest:[NSURLRequest requestWithURL:url] link:link force:force placeholder:placeholder block:block];
-}
-
-- (id)setImageWithRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force placeholder:(UIImage *)placeholder block:(void(^)(UIImage *, BOOL))block
+- (id<WDSCancel>)setImageWithKey:(id)key pipe:(WDSPipe *)pipe placeholder:(UIImage *)placeholder block:(void(^)(UIImage *, BOOL))block
 {
     __weak __typeof(self)weakSelf = self;
-    id result = [self objectAndFetchForRequest:request link:link force:NO block:^(id object, id fetch) {
+    id result = [self objectForKey:key pipe:pipe block:^(id object, BOOL cancelled) {
         __strong __typeof(weakSelf)_self = weakSelf;
-        BOOL isCancelled = [fetch isCancelled];
-        if (!isCancelled) {
+        if (!cancelled) {
             if (object) [_self setImage:object forState:UIControlStateNormal];
-            else if (!fetch) [_self setImage:placeholder forState:UIControlStateNormal];
+            else [_self setImage:placeholder forState:UIControlStateNormal];
         }
-        if (block) block(object, isCancelled);
+        if (block) block(object, cancelled);
     }];
     if (result) [self setImage:placeholder forState:UIControlStateNormal];
     return result;

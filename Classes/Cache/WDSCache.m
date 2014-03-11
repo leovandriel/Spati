@@ -6,33 +6,51 @@
 //
 
 #import "WDSCache.h"
+#import "WDSSyncStorePipe.h"
 
 
 @implementation WDSCache
 
-- (void)objectForKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(id))block
+- (id)objectForKey:(NSString *)key
 {
-    if (block) block(nil);
+    return nil;
 }
 
-- (void)setObject:(id)object forKey:(NSString *)key dataOnly:(BOOL)dataOnly block:(void(^)(BOOL))block
+- (id)setObject:(id)object forKey:(NSString *)key
 {
-    if (block) block(NO);
+    return nil;
 }
 
-- (void)removeObjectForKey:(NSString *)key block:(void(^)(BOOL))block
+- (BOOL)removeObjectForKey:(NSString *)key
 {
-    if (block) block(YES);
+    return NO;
 }
 
-- (void)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey block:(void(^)(BOOL))block
+- (BOOL)moveObjectForKey:(NSString *)key toKey:(NSString *)toKey
 {
-    if (block) block(YES);
+    return NO;
 }
 
-- (void)removeAllObjectsWithBlock:(void (^)(BOOL))block
+- (BOOL)removeAllObjects
 {
-    if (block) block(YES);
+    return NO;
+}
+
+- (NSString *)name
+{
+    return self.class.description;
+}
+
+- (WDSSyncStorePipe *)newPipe
+{
+    return [[WDSSyncStorePipe alloc] initWithSync:self];
+}
+
+#pragma mark - Logging
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p name:%@>", self.class, self, self.name];
 }
 
 @end

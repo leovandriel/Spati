@@ -7,7 +7,7 @@
 
 #import "NSObject+Spati.h"
 #import <objc/runtime.h>
-#import "WDSHTTPLink.h"
+#import "WDSPipe.h"
 
 
 static char kSpatiAssociatedObjectKey;
@@ -15,38 +15,31 @@ static char kSpatiAssociatedObjectKey;
 
 @implementation NSObject (Spati)
 
-- (id)objectForURL:(NSURL *)url link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
+- (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id, BOOL))block
 {
-    return [self objectForRequest:[NSURLRequest requestWithURL:url] link:link force:force block:block];
-}
-
-- (id)objectForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, BOOL))block
-{
-    return [self objectAndFetchForRequest:request link:link force:force block:^(id object, WDSHTTPFetch *fetch) {
-        if (block) block(object, [fetch isCancelled]);
-    }];
-}
-
-- (WDSHTTPFetch *)objectAndFetchForRequest:(NSURLRequest *)request link:(WDSHTTPLink *)link force:(BOOL)force block:(void (^)(id, WDSHTTPFetch *))block
-{
-    [self.Spati_associatedConnection cancel];
-    id result = [link objectForRequest:request force:force block:block];
-    if (result) self.Spati_associatedConnection = result;
+    [self.Spati_associatedCancel cancel];
+    id<WDSCancel> result = [pipe get:key block:block];
+    if (result) self.Spati_associatedCancel = result;
     return result;
 }
 
 - (void)cancelObjectFetch
 {
-    [self.Spati_associatedConnection cancel];
-    self.Spati_associatedConnection = nil;
+    [self.Spati_associatedCancel cancel];
+    self.Spati_associatedCancel = nil;
 }
 
-- (id)Spati_associatedConnection {
-    return (id)objc_getAssociatedObject(self, &kSpatiAssociatedObjectKey);
+- (BOOL)isObjectFetchCancelled
+{
+    return [self.Spati_associatedCancel isCancelled];
 }
 
-- (void)setSpati_associatedConnection:(id)connection {
-    objc_setAssociatedObject(self, &kSpatiAssociatedObjectKey, connection, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (id<WDSCancel>)Spati_associatedCancel {
+    return (id<WDSCancel>)objc_getAssociatedObject(self, &kSpatiAssociatedObjectKey);
+}
+
+- (void)setSpati_associatedCancel:(id<WDSCancel>)cancel {
+    objc_setAssociatedObject(self, &kSpatiAssociatedObjectKey, cancel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

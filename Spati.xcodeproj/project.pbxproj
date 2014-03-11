@@ -8,6 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		919418F2A20D454A8427B9BB /* libPods-SpatiTouchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EB3C32C56344539A7C2026 /* libPods-SpatiTouchTests.a */; };
+		B314676218CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */; };
+		B314676318CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */; };
+		B314676418CF0EAF00757B5A /* WDSAsyncStorePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B314676118CF0EAF00757B5A /* WDSAsyncStorePipe.m */; };
+		B314676518CF0EAF00757B5A /* WDSAsyncStorePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B314676118CF0EAF00757B5A /* WDSAsyncStorePipe.m */; };
+		B314676818CF3BDB00757B5A /* WDSTransformPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676618CF3BDB00757B5A /* WDSTransformPipe.h */; };
+		B314676918CF3BDB00757B5A /* WDSTransformPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676618CF3BDB00757B5A /* WDSTransformPipe.h */; };
+		B314676A18CF3BDB00757B5A /* WDSTransformPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B314676718CF3BDB00757B5A /* WDSTransformPipe.m */; };
+		B314676B18CF3BDB00757B5A /* WDSTransformPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B314676718CF3BDB00757B5A /* WDSTransformPipe.m */; };
+		B314678218CF7A6E00757B5A /* WDSImageTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = B314677E18CF7A6E00757B5A /* WDSImageTransform.h */; };
+		B314678318CF7A6E00757B5A /* WDSImageTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = B314677E18CF7A6E00757B5A /* WDSImageTransform.h */; };
+		B314678418CF7A6E00757B5A /* WDSImageTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B314677F18CF7A6E00757B5A /* WDSImageTransform.m */; };
+		B314678518CF7A6E00757B5A /* WDSImageTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B314677F18CF7A6E00757B5A /* WDSImageTransform.m */; };
+		B314678618CF7A6E00757B5A /* WDSScaleTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = B314678018CF7A6E00757B5A /* WDSScaleTransform.h */; };
+		B314678718CF7A6E00757B5A /* WDSScaleTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = B314678018CF7A6E00757B5A /* WDSScaleTransform.h */; };
+		B314678818CF7A6E00757B5A /* WDSScaleTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B314678118CF7A6E00757B5A /* WDSScaleTransform.m */; };
+		B314678918CF7A6E00757B5A /* WDSScaleTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = B314678118CF7A6E00757B5A /* WDSScaleTransform.m */; };
+		B314678C18CF7B0200757B5A /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B314678A18CF7B0200757B5A /* WDSCache.h */; };
+		B314678D18CF7B0200757B5A /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B314678A18CF7B0200757B5A /* WDSCache.h */; };
+		B314678E18CF7B0200757B5A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B314678B18CF7B0200757B5A /* WDSCache.m */; };
+		B314678F18CF7B0200757B5A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B314678B18CF7B0200757B5A /* WDSCache.m */; };
 		B32396E41801F47100931587 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FAD0B1801811500D47C6E /* XCTest.framework */; };
 		B34FACFE1801811500D47C6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FACFD1801811500D47C6E /* Foundation.framework */; };
 		B365010D18070BF400B7424B /* WDSAFNetworkingHTTPSession.h in Headers */ = {isa = PBXBuildFile; fileRef = B365010B18070BF400B7424B /* WDSAFNetworkingHTTPSession.h */; };
@@ -21,70 +41,46 @@
 		B3694ABC180208AD008A102D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B3694ABB180208AD008A102D /* libz.dylib */; };
 		B3694ABE180208C4008A102D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3694ABD180208C4008A102D /* SystemConfiguration.framework */; };
 		B3694ABF18020ED5008A102D /* WDSMemoryCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */; };
-		B374CB8E180C3D0E00D9AA23 /* WDSProxyCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B374CB8C180C3D0E00D9AA23 /* WDSProxyCache.h */; };
-		B374CB8F180C3D0E00D9AA23 /* WDSProxyCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B374CB8C180C3D0E00D9AA23 /* WDSProxyCache.h */; };
-		B374CB90180C3D0E00D9AA23 /* WDSProxyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B374CB8D180C3D0E00D9AA23 /* WDSProxyCache.m */; };
-		B374CB91180C3D0E00D9AA23 /* WDSProxyCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B374CB8D180C3D0E00D9AA23 /* WDSProxyCache.m */; };
-		B374CB94180C486100D9AA23 /* WDSProxySyncCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B374CB92180C486100D9AA23 /* WDSProxySyncCache.h */; };
-		B374CB95180C486100D9AA23 /* WDSProxySyncCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B374CB92180C486100D9AA23 /* WDSProxySyncCache.h */; };
-		B374CB96180C486100D9AA23 /* WDSProxySyncCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B374CB93180C486100D9AA23 /* WDSProxySyncCache.m */; };
-		B374CB97180C486100D9AA23 /* WDSProxySyncCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B374CB93180C486100D9AA23 /* WDSProxySyncCache.m */; };
-		B376CCD11801AB0A00BD950A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCB81801AB0A00BD950A /* WDSCache.m */; };
 		B376CCD21801AB0A00BD950A /* WDSDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */; };
 		B376CCD31801AB0A00BD950A /* WDSImageNamedDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBC1801AB0A00BD950A /* WDSImageNamedDiskCache.m */; };
 		B376CCD51801AB0A00BD950A /* WDSMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */; };
-		B376CCD61801AB0A00BD950A /* WDSMultiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC21801AB0A00BD950A /* WDSMultiCache.m */; };
 		B376CCD71801AB0A00BD950A /* NSObject+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC51801AB0A00BD950A /* NSObject+Spati.m */; };
 		B376CCD81801AB0A00BD950A /* UIButton+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC71801AB0A00BD950A /* UIButton+Spati.m */; };
 		B376CCD91801AB0A00BD950A /* UIImageView+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC91801AB0A00BD950A /* UIImageView+Spati.m */; };
-		B376CCDA1801AB0A00BD950A /* WDSImageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCC1801AB0A00BD950A /* WDSImageParser.m */; };
-		B376CCDB1801AB0A00BD950A /* WDSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCE1801AB0A00BD950A /* WDSParser.m */; };
 		B376CCE31801ACB900BD950A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B376CCE21801ACB900BD950A /* Cocoa.framework */; };
-		B376CD061801ACE400BD950A /* WDSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCB81801AB0A00BD950A /* WDSCache.m */; };
 		B376CD071801ACE400BD950A /* WDSDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */; };
 		B376CD081801ACE400BD950A /* WDSImageNamedDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCBC1801AB0A00BD950A /* WDSImageNamedDiskCache.m */; };
 		B376CD0A1801ACE400BD950A /* WDSMemoryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */; };
-		B376CD0B1801ACE400BD950A /* WDSMultiCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC21801AB0A00BD950A /* WDSMultiCache.m */; };
-		B376CD0F1801ACE400BD950A /* WDSImageParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCC1801AB0A00BD950A /* WDSImageParser.m */; };
-		B376CD101801ACE400BD950A /* WDSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCCE1801AB0A00BD950A /* WDSParser.m */; };
+		B377124018CE375400EADFEC /* WDSSyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B377123C18CE374E00EADFEC /* WDSSyncStorePipe.h */; };
+		B377124118CE375400EADFEC /* WDSSyncStorePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B377123D18CE374E00EADFEC /* WDSSyncStorePipe.m */; };
+		B377124218CE375400EADFEC /* WDSPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B377123E18CE374E00EADFEC /* WDSPipe.h */; };
+		B377124318CE375400EADFEC /* WDSPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B377123F18CE374E00EADFEC /* WDSPipe.m */; };
+		B377124418CE375500EADFEC /* WDSSyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B377123C18CE374E00EADFEC /* WDSSyncStorePipe.h */; };
+		B377124518CE375500EADFEC /* WDSSyncStorePipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B377123D18CE374E00EADFEC /* WDSSyncStorePipe.m */; };
+		B377124618CE375500EADFEC /* WDSPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B377123E18CE374E00EADFEC /* WDSPipe.h */; };
+		B377124718CE375500EADFEC /* WDSPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = B377123F18CE374E00EADFEC /* WDSPipe.m */; };
 		B384E5FE1802156B005F6C15 /* WDSDiskCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */; };
 		B384E5FF1802156B005F6C15 /* WDSDiskCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */; };
 		B398010F1801E373008B811F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FAD0B1801811500D47C6E /* XCTest.framework */; };
 		B39801101801E373008B811F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FACFD1801811500D47C6E /* Foundation.framework */; };
 		B39801111801E373008B811F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B34FAD0E1801811500D47C6E /* UIKit.framework */; };
 		B3A5BCF11802248B00200272 /* Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCF1801AB0A00BD950A /* Spati.h */; };
-		B3A5BCF21802248B00200272 /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB71801AB0A00BD950A /* WDSCache.h */; };
 		B3A5BCF31802248B00200272 /* WDSDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB91801AB0A00BD950A /* WDSDiskCache.h */; };
 		B3A5BCF41802248B00200272 /* WDSImageNamedDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBB1801AB0A00BD950A /* WDSImageNamedDiskCache.h */; };
 		B3A5BCF61802248B00200272 /* WDSMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */; };
-		B3A5BCF71802248B00200272 /* WDSMultiCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC11801AB0A00BD950A /* WDSMultiCache.h */; };
 		B3A5BCF81802248B00200272 /* NSObject+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC41801AB0A00BD950A /* NSObject+Spati.h */; };
 		B3A5BCF91802248B00200272 /* UIButton+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC61801AB0A00BD950A /* UIButton+Spati.h */; };
 		B3A5BCFA1802248B00200272 /* UIImageView+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC81801AB0A00BD950A /* UIImageView+Spati.h */; };
-		B3A5BCFB1802248B00200272 /* WDSImageParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCB1801AB0A00BD950A /* WDSImageParser.h */; };
-		B3A5BCFC1802248B00200272 /* WDSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCD1801AB0A00BD950A /* WDSParser.h */; };
 		B3A5BCFD1802248B00200272 /* Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCF1801AB0A00BD950A /* Spati.h */; };
-		B3A5BCFE1802248B00200272 /* WDSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB71801AB0A00BD950A /* WDSCache.h */; };
 		B3A5BCFF1802248B00200272 /* WDSDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCB91801AB0A00BD950A /* WDSDiskCache.h */; };
 		B3A5BD001802248B00200272 /* WDSImageNamedDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBB1801AB0A00BD950A /* WDSImageNamedDiskCache.h */; };
 		B3A5BD021802248B00200272 /* WDSMemoryCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */; };
-		B3A5BD031802248B00200272 /* WDSMultiCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC11801AB0A00BD950A /* WDSMultiCache.h */; };
-		B3A5BD071802248B00200272 /* WDSImageParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCB1801AB0A00BD950A /* WDSImageParser.h */; };
-		B3A5BD081802248B00200272 /* WDSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCCD1801AB0A00BD950A /* WDSParser.h */; };
 		B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */ = {isa = PBXBuildFile; fileRef = B376CCC41801AB0A00BD950A /* NSObject+Spati.h */; };
 		B3A5BD0D180224B700200272 /* NSObject+Spati.m in Sources */ = {isa = PBXBuildFile; fileRef = B376CCC51801AB0A00BD950A /* NSObject+Spati.m */; };
-		B3CF9200180FF863004783A0 /* WDSMemoryDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B3CF91FE180FF862004783A0 /* WDSMemoryDiskCache.h */; };
-		B3CF9201180FF863004783A0 /* WDSMemoryDiskCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B3CF91FE180FF862004783A0 /* WDSMemoryDiskCache.h */; };
-		B3CF9202180FF863004783A0 /* WDSMemoryDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CF91FF180FF863004783A0 /* WDSMemoryDiskCache.m */; };
-		B3CF9203180FF863004783A0 /* WDSMemoryDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CF91FF180FF863004783A0 /* WDSMemoryDiskCache.m */; };
 		B3D671921806C412000CE99A /* WDSHTTPLink.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D671901806C412000CE99A /* WDSHTTPLink.h */; };
 		B3D671931806C412000CE99A /* WDSHTTPLink.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D671901806C412000CE99A /* WDSHTTPLink.h */; };
 		B3D671941806C412000CE99A /* WDSHTTPLink.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D671911806C412000CE99A /* WDSHTTPLink.m */; };
 		B3D671951806C412000CE99A /* WDSHTTPLink.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D671911806C412000CE99A /* WDSHTTPLink.m */; };
-		B3D671981806D4BD000CE99A /* WDSSyncCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D671961806D4BD000CE99A /* WDSSyncCache.h */; };
-		B3D671991806D4BD000CE99A /* WDSSyncCache.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D671961806D4BD000CE99A /* WDSSyncCache.h */; };
-		B3D6719A1806D4BD000CE99A /* WDSSyncCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D671971806D4BD000CE99A /* WDSSyncCache.m */; };
-		B3D6719B1806D4BD000CE99A /* WDSSyncCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D671971806D4BD000CE99A /* WDSSyncCache.m */; };
 		B3E4DEA51801E79500EAF67E /* WDSMemoryCacheSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */; };
 		B842FB3B1027455890D5C8A7 /* libPods-SpatiCocoaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */; };
 		EFB3FF9A6902482CA29AF70E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D912E6B31AE49279681FA1D /* libPods.a */; };
@@ -126,6 +122,16 @@
 		6AAA434F48EB4F0495A9D579 /* Pods-SpatiCocoaTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpatiCocoaTests.xcconfig"; path = "Pods/Pods-SpatiCocoaTests.xcconfig"; sourceTree = "<group>"; };
 		B059F90F24B54833BF8078CA /* libPods-SpatiCocoaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpatiCocoaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3126A9318BF82E100337E2E /* Spati.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Spati.podspec; sourceTree = "<group>"; };
+		B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSAsyncStorePipe.h; sourceTree = "<group>"; };
+		B314676118CF0EAF00757B5A /* WDSAsyncStorePipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSAsyncStorePipe.m; sourceTree = "<group>"; };
+		B314676618CF3BDB00757B5A /* WDSTransformPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSTransformPipe.h; sourceTree = "<group>"; };
+		B314676718CF3BDB00757B5A /* WDSTransformPipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSTransformPipe.m; sourceTree = "<group>"; };
+		B314677E18CF7A6E00757B5A /* WDSImageTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSImageTransform.h; sourceTree = "<group>"; };
+		B314677F18CF7A6E00757B5A /* WDSImageTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSImageTransform.m; sourceTree = "<group>"; };
+		B314678018CF7A6E00757B5A /* WDSScaleTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSScaleTransform.h; sourceTree = "<group>"; };
+		B314678118CF7A6E00757B5A /* WDSScaleTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSScaleTransform.m; sourceTree = "<group>"; };
+		B314678A18CF7B0200757B5A /* WDSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSCache.h; sourceTree = "<group>"; };
+		B314678B18CF7B0200757B5A /* WDSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSCache.m; sourceTree = "<group>"; };
 		B32396E31801F47100931587 /* SpatiCocoaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiCocoaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32396F41801F5E600931587 /* SpatiCocoaTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SpatiCocoaTests-Prefix.pch"; sourceTree = "<group>"; };
 		B32396F51801F5E600931587 /* SpatiCocoaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpatiCocoaTests-Info.plist"; sourceTree = "<group>"; };
@@ -142,30 +148,18 @@
 		B3694AB9180208A7008A102D /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		B3694ABB180208AD008A102D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
 		B3694ABD180208C4008A102D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		B374CB8C180C3D0E00D9AA23 /* WDSProxyCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSProxyCache.h; sourceTree = "<group>"; };
-		B374CB8D180C3D0E00D9AA23 /* WDSProxyCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSProxyCache.m; sourceTree = "<group>"; };
-		B374CB92180C486100D9AA23 /* WDSProxySyncCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSProxySyncCache.h; sourceTree = "<group>"; };
-		B374CB93180C486100D9AA23 /* WDSProxySyncCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSProxySyncCache.m; sourceTree = "<group>"; };
-		B376CCB71801AB0A00BD950A /* WDSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSCache.h; sourceTree = "<group>"; };
-		B376CCB81801AB0A00BD950A /* WDSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSCache.m; sourceTree = "<group>"; };
 		B376CCB91801AB0A00BD950A /* WDSDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSDiskCache.h; sourceTree = "<group>"; };
 		B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCache.m; sourceTree = "<group>"; };
 		B376CCBB1801AB0A00BD950A /* WDSImageNamedDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSImageNamedDiskCache.h; sourceTree = "<group>"; };
 		B376CCBC1801AB0A00BD950A /* WDSImageNamedDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSImageNamedDiskCache.m; sourceTree = "<group>"; };
 		B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMemoryCache.h; sourceTree = "<group>"; };
 		B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCache.m; sourceTree = "<group>"; };
-		B376CCC11801AB0A00BD950A /* WDSMultiCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMultiCache.h; sourceTree = "<group>"; };
-		B376CCC21801AB0A00BD950A /* WDSMultiCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMultiCache.m; sourceTree = "<group>"; };
 		B376CCC41801AB0A00BD950A /* NSObject+Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Spati.h"; sourceTree = "<group>"; };
 		B376CCC51801AB0A00BD950A /* NSObject+Spati.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Spati.m"; sourceTree = "<group>"; };
 		B376CCC61801AB0A00BD950A /* UIButton+Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Spati.h"; sourceTree = "<group>"; };
 		B376CCC71801AB0A00BD950A /* UIButton+Spati.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Spati.m"; sourceTree = "<group>"; };
 		B376CCC81801AB0A00BD950A /* UIImageView+Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Spati.h"; sourceTree = "<group>"; };
 		B376CCC91801AB0A00BD950A /* UIImageView+Spati.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Spati.m"; sourceTree = "<group>"; };
-		B376CCCB1801AB0A00BD950A /* WDSImageParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSImageParser.h; sourceTree = "<group>"; };
-		B376CCCC1801AB0A00BD950A /* WDSImageParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSImageParser.m; sourceTree = "<group>"; };
-		B376CCCD1801AB0A00BD950A /* WDSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSParser.h; sourceTree = "<group>"; };
-		B376CCCE1801AB0A00BD950A /* WDSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSParser.m; sourceTree = "<group>"; };
 		B376CCCF1801AB0A00BD950A /* Spati.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spati.h; sourceTree = "<group>"; };
 		B376CCD01801AB0A00BD950A /* SpatiTouchStatic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiTouchStatic-Prefix.pch"; sourceTree = "<group>"; };
 		B376CCE11801ACB900BD950A /* libSpatiCocoaStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSpatiCocoaStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,15 +168,15 @@
 		B376CCE61801ACB900BD950A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B376CCE71801ACB900BD950A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		B376CD111801AD8500BD950A /* SpatiCocoaStatic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiCocoaStatic-Prefix.pch"; sourceTree = "<group>"; };
+		B377123C18CE374E00EADFEC /* WDSSyncStorePipe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDSSyncStorePipe.h; sourceTree = "<group>"; };
+		B377123D18CE374E00EADFEC /* WDSSyncStorePipe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDSSyncStorePipe.m; sourceTree = "<group>"; };
+		B377123E18CE374E00EADFEC /* WDSPipe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDSPipe.h; sourceTree = "<group>"; };
+		B377123F18CE374E00EADFEC /* WDSPipe.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDSPipe.m; sourceTree = "<group>"; };
 		B384E5FD1802156B005F6C15 /* WDSDiskCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSDiskCacheSpec.m; sourceTree = "<group>"; };
 		B398010E1801E373008B811F /* SpatiTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpatiTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3B3346C1802DC300045D55D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		B3CF91FE180FF862004783A0 /* WDSMemoryDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSMemoryDiskCache.h; sourceTree = "<group>"; };
-		B3CF91FF180FF863004783A0 /* WDSMemoryDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryDiskCache.m; sourceTree = "<group>"; };
 		B3D671901806C412000CE99A /* WDSHTTPLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSHTTPLink.h; sourceTree = "<group>"; };
 		B3D671911806C412000CE99A /* WDSHTTPLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSHTTPLink.m; sourceTree = "<group>"; };
-		B3D671961806D4BD000CE99A /* WDSSyncCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSSyncCache.h; sourceTree = "<group>"; };
-		B3D671971806D4BD000CE99A /* WDSSyncCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSSyncCache.m; sourceTree = "<group>"; };
 		B3E4DE9D1801E67C00EAF67E /* SpatiTouchTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SpatiTouchTests-Info.plist"; sourceTree = "<group>"; };
 		B3E4DE9E1801E67C00EAF67E /* SpatiTouchTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SpatiTouchTests-Prefix.pch"; sourceTree = "<group>"; };
 		B3E4DEA41801E79500EAF67E /* WDSMemoryCacheSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSMemoryCacheSpec.m; sourceTree = "<group>"; };
@@ -234,6 +228,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B314677D18CF7A6E00757B5A /* Transform */ = {
+			isa = PBXGroup;
+			children = (
+				B314677E18CF7A6E00757B5A /* WDSImageTransform.h */,
+				B314677F18CF7A6E00757B5A /* WDSImageTransform.m */,
+				B314678018CF7A6E00757B5A /* WDSScaleTransform.h */,
+				B314678118CF7A6E00757B5A /* WDSScaleTransform.m */,
+			);
+			path = Transform;
+			sourceTree = "<group>";
+		};
 		B34FACEF1801804600D47C6E = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +293,8 @@
 				B376CCB61801AB0A00BD950A /* Cache */,
 				B376CCC31801AB0A00BD950A /* Categories */,
 				B3D6718F1806C412000CE99A /* Link */,
-				B376CCCA1801AB0A00BD950A /* Parser */,
+				B377123B18CE374E00EADFEC /* Pipe */,
+				B314677D18CF7A6E00757B5A /* Transform */,
 				B376CCDC1801AB1800BD950A /* Supporting Files */,
 			);
 			path = Classes;
@@ -297,24 +303,14 @@
 		B376CCB61801AB0A00BD950A /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				B376CCB71801AB0A00BD950A /* WDSCache.h */,
-				B376CCB81801AB0A00BD950A /* WDSCache.m */,
+				B314678A18CF7B0200757B5A /* WDSCache.h */,
+				B314678B18CF7B0200757B5A /* WDSCache.m */,
 				B376CCB91801AB0A00BD950A /* WDSDiskCache.h */,
 				B376CCBA1801AB0A00BD950A /* WDSDiskCache.m */,
 				B376CCBB1801AB0A00BD950A /* WDSImageNamedDiskCache.h */,
 				B376CCBC1801AB0A00BD950A /* WDSImageNamedDiskCache.m */,
 				B376CCBF1801AB0A00BD950A /* WDSMemoryCache.h */,
 				B376CCC01801AB0A00BD950A /* WDSMemoryCache.m */,
-				B3CF91FE180FF862004783A0 /* WDSMemoryDiskCache.h */,
-				B3CF91FF180FF863004783A0 /* WDSMemoryDiskCache.m */,
-				B376CCC11801AB0A00BD950A /* WDSMultiCache.h */,
-				B376CCC21801AB0A00BD950A /* WDSMultiCache.m */,
-				B374CB8C180C3D0E00D9AA23 /* WDSProxyCache.h */,
-				B374CB8D180C3D0E00D9AA23 /* WDSProxyCache.m */,
-				B374CB92180C486100D9AA23 /* WDSProxySyncCache.h */,
-				B374CB93180C486100D9AA23 /* WDSProxySyncCache.m */,
-				B3D671961806D4BD000CE99A /* WDSSyncCache.h */,
-				B3D671971806D4BD000CE99A /* WDSSyncCache.m */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -330,17 +326,6 @@
 				B376CCC91801AB0A00BD950A /* UIImageView+Spati.m */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		B376CCCA1801AB0A00BD950A /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				B376CCCB1801AB0A00BD950A /* WDSImageParser.h */,
-				B376CCCC1801AB0A00BD950A /* WDSImageParser.m */,
-				B376CCCD1801AB0A00BD950A /* WDSParser.h */,
-				B376CCCE1801AB0A00BD950A /* WDSParser.m */,
-			);
-			path = Parser;
 			sourceTree = "<group>";
 		};
 		B376CCDC1801AB1800BD950A /* Supporting Files */ = {
@@ -360,6 +345,21 @@
 				B376CCE71801ACB900BD950A /* AppKit.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B377123B18CE374E00EADFEC /* Pipe */ = {
+			isa = PBXGroup;
+			children = (
+				B377123E18CE374E00EADFEC /* WDSPipe.h */,
+				B377123F18CE374E00EADFEC /* WDSPipe.m */,
+				B377123C18CE374E00EADFEC /* WDSSyncStorePipe.h */,
+				B377123D18CE374E00EADFEC /* WDSSyncStorePipe.m */,
+				B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */,
+				B314676118CF0EAF00757B5A /* WDSAsyncStorePipe.m */,
+				B314676618CF3BDB00757B5A /* WDSTransformPipe.h */,
+				B314676718CF3BDB00757B5A /* WDSTransformPipe.m */,
+			);
+			path = Pipe;
 			sourceTree = "<group>";
 		};
 		B3D6718F1806C412000CE99A /* Link */ = {
@@ -410,20 +410,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B377124218CE375400EADFEC /* WDSPipe.h in Headers */,
 				B3D671931806C412000CE99A /* WDSHTTPLink.h in Headers */,
+				B314678318CF7A6E00757B5A /* WDSImageTransform.h in Headers */,
+				B314676918CF3BDB00757B5A /* WDSTransformPipe.h in Headers */,
 				B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */,
-				B3A5BCFE1802248B00200272 /* WDSCache.h in Headers */,
 				B3A5BCFD1802248B00200272 /* Spati.h in Headers */,
-				B3A5BD081802248B00200272 /* WDSParser.h in Headers */,
-				B3A5BD031802248B00200272 /* WDSMultiCache.h in Headers */,
-				B374CB95180C486100D9AA23 /* WDSProxySyncCache.h in Headers */,
-				B374CB8F180C3D0E00D9AA23 /* WDSProxyCache.h in Headers */,
-				B3D671991806D4BD000CE99A /* WDSSyncCache.h in Headers */,
-				B3A5BD071802248B00200272 /* WDSImageParser.h in Headers */,
+				B377124018CE375400EADFEC /* WDSSyncStorePipe.h in Headers */,
+				B314678718CF7A6E00757B5A /* WDSScaleTransform.h in Headers */,
+				B314676318CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */,
 				B3A5BD021802248B00200272 /* WDSMemoryCache.h in Headers */,
+				B314678D18CF7B0200757B5A /* WDSCache.h in Headers */,
 				B3A5BCFF1802248B00200272 /* WDSDiskCache.h in Headers */,
 				B3A5BD001802248B00200272 /* WDSImageNamedDiskCache.h in Headers */,
-				B3CF9201180FF863004783A0 /* WDSMemoryDiskCache.h in Headers */,
 				B365010E18070BF400B7424B /* WDSAFNetworkingHTTPSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,18 +431,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3CF9200180FF863004783A0 /* WDSMemoryDiskCache.h in Headers */,
-				B3A5BCF21802248B00200272 /* WDSCache.h in Headers */,
+				B377124618CE375500EADFEC /* WDSPipe.h in Headers */,
 				B3A5BCF81802248B00200272 /* NSObject+Spati.h in Headers */,
+				B314678C18CF7B0200757B5A /* WDSCache.h in Headers */,
 				B3A5BCF11802248B00200272 /* Spati.h in Headers */,
-				B3A5BCFC1802248B00200272 /* WDSParser.h in Headers */,
-				B3A5BCF71802248B00200272 /* WDSMultiCache.h in Headers */,
-				B3A5BCFB1802248B00200272 /* WDSImageParser.h in Headers */,
-				B3D671981806D4BD000CE99A /* WDSSyncCache.h in Headers */,
+				B377124418CE375500EADFEC /* WDSSyncStorePipe.h in Headers */,
+				B314676218CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */,
+				B314678218CF7A6E00757B5A /* WDSImageTransform.h in Headers */,
 				B3A5BCF61802248B00200272 /* WDSMemoryCache.h in Headers */,
-				B374CB8E180C3D0E00D9AA23 /* WDSProxyCache.h in Headers */,
+				B314678618CF7A6E00757B5A /* WDSScaleTransform.h in Headers */,
+				B314676818CF3BDB00757B5A /* WDSTransformPipe.h in Headers */,
 				B3A5BCF31802248B00200272 /* WDSDiskCache.h in Headers */,
-				B374CB94180C486100D9AA23 /* WDSProxySyncCache.h in Headers */,
 				B3A5BCFA1802248B00200272 /* UIImageView+Spati.h in Headers */,
 				B3A5BCF41802248B00200272 /* WDSImageNamedDiskCache.h in Headers */,
 				B365010D18070BF400B7424B /* WDSAFNetworkingHTTPSession.h in Headers */,
@@ -539,7 +537,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = WDS;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Wit Dot Media Berlin GmbH";
 				TargetAttributes = {
 					B32396E21801F47100931587 = {
@@ -695,22 +693,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3D6719A1806D4BD000CE99A /* WDSSyncCache.m in Sources */,
 				B376CCD31801AB0A00BD950A /* WDSImageNamedDiskCache.m in Sources */,
 				B376CCD81801AB0A00BD950A /* UIButton+Spati.m in Sources */,
 				B376CCD91801AB0A00BD950A /* UIImageView+Spati.m in Sources */,
-				B374CB96180C486100D9AA23 /* WDSProxySyncCache.m in Sources */,
-				B3CF9202180FF863004783A0 /* WDSMemoryDiskCache.m in Sources */,
+				B314676418CF0EAF00757B5A /* WDSAsyncStorePipe.m in Sources */,
 				B376CCD21801AB0A00BD950A /* WDSDiskCache.m in Sources */,
 				B3D671941806C412000CE99A /* WDSHTTPLink.m in Sources */,
+				B377124518CE375500EADFEC /* WDSSyncStorePipe.m in Sources */,
+				B314678418CF7A6E00757B5A /* WDSImageTransform.m in Sources */,
+				B314676A18CF3BDB00757B5A /* WDSTransformPipe.m in Sources */,
 				B376CCD51801AB0A00BD950A /* WDSMemoryCache.m in Sources */,
+				B314678818CF7A6E00757B5A /* WDSScaleTransform.m in Sources */,
 				B376CCD71801AB0A00BD950A /* NSObject+Spati.m in Sources */,
-				B374CB90180C3D0E00D9AA23 /* WDSProxyCache.m in Sources */,
-				B376CCD11801AB0A00BD950A /* WDSCache.m in Sources */,
-				B376CCDA1801AB0A00BD950A /* WDSImageParser.m in Sources */,
-				B376CCDB1801AB0A00BD950A /* WDSParser.m in Sources */,
 				B365010F18070BF400B7424B /* WDSAFNetworkingHTTPSession.m in Sources */,
-				B376CCD61801AB0A00BD950A /* WDSMultiCache.m in Sources */,
+				B314678E18CF7B0200757B5A /* WDSCache.m in Sources */,
+				B377124718CE375500EADFEC /* WDSPipe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,20 +715,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B376CD0F1801ACE400BD950A /* WDSImageParser.m in Sources */,
-				B3CF9203180FF863004783A0 /* WDSMemoryDiskCache.m in Sources */,
-				B376CD101801ACE400BD950A /* WDSParser.m in Sources */,
-				B374CB91180C3D0E00D9AA23 /* WDSProxyCache.m in Sources */,
-				B374CB97180C486100D9AA23 /* WDSProxySyncCache.m in Sources */,
+				B377124318CE375400EADFEC /* WDSPipe.m in Sources */,
+				B314678918CF7A6E00757B5A /* WDSScaleTransform.m in Sources */,
+				B314678518CF7A6E00757B5A /* WDSImageTransform.m in Sources */,
 				B376CD081801ACE400BD950A /* WDSImageNamedDiskCache.m in Sources */,
 				B3D671951806C412000CE99A /* WDSHTTPLink.m in Sources */,
-				B3D6719B1806D4BD000CE99A /* WDSSyncCache.m in Sources */,
 				B376CD071801ACE400BD950A /* WDSDiskCache.m in Sources */,
 				B376CD0A1801ACE400BD950A /* WDSMemoryCache.m in Sources */,
+				B377124118CE375400EADFEC /* WDSSyncStorePipe.m in Sources */,
 				B365011018070BF400B7424B /* WDSAFNetworkingHTTPSession.m in Sources */,
+				B314676B18CF3BDB00757B5A /* WDSTransformPipe.m in Sources */,
+				B314678F18CF7B0200757B5A /* WDSCache.m in Sources */,
 				B3A5BD0D180224B700200272 /* NSObject+Spati.m in Sources */,
-				B376CD061801ACE400BD950A /* WDSCache.m in Sources */,
-				B376CD0B1801ACE400BD950A /* WDSMultiCache.m in Sources */,
+				B314676518CF0EAF00757B5A /* WDSAsyncStorePipe.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,6 +773,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -824,6 +821,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -852,6 +850,7 @@
 		B34FACF41801804600D47C6E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
@@ -866,7 +865,6 @@
 			baseConfigurationReference = 5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -911,7 +909,6 @@
 			baseConfigurationReference = 5ADE33B77B634BFBA62388E6 /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1024,7 +1021,6 @@
 			baseConfigurationReference = ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1073,7 +1069,6 @@
 			baseConfigurationReference = ED55C70C673F4C489A5361B5 /* Pods-SpatiTouchTests.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
