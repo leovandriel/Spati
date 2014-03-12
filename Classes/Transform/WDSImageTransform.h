@@ -11,6 +11,10 @@
 
 @interface WDSImageTransform : NSObject<WDSTransform>
 
+@property (nonatomic, assign) CGFloat scale;
+
+- (instancetype)initWithScale:(CGFloat)scale;
+
 - (WDSTransformPipe *)newPipe;
 
 @end

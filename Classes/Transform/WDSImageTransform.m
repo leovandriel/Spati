@@ -13,13 +13,22 @@
 
 @implementation WDSImageTransform
 
+- (instancetype)initWithScale:(CGFloat)scale
+{
+    self = [super init];
+    if (self) {
+        _scale = scale;
+    }
+    return self;
+}
+
 - (id)transform:(NSData *)data
 {
     if (!data.length) return nil;
 #if TARGET_OS_IPHONE
-    return [UIImage imageWithData:data];
+    return [UIImage imageWithData:data scale:_scale];
 #else
-    return [[NSImage  alloc] initWithData:data];
+    return [[NSImage alloc] initWithData:data];
 #endif
 }
 
