@@ -32,6 +32,6 @@ typedef enum {
 
 - (unsigned long long)trimToSize:(unsigned long long)size;
 
-- (NSString *)path:(NSString *)key;
+- (NSString *)pathForKey:(NSString *)key;
 
 @end

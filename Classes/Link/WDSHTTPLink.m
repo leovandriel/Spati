@@ -29,10 +29,15 @@
     return self;
 }
 
+- (NSURL *)urlForKey:(NSString *)key
+{
+    return key ? [_baseURL URLByAppendingPathComponent:key] : nil;
+}
+
 - (id<WDSCancel>)objectForKey:(id)key block:(void (^)(id, BOOL))block
 {
     if (!key) { if (block) block(nil, NO); return nil; }
-    NSURL *url = [_baseURL URLByAppendingPathComponent:key];
+    NSURL *url = [self urlForKey:key];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     WDSHTTPFetch *result = [[WDSHTTPFetch alloc] init];
     result.block = ^(NSData *data, WDSHTTPFetch *fetch) {
