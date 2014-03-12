@@ -10,6 +10,7 @@
 @class WDSPipe;
 @protocol WDSCancel;
 
+
 @interface NSObject (Spati)
 
 - (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id object, BOOL isCancelled))block;

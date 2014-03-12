@@ -1,4 +1,4 @@
-pod 'AFNetworking', '~> 2.0.0', inhibit_warnings: true
+pod 'AFNetworking', '~> 2.2.0', inhibit_warnings: true
 pod 'NWLogging', '~> 1.2.0'
 
 target :SpatiTouchStatic do

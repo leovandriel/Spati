@@ -31,7 +31,6 @@ typedef enum {
 - (instancetype)initWithName:(NSString *)name;
 
 - (unsigned long long)trimToSize:(unsigned long long)size;
-
 - (NSString *)pathForKey:(NSString *)key;
 
 @end

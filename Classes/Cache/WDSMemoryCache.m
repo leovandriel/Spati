@@ -15,7 +15,7 @@
 
 - (instancetype)init
 {
-    return [self initWithName:@"WDSMemoryCache"];
+    return [self initWithName:@"cache"];
 }
 
 - (instancetype)initWithName:(NSString *)name
