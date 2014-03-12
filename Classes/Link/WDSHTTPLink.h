@@ -22,4 +22,6 @@
 - (instancetype)initWithSession:(id<WDSHTTPSession>)session baseURL:(NSURL *)baseURL;
 - (WDSAsyncStorePipe *)newPipe;
 
+- (NSURL *)urlForKey:(NSString *)key;
+
 @end

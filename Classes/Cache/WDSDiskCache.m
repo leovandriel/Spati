@@ -144,9 +144,9 @@
     return [NSString stringWithFormat:@"%@%@%@", part, _extension ? @"." : @"", _extension?:@""];
 }
 
-- (NSString *)path:(NSString *)key
+- (NSString *)pathForKey:(NSString *)key
 {
-    return [_path stringByAppendingPathComponent:[self filenameForKey:key]];
+    return key ? [_path stringByAppendingPathComponent:[self filenameForKey:key]] : nil;
 }
 
 - (id)objectForKey:(NSString *)key
