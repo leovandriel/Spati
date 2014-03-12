@@ -14,7 +14,7 @@
 
 - (instancetype)init
 {
-    return [self initWithName:@"WDSDiskCache"];
+    return [self initWithName:@"cache"];
 }
 
 - (instancetype)initWithName:(NSString *)name
@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         _name = name;
-        _path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:name?:@"spati"];
+        _path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:name];
         BOOL success = [self ensureDirectory];
         NWAssert(success);
     }

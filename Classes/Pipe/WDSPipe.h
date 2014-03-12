@@ -21,7 +21,7 @@
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (id<WDSCancel>)get:(id)key block:(void(^)(id, BOOL))block;
+- (id<WDSCancel>)get:(id)key block:(void(^)(id object, BOOL cancelled))block;
 
 - (void)appendPipe:(WDSPipe *)pipe;
 - (void)insertPipe:(WDSPipe *)pipe afterPipe:(WDSPipe *)after;

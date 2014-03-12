@@ -21,7 +21,7 @@
 
 - (NSString *)relative:(NSString *)file
 {
-    return [[@"../Library/Caches" stringByAppendingPathComponent:self.name?:@"WDSDiskCache"] stringByAppendingPathComponent:file];
+    return [[@"../Library/Caches" stringByAppendingPathComponent:self.name] stringByAppendingPathComponent:file];
 }
 
 - (UIImage *)imageNamedForKey:(NSString *)key
