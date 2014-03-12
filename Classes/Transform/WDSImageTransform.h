@@ -8,10 +8,18 @@
 #import <Foundation/Foundation.h>
 #import "WDSTransformPipe.h"
 
+typedef enum {
+    kWDSImageTransformModeDataToImage,
+    kWDSImageTransformModeImageToJPEG,
+    kWDSImageTransformModeImageToPNG,
+} WDSImageTransformMode;
+
 
 @interface WDSImageTransform : NSObject<WDSTransform>
 
 @property (nonatomic, assign) CGFloat scale;
+@property (nonatomic, assign) WDSImageTransformMode mode;
+@property (nonatomic, assign) CGFloat jpegQuality;
 
 - (instancetype)initWithScale:(CGFloat)scale;
 
