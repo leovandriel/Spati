@@ -7,6 +7,7 @@
 
 #import "WDSAFNetworkingHTTPSession.h"
 #import "AFURLConnectionOperation.h"
+#import "NWLCore.h"
 
 
 @interface WDSAFNetworkingHTTPConnection : NSObject<WDSCancel>
@@ -25,8 +26,12 @@
         _operation.completionBlock = ^{
             operation.completionBlock = nil;
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)operation.response;
-            NSData *data = response.statusCode == 200 ? operation.responseData : nil;
+            NSData *data = operation.responseData;
             BOOL isCancelled = operation.isCancelled || (operation.error.code == NSURLErrorCancelled);
+            if (data && response.statusCode != 200) {
+                NWLogInfo(@"returing nil after http status code: %i  data-size: %i  cancelled: %i", (int)response.statusCode, (int)data.length, isCancelled);
+                data = nil;
+            }
             if (block) block(data, isCancelled);
         };
     }
