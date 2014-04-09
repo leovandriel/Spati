@@ -18,6 +18,7 @@
 
 @property (nonatomic, readonly) id<WDSHTTPSession> session;
 @property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, assign) BOOL ignoreHTTPCache;
 
 - (instancetype)initWithSession:(id<WDSHTTPSession>)session baseURL:(NSURL *)baseURL;
 - (WDSAsyncStorePipe *)newPipe;
