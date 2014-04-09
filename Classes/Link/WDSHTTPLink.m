@@ -38,7 +38,8 @@
 {
     if (!key) { if (block) block(nil, NO); return nil; }
     NSURL *url = [self urlForKey:key];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    if (_ignoreHTTPCache) request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     WDSHTTPFetch *result = [[WDSHTTPFetch alloc] init];
     result.block = ^(NSData *data, WDSHTTPFetch *fetch) {
         if (block) block(data, fetch.isCancelled);
