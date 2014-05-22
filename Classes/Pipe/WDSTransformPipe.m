@@ -22,7 +22,7 @@
 - (id<WDSCancel>)get:(id)key block:(void(^)(id, BOOL))block
 {
     return [self.next get:key block:^(id object, BOOL cancelled) {
-        id transformed = [_transform transform:object];
+        id transformed = [_transform transform:object key:key];
         if (block) block(transformed, cancelled);
     }];
 }
