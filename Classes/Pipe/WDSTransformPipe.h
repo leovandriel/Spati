@@ -10,7 +10,7 @@
 
 
 @protocol WDSTransform <NSObject>
-- (id)transform:(id)object;
+- (id)transform:(id)object key:(id)key;
 @end
 
 

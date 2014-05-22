@@ -28,7 +28,7 @@
     return self;
 }
 
-- (id)transform:(id)object
+- (id)transform:(id)object key:(id)key
 {
     if (!object) return nil;
     if (_mode == kWDSImageTransformModeDataToImage) {

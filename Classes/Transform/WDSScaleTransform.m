@@ -22,7 +22,7 @@
     return self;
 }
 
-- (id)transform:(UIImage *)image
+- (id)transform:(UIImage *)image key:(id)key
 {
     if (!image) return nil;
     
