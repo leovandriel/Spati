@@ -10,7 +10,7 @@
 
 
 @protocol WDSHTTPSession <NSObject>
-- (id<WDSCancel>)startWithRequest:(NSURLRequest *)request block:(void(^)(NSData *data, BOOL isCancelled))block;
+- (id<WDSCancel>)startWithRequest:(NSURLRequest *)request block:(void(^)(NSData *data, WDSStatus status))block;
 @end
 
 

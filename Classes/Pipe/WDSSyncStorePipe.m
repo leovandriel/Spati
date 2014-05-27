@@ -19,16 +19,24 @@
     return self;
 }
 
-- (id<WDSCancel>)get:(id)key block:(void(^)(id, BOOL))block
+- (id<WDSCancel>)get:(id)key block:(void(^)(id, WDSStatus))block
 {
     id object = [_sync objectForKey:key];
-    if (object || !self.next) {
-        if (block) block(object, NO);
+    if (object) {
+        if (block) block(object, WDSStatusSuccess);
         return nil;
     }
-    return [self.next get:key block:^(id object, BOOL cancelled) {
-        id stored = [_sync setObject:object forKey:key];
-        if (block) block(stored, cancelled);
+    if (!self.next) {
+        if (block) block(object, WDSStatusNotFound);
+        return nil;
+    }
+    return [self.next get:key block:^(id object, WDSStatus status) {
+        if (status == WDSStatusSuccess) {
+            id stored = [_sync setObject:object forKey:key];
+            if (block) block(stored, status);
+        } else {
+            if (block) block(object, status);
+        }
     }];
 }
 

@@ -6,14 +6,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class WDSPipe;
-@protocol WDSCancel;
+#import "WDSPipe.h"
 
 
 @interface NSObject (Spati)
 
-- (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id object, BOOL isCancelled))block;
+- (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id object, WDSStatus status))block;
 - (void)cancelObjectFetch;
 - (BOOL)isObjectFetchCancelled;
 

@@ -24,7 +24,7 @@
     return self;
 }
 
-- (id<WDSCancel>)get:(id)key block:(void(^)(id, BOOL))block
+- (id<WDSCancel>)get:(id)key block:(void(^)(id, WDSStatus))block
 {
     if (self.next) {
         return [self.next get:key block:block];

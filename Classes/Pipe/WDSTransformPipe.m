@@ -19,11 +19,15 @@
     return self;
 }
 
-- (id<WDSCancel>)get:(id)key block:(void(^)(id, BOOL))block
+- (id<WDSCancel>)get:(id)key block:(void(^)(id, WDSStatus))block
 {
-    return [self.next get:key block:^(id object, BOOL cancelled) {
-        id transformed = [_transform transform:object key:key];
-        if (block) block(transformed, cancelled);
+    return [self.next get:key block:^(id object, WDSStatus status) {
+        if (status == WDSStatusSuccess) {
+            id transformed = [_transform transform:object key:key];
+            if (block) block(transformed, status);
+        } else {
+            if (block) block(object, status);
+        }
     }];
 }
 
