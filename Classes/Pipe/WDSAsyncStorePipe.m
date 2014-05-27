@@ -24,17 +24,21 @@
     return self;
 }
 
-- (id<WDSCancel>)get:(id)key block:(void(^)(id, BOOL))block
+- (id<WDSCancel>)get:(id)key block:(void(^)(id, WDSStatus))block
 {
     WDSMultiCancel *result = [[WDSMultiCancel alloc] init];
-    id<WDSCancel> cancel = [_async objectForKey:key block:^(id object, BOOL cancelled) {
-        if (object || cancelled || !self.next) {
-            if (block) block(object, cancelled);
+    id<WDSCancel> cancel = [_async objectForKey:key block:^(id object, WDSStatus status) {
+        if (status != WDSStatusNotFound || !self.next) {
+            if (block) block(object, status);
         } else {
-            id<WDSCancel> cancel = [self.next get:key block:^(id object, BOOL cancelled) {
-                [_async setObject:object forKey:key block:^{
-                    if (block) block(object, cancelled);
-                }];
+            id<WDSCancel> cancel = [self.next get:key block:^(id object, WDSStatus status) {
+                if (status == WDSStatusSuccess) {
+                    [_async setObject:object forKey:key block:^{
+                        if (block) block(object, status);
+                    }];
+                } else {
+                    if (block) block(object, status);
+                }
             }];
             if (cancel) [result addCancel:cancel];
         }

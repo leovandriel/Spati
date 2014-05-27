@@ -10,7 +10,7 @@
 
 
 @protocol WDSAsyncStore <NSObject>
-- (id<WDSCancel>)objectForKey:(id)key block:(void(^)(id object, BOOL cancelled))block;
+- (id<WDSCancel>)objectForKey:(id)key block:(void(^)(id object, WDSStatus status))block;
 - (void)setObject:(id)object forKey:(id)key block:(void(^)(void))block;
 @end
 

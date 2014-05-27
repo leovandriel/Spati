@@ -15,7 +15,7 @@ static char kSpatiAssociatedObjectKey;
 
 @implementation NSObject (Spati)
 
-- (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id, BOOL))block
+- (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id, WDSStatus))block
 {
     [self.Spati_associatedCancel cancel];
     id<WDSCancel> result = [pipe get:key block:block];

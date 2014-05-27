@@ -6,13 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class WDSPipe;
-@protocol WDSCancel;
+#import "WDSPipe.h"
 
 
 @interface UIButton (Spati)
 
-- (id<WDSCancel>)setImageWithKey:(id)key pipe:(WDSPipe *)pipe placeholder:(UIImage *)placeholder block:(void(^)(UIImage *image, BOOL cancelled))block;
+- (id<WDSCancel>)setImageWithKey:(id)key pipe:(WDSPipe *)pipe placeholder:(UIImage *)placeholder block:(void(^)(UIImage *image, WDSStatus status))block;
 
 @end

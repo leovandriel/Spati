@@ -7,6 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, WDSStatus) {
+    WDSStatusSuccess,
+    WDSStatusFailed,
+    WDSStatusCancelled,
+    WDSStatusNotFound,
+};
 
 @protocol WDSCancel <NSObject>
 - (void)cancel;
@@ -21,7 +27,7 @@
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (id<WDSCancel>)get:(id)key block:(void(^)(id object, BOOL cancelled))block;
+- (id<WDSCancel>)get:(id)key block:(void(^)(id object, WDSStatus status))block;
 
 - (void)appendPipe:(WDSPipe *)pipe;
 - (void)insertPipe:(WDSPipe *)pipe afterPipe:(WDSPipe *)after;

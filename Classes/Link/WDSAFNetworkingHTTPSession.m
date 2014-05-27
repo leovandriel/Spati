@@ -17,7 +17,7 @@
 
 @implementation WDSAFNetworkingHTTPConnection
 
-- (instancetype)initWithRequest:(NSURLRequest *)request block:(void(^)(NSData *, BOOL))block
+- (instancetype)initWithRequest:(NSURLRequest *)request block:(void(^)(NSData *, WDSStatus))block
 {
     self = [super init];
     if (self) {
@@ -32,10 +32,21 @@
                 NWLogInfo(@"returing nil after http status code: %i  data-size: %i  cancelled: %i", (int)response.statusCode, (int)data.length, isCancelled);
                 data = nil;
             }
-            if (block) block(data, isCancelled);
+            WDSStatus status = isCancelled ? WDSStatusCancelled : [WDSAFNetworkingHTTPConnection statusWithHTTPStatus:response.statusCode];
+            if (block) block(data, status);
         };
     }
     return self;
+}
+
++ (WDSStatus)statusWithHTTPStatus:(NSUInteger)statusCode
+{
+    switch (statusCode) {
+        case 200: return WDSStatusSuccess;
+        case 403: return WDSStatusNotFound;
+        case 404: return WDSStatusNotFound;
+    }
+    return WDSStatusFailed;
 }
 
 - (void)startWithQueue:(NSOperationQueue *)queue
@@ -79,9 +90,9 @@
     return self;
 }
 
-- (id<WDSCancel>)startWithRequest:(NSURLRequest *)request block:(void (^)(NSData *, BOOL))block
+- (id<WDSCancel>)startWithRequest:(NSURLRequest *)request block:(void (^)(NSData *, WDSStatus))block
 {
-    if (!request || !request.URL) { if (block) block(nil, NO); return nil; }
+    if (!request || !request.URL) { if (block) block(nil, WDSStatusFailed); return nil; }
     WDSAFNetworkingHTTPConnection *result = [[WDSAFNetworkingHTTPConnection alloc] initWithRequest:request block:block];
     [result startWithQueue:_queue];
     return result;
