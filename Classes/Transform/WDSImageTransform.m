@@ -24,6 +24,7 @@
     if (self) {
         _scale = scale;
         _jpegQuality = 1;
+        _maxImageSize = 4096;
     }
     return self;
 }
@@ -33,10 +34,14 @@
     if (!object) return nil;
     if (_mode == kWDSImageTransformModeDataToImage) {
 #if TARGET_OS_IPHONE
-        return [UIImage imageWithData:object scale:_scale];
+        UIImage *image = [UIImage imageWithData:object scale:_scale];
 #else
-        return [[NSImage alloc] initWithData:object];
+        UIImage *image = [[NSImage alloc] initWithData:object];
 #endif
+        if (image.size.width > _maxImageSize || image.size.height > _maxImageSize) {
+            image = nil;
+        }
+        return image;
     } else {
         switch (_mode) {
 #if TARGET_OS_IPHONE
