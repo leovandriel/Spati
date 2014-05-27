@@ -20,6 +20,7 @@ typedef enum {
 @property (nonatomic, assign) CGFloat scale;
 @property (nonatomic, assign) WDSImageTransformMode mode;
 @property (nonatomic, assign) CGFloat jpegQuality;
+@property (nonatomic, assign) NSUInteger maxImageSize;
 
 - (instancetype)initWithScale:(CGFloat)scale;
 
