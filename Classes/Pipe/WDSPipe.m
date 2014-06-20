@@ -30,6 +30,7 @@
         return [self.next get:key block:block];
     } else {
         NWLogWarn(@"Expecting non-nil next on pipe");
+        if (block) block(nil, WDSStatusFailed);
     }
     return nil;
 }
