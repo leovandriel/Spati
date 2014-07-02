@@ -33,22 +33,34 @@
 
 - (BOOL)ensureDirectory
 {
-    return [NSFileManager.defaultManager createDirectoryAtPath:_path withIntermediateDirectories:YES attributes:nil error:nil];
+    NSError *error = nil;
+    BOOL result = [NSFileManager.defaultManager createDirectoryAtPath:_path withIntermediateDirectories:YES attributes:nil error:&error];
+    NWError(error);
+    return result;
 }
 
 - (BOOL)removeDirectory
 {
-    return [NSFileManager.defaultManager removeItemAtPath:_path error:nil];
+    NSError *error = nil;
+    BOOL result = [NSFileManager.defaultManager removeItemAtPath:_path error:&error];
+    NWError(error);
+    return result;
 }
 
 - (BOOL)removeFile:(NSString *)file
 {
-    return [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
+    NSError *error = nil;
+    BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    NWError(error);
+    return result;
 }
 
 - (NSArray *)files
 {
-    return [NSFileManager.defaultManager contentsOfDirectoryAtPath:_path error:nil];
+    NSError *error = nil;
+    NSArray *result = [NSFileManager.defaultManager contentsOfDirectoryAtPath:_path error:&error];
+    NWError(error);
+    return result;
 }
 
 - (NSUInteger)count
@@ -67,12 +79,18 @@
 
 - (unsigned long long)sizeOfFile:(NSString *)file
 {
-    return [NSFileManager.defaultManager attributesOfItemAtPath:[_path stringByAppendingPathComponent:file] error:nil].fileSize;
+    NSError *error = nil;
+    NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    NWError(error);
+    return [result fileSize];
 }
 
 - (NSDate *)modifcationDateOfFile:(NSString *)file
 {
-    return [NSFileManager.defaultManager attributesOfItemAtPath:[_path stringByAppendingPathComponent:file] error:nil].fileModificationDate;
+    NSError *error = nil;
+    NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    NWError(error);
+    return [result fileModificationDate];
 }
 
 - (BOOL)expirationOfFile:(NSString *)file
@@ -91,12 +109,12 @@
     unsigned long long slack = 0;
     for (NSURL *url in enumerator) {
         NSNumber *directory = nil;
-        [url getResourceValue:&directory forKey:NSURLIsDirectoryKey error:NULL];
+        [url getResourceValue:&directory forKey:NSURLIsDirectoryKey error:nil];
         if (directory.boolValue) continue;
         NSDate *date = nil;
-        [url getResourceValue:&date forKey:NSURLContentAccessDateKey error:NULL];
+        [url getResourceValue:&date forKey:NSURLContentAccessDateKey error:nil];
         NSNumber *size = nil;
-        [url getResourceValue:&size forKey:NSURLFileSizeKey error:NULL];
+        [url getResourceValue:&size forKey:NSURLFileSizeKey error:nil];
         [pairs addObject:@[url, date ?: NSDate.date, size ?: @(0)]];
         slack += size.longLongValue;
         //NWLog(@"found: %@ %@ %@", url.lastPathComponent, date, size);
@@ -107,7 +125,7 @@
     unsigned long long removed = 0;
     for (NSArray *pair in pairs) {
         //NWLog(@"removing %@ %@ %@", [pair[0] lastPathComponent], pair[1], pair[2]);
-        if ([manager removeItemAtURL:pair[0] error:NULL]) removed += [pair[2] longLongValue];
+        if ([manager removeItemAtURL:pair[0] error:nil]) removed += [pair[2] longLongValue];
         if (removed > slack) break;
     }
     NWAssert(removed > slack);
@@ -179,18 +197,20 @@
     NSString *file = [self filenameForKey:key];
     id result = nil;
     if (object) {
-        NSError *error = nil;
         NSString *path = [_path stringByAppendingPathComponent:file];
+        NSError *error = nil;
         BOOL written = [object writeToFile:path options:NSDataWritingAtomic error:&error];
+        NWError(error);
         if (_pathInsteadOfData) {
             result = written ? path : nil;
         } else {
             result = written ? object : nil;
         }
-        NWError(error);
         NWLogInfo(@"[%@] set: %@ = %@  file: %@ = %@", self.name, key, [object class], file, result ? @"success" : @"failed");
     } else {
-        BOOL removed = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
+        NSError *error = nil;
+        BOOL removed = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+        NWError(error);
         NWLogInfo(@"[%@] unset: %@  file: %@ = %@", self.name, key, file, removed ? @"success" : @"failed");
     }
     return result;
@@ -200,7 +220,9 @@
 {
     if (!key) return NO;
     NSString *file = [self filenameForKey:key];
-    BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:nil];
+    NSError *error = nil;
+    BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    NWError(error);
     NWLogInfo(@"[%@] remove: %@  file: %@ = %@", self.name, key, file, result ? @"success" : @"failed");
     return result;
 }
@@ -210,7 +232,9 @@
     if (!key || !toKey) return NO;
     NSString *file = [self filenameForKey:key];
     NSString *toFile = [self filenameForKey:toKey];
-    BOOL result = [NSFileManager.defaultManager moveItemAtPath:[_path stringByAppendingPathComponent:file] toPath:[_path stringByAppendingPathComponent:toFile] error:nil];
+    NSError *error = nil;
+    BOOL result = [NSFileManager.defaultManager moveItemAtPath:[_path stringByAppendingPathComponent:file] toPath:[_path stringByAppendingPathComponent:toFile] error:&error];
+    NWError(error);
     NWLogInfo(@"[%@] move: %@ -> %@  file: %@ = %@", self.name, key, toKey, file, result ? @"success" : @"failed");
     return result;
 }
