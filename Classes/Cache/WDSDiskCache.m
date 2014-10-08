@@ -49,6 +49,7 @@
 
 - (BOOL)removeFile:(NSString *)file
 {
+    if (![NSFileManager.defaultManager fileExistsAtPath:file]) return YES;
     NSError *error = nil;
     BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
     NWError(error);
@@ -208,9 +209,7 @@
         }
         NWLogInfo(@"[%@] set: %@ = %@  file: %@ = %@", self.name, key, [object class], file, result ? @"success" : @"failed");
     } else {
-        NSError *error = nil;
-        BOOL removed = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
-        NWError(error);
+        BOOL removed = [self removeFile:file];
         NWLogInfo(@"[%@] unset: %@  file: %@ = %@", self.name, key, file, removed ? @"success" : @"failed");
     }
     return result;
@@ -220,9 +219,7 @@
 {
     if (!key) return NO;
     NSString *file = [self filenameForKey:key];
-    NSError *error = nil;
-    BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
-    NWError(error);
+    BOOL result = [self removeFile:file];
     NWLogInfo(@"[%@] remove: %@  file: %@ = %@", self.name, key, file, result ? @"success" : @"failed");
     return result;
 }
