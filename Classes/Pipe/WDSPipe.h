@@ -8,10 +8,11 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, WDSStatus) {
-    WDSStatusSuccess,
-    WDSStatusFailed,
-    WDSStatusCancelled,
-    WDSStatusNotFound,
+    WDSStatusNone = 0,
+    WDSStatusSuccess = 1,
+    WDSStatusFailed = 2,
+    WDSStatusCancelled = 3,
+    WDSStatusNotFound = 4,
 };
 
 @protocol WDSCancel <NSObject>
