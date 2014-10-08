@@ -8,8 +8,6 @@
 #import "WDSScaleTransform.h"
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#endif
-
 
 @implementation WDSScaleTransform
 
@@ -56,3 +54,5 @@
 }
 
 @end
+
+#endif // TARGET_OS_IPHONE
