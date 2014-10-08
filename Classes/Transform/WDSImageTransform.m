@@ -36,7 +36,7 @@
 #if TARGET_OS_IPHONE
         UIImage *image = [UIImage imageWithData:object scale:_scale];
 #else
-        UIImage *image = [[NSImage alloc] initWithData:object];
+        NSImage *image = [[NSImage alloc] initWithData:object];
 #endif
         if (image.size.width > _maxImageSize || image.size.height > _maxImageSize) {
             image = nil;

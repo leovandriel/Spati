@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "WDSTransformPipe.h"
 
+#if TARGET_OS_IPHONE
 
 @interface WDSScaleTransform : NSObject<WDSTransform>
 
@@ -19,3 +20,5 @@
 - (WDSTransformPipe *)newPipe;
 
 @end
+
+#endif // TARGET_OS_IPHONE
