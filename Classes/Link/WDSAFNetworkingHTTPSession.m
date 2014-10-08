@@ -32,6 +32,9 @@
                 NWLogInfo(@"returing nil after http status code: %i  data-size: %i  cancelled: %i", (int)response.statusCode, (int)data.length, isCancelled);
                 data = nil;
             }
+            if (!data.length && response.statusCode == 200) {
+                NWLogWarn(@"got 200 but no data, data is %@", data ? @"not-nil" : @"nil");
+            }
             WDSStatus status = isCancelled ? WDSStatusCancelled : [WDSAFNetworkingHTTPConnection statusWithHTTPStatus:response.statusCode];
             if (block) block(data, status);
         };
