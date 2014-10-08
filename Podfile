@@ -1,3 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
 pod 'AFNetworking', '~> 2.2.0', inhibit_warnings: true
 pod 'NWLogging', '~> 1.2.0'
 
