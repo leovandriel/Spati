@@ -1,3 +1,6 @@
+<img src="icon.png" alt="Spati Icon" width="72"/>
+
+
 Spati
 =====
 
