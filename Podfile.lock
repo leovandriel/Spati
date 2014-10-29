@@ -1,38 +1,36 @@
 PODS:
-  - AFNetworking (2.2.4):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.4):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.4):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.4)
-  - AFNetworking/Security (2.2.4)
-  - AFNetworking/Serialization (2.2.4)
-  - AFNetworking/UIKit (2.2.4):
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Kiwi/ARC (2.2.4)
-  - Kiwi/NonARC (2.2.4)
-  - Kiwi/XCTest (2.2.4):
-    - Kiwi/ARC
-    - Kiwi/NonARC
-  - NWLogging (1.2.4)
+  - Kiwi (2.3.0)
+  - NWLogging (1.2.5)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.2.0)
-  - Kiwi/XCTest
+  - AFNetworking (~> 2.4.0)
+  - Kiwi (~> 2.3.0)
   - NWLogging (~> 1.2.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: ab63e259fe91eef4519b371ef0a4955af0e73e64
-  Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
-  NWLogging: b6f30744b1491f27c4291106fcc8efc5a49efe79
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
+  NWLogging: 3ef1c10fbba37df0396b3d3b23df563bc48c4f6b
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.34.4
