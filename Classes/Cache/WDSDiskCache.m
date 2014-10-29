@@ -49,9 +49,10 @@
 
 - (BOOL)removeFile:(NSString *)file
 {
-    if (![NSFileManager.defaultManager fileExistsAtPath:file]) return YES;
+    NSString *path = [_path stringByAppendingPathComponent:file];
+    if (![NSFileManager.defaultManager fileExistsAtPath:path]) return YES;
     NSError *error = nil;
-    BOOL result = [NSFileManager.defaultManager removeItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    BOOL result = [NSFileManager.defaultManager removeItemAtPath:path error:&error];
     NWError(error);
     return result;
 }
