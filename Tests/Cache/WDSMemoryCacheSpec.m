@@ -18,34 +18,34 @@ describe(@"accessing objects", ^{
     });
     
     it(@"forwards gets to the internal cache", ^{
-        [[[[cache cache] should] receive] objectForKey:@"k"];
-        [cache objectForKey:@"k" dataOnly:NO];
+        [[[cache cache] should] receive:@selector(objectForKey:) withArguments:@"k"];
+        [cache objectForKey:@"k"];
     });
     
     it(@"forwards sets to the internal cache", ^{
-        [(NSCache *)[[[cache cache] should] receive] setObject:@"o" forKey:@"k" cost:0];
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
+        [[[cache cache] should] receive:@selector(setObject:forKey:cost:) withArguments:@"o", @"k", 0];
+        [cache setObject:@"o" forKey:@"k"];
     });
     
     it(@"retrieves object after storing", ^{
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
-        [[[cache objectForKey:@"k" dataOnly:NO] should] equal:@"o"];
+        [cache setObject:@"o" forKey:@"k"];
+        [[[cache objectForKey:@"k"] should] equal:@"o"];
     });
     
     it(@"returns nil for nil key", ^{
-        [[[cache objectForKey:nil dataOnly:NO] should] beNil];
+        [[[cache objectForKey:nil] should] beNil];
     });
     
     it(@"allows setting nil", ^{
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
-        [cache setObject:nil forKey:@"k" dataOnly:NO];
-        [[[cache objectForKey:nil dataOnly:NO] should] beNil];
+        [cache setObject:@"o" forKey:@"k"];
+        [cache setObject:nil forKey:@"k"];
+        [[[cache objectForKey:nil] should] beNil];
     });
     
     it(@"returns YES iff valid key", ^{
-        [[theValue((int)[cache setObject:@"o" forKey:@"k" dataOnly:NO]) should] beYes];
+        [[theValue((int)[cache setObject:@"o" forKey:@"k"]) should] beYes];
         [[theValue((int)[cache removeObjectForKey:@"k"]) should] beYes];
-        [[theValue((int)[cache setObject:@"o" forKey:nil dataOnly:NO]) should] beNo];
+        [[theValue((int)[cache setObject:@"o" forKey:nil]) should] beNo];
     });
 });
 
@@ -56,42 +56,42 @@ describe(@"(re)moving objects", ^{
     });
     
     it(@"forwards removes to the internal cache", ^{
-        [(NSCache *)[[[cache cache] should] receive] removeObjectForKey:@"k"];
+        [[[cache cache] should] receive:@selector(removeObjectForKey:) withArguments:@"k"];
         [cache removeObjectForKey:@"k"];
     });
     
     it(@"forwards remove alls to the internal cache", ^{
-        [(NSCache *)[[[cache cache] should] receive] removeAllObjects];
+        [[[cache cache] should] receive:@selector(removeAllObjects)];
         [cache removeAllObjects];
     });
     
     it(@"removed object after storing", ^{
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
+        [cache setObject:@"o" forKey:@"k"];
         [cache removeObjectForKey:@"k"];
-        [[[cache objectForKey:@"k" dataOnly:NO] should] beNil];
+        [[[cache objectForKey:@"k"] should] beNil];
     });
     
     it(@"moved object after storing", ^{
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
+        [cache setObject:@"o" forKey:@"k"];
         [cache moveObjectForKey:@"k" toKey:@"l"];
-        [[[cache objectForKey:@"k" dataOnly:NO] should] beNil];
-        [[[cache objectForKey:@"l" dataOnly:NO] should] equal:@"o"];
+        [[[cache objectForKey:@"k"] should] beNil];
+        [[[cache objectForKey:@"l"] should] equal:@"o"];
     });
     
     it(@"removed all objects after storing", ^{
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
-        [cache setObject:@"p" forKey:@"l" dataOnly:NO];
+        [cache setObject:@"o" forKey:@"k"];
+        [cache setObject:@"p" forKey:@"l"];
         [cache removeAllObjects];
-        [[[cache objectForKey:@"k" dataOnly:NO] should] beNil];
-        [[[cache objectForKey:@"l" dataOnly:NO] should] beNil];
+        [[[cache objectForKey:@"k"] should] beNil];
+        [[[cache objectForKey:@"l"] should] beNil];
     });
 
     it(@"returns YES iff valid key", ^{
-        [cache setObject:@"o" forKey:@"k" dataOnly:NO];
+        [cache setObject:@"o" forKey:@"k"];
         [[theValue((int)[cache moveObjectForKey:@"k" toKey:@"l"]) should] beYes];
         [[theValue((int)[cache moveObjectForKey:nil toKey:@"l"]) should] beNo];
         [[theValue((int)[cache moveObjectForKey:@"k" toKey:nil]) should] beNo];
-        [cache setObject:nil forKey:@"k" dataOnly:NO];
+        [cache setObject:nil forKey:@"k"];
         [[theValue((int)[cache moveObjectForKey:@"k" toKey:@"l"]) should] beNo];
         [[theValue((int)[cache removeAllObjects]) should] beYes];
         [[theValue((int)[cache removeObjectForKey:nil]) should] beNo];
