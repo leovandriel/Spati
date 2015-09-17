@@ -10,6 +10,7 @@
 		013C886F1BAA160800E8AFC0 /* WDSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 013C886D1BAA160800E8AFC0 /* WDSURLSession.h */; settings = {ASSET_TAGS = (); }; };
 		013C88701BAA160800E8AFC0 /* WDSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C886E1BAA160800E8AFC0 /* WDSURLSession.m */; settings = {ASSET_TAGS = (); }; };
 		013C88711BAA160D00E8AFC0 /* WDSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C886E1BAA160800E8AFC0 /* WDSURLSession.m */; settings = {ASSET_TAGS = (); }; };
+		013C88721BAA3C4B00E8AFC0 /* WDSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 013C886D1BAA160800E8AFC0 /* WDSURLSession.h */; settings = {ASSET_TAGS = (); }; };
 		919418F2A20D454A8427B9BB /* libPods-SpatiTouchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EB3C32C56344539A7C2026 /* libPods-SpatiTouchTests.a */; };
 		B314676218CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */; };
 		B314676318CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */; };
@@ -436,6 +437,7 @@
 				B314678318CF7A6E00757B5A /* WDSImageTransform.h in Headers */,
 				B314676918CF3BDB00757B5A /* WDSTransformPipe.h in Headers */,
 				B3A5BD0C180224B700200272 /* NSObject+Spati.h in Headers */,
+				013C88721BAA3C4B00E8AFC0 /* WDSURLSession.h in Headers */,
 				B3A5BCFD1802248B00200272 /* Spati.h in Headers */,
 				B377124018CE375400EADFEC /* WDSSyncStorePipe.h in Headers */,
 				B314678718CF7A6E00757B5A /* WDSScaleTransform.h in Headers */,
