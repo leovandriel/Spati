@@ -12,6 +12,7 @@
 #import "WDSMemoryCache.h"
 
 #import "WDSAFNetworkingHTTPSession.h"
+#import "WDSURLSession.h"
 #import "WDSHTTPLink.h"
 
 #import "NSObject+Spati.h"
