@@ -21,26 +21,25 @@
 
 @interface WDSURLSession () <NSURLSessionTaskDelegate>
 
-@property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSURLSession *URLSession;
 
 @end
 
 
 @implementation WDSURLSession
 
-- (instancetype)init
+- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration
 {
     self = [super init];
     if (self) {
-        NSURLSessionConfiguration *c = [NSURLSessionConfiguration defaultSessionConfiguration];
-        self.session = [NSURLSession sessionWithConfiguration:c];
+        self.URLSession = [NSURLSession sessionWithConfiguration:configuration];
     }
     return self;
 }
 
 - (id<WDSCancel>)startWithRequest:(NSURLRequest *)request block:(void (^)(NSData *, WDSStatus))block
 {
-    NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
+    NSURLSessionTask *task = [self.URLSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
     {
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
         WDSStatus status = [self.class statusWithHTTPStatus:httpResponse.statusCode];
