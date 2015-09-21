@@ -20,8 +20,8 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Kiwi (2.3.0)
-  - NWLogging (1.2.5)
+  - Kiwi (2.3.1)
+  - NWLogging (1.2.6)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.4.0)
@@ -30,7 +30,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 41d45d2c14219af0fa5addf3cfd433a002c13c9f
-  Kiwi: 4c3988bd551f80f6ca0009f302f7c1a2e3777bf2
-  NWLogging: c034d378b93e13934b6548fb8b81e40f25a871d0
+  Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
+  NWLogging: 43664aa5f651bd011bcf1f462c428ed7ec8dd8b3
 
 COCOAPODS: 0.38.2
