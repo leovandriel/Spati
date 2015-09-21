@@ -10,4 +10,8 @@
 
 @interface WDSURLSession : NSObject<WDSHTTPSession>
 
+@property (nonatomic, readonly) NSURLSession *URLSession;
+
+- (instancetype)initWithConfiguration:(NSURLSessionConfiguration *)configuration;
+
 @end
