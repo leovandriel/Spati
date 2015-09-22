@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = 'Spati'
-  s.version       = '0.2.1'
+  s.version       = '0.2.2'
   s.summary       = 'A caching layer for Objective-C.'
   s.homepage      = 'https://github.com/leonardvandriel/Spati'
   s.license       = { :type => 'MIT', :file => 'LICENSE.txt' }
