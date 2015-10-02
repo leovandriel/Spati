@@ -41,9 +41,13 @@
 {
     NSURLSessionTask *task = [self.URLSession dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error)
     {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        WDSStatus status = [self.class statusWithHTTPStatus:httpResponse.statusCode];
-        if (block) block(data, status);
+        if (block) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            WDSStatus status = [self.class statusWithHTTPStatus:httpResponse.statusCode];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                block(data, status);
+            });
+        }
     }];
     
     WDSURLSessionConnection *result = [[WDSURLSessionConnection alloc] initWithTask:task];
