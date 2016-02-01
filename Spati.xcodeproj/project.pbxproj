@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		013C886F1BAA160800E8AFC0 /* WDSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 013C886D1BAA160800E8AFC0 /* WDSURLSession.h */; settings = {ASSET_TAGS = (); }; };
-		013C88701BAA160800E8AFC0 /* WDSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C886E1BAA160800E8AFC0 /* WDSURLSession.m */; settings = {ASSET_TAGS = (); }; };
-		013C88711BAA160D00E8AFC0 /* WDSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C886E1BAA160800E8AFC0 /* WDSURLSession.m */; settings = {ASSET_TAGS = (); }; };
-		013C88721BAA3C4B00E8AFC0 /* WDSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 013C886D1BAA160800E8AFC0 /* WDSURLSession.h */; settings = {ASSET_TAGS = (); }; };
+		013C886F1BAA160800E8AFC0 /* WDSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 013C886D1BAA160800E8AFC0 /* WDSURLSession.h */; };
+		013C88701BAA160800E8AFC0 /* WDSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C886E1BAA160800E8AFC0 /* WDSURLSession.m */; };
+		013C88711BAA160D00E8AFC0 /* WDSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 013C886E1BAA160800E8AFC0 /* WDSURLSession.m */; };
+		013C88721BAA3C4B00E8AFC0 /* WDSURLSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 013C886D1BAA160800E8AFC0 /* WDSURLSession.h */; };
 		919418F2A20D454A8427B9BB /* libPods-SpatiTouchTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51EB3C32C56344539A7C2026 /* libPods-SpatiTouchTests.a */; };
 		B314676218CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */; };
 		B314676318CF0EAF00757B5A /* WDSAsyncStorePipe.h in Headers */ = {isa = PBXBuildFile; fileRef = B314676018CF0EAF00757B5A /* WDSAsyncStorePipe.h */; };
@@ -486,6 +486,7 @@
 				B32396E01801F47100931587 /* Frameworks */,
 				B32396E11801F47100931587 /* Resources */,
 				1780913FC5B2406CA2D8B86B /* Copy Pods Resources */,
+				5557207079D2080B12817FFA /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -543,6 +544,7 @@
 				B398010B1801E373008B811F /* Frameworks */,
 				B398010C1801E373008B811F /* Resources */,
 				5BB22CC8B37B4510B45BBE29 /* Copy Pods Resources */,
+				26908D9DA94DBE8DEE06E63C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -625,6 +627,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpatiCocoaTests/Pods-SpatiCocoaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		26908D9DA94DBE8DEE06E63C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpatiTouchTests/Pods-SpatiTouchTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		43EACDCF69A84AA4A2C059A0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -638,6 +655,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5557207079D2080B12817FFA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpatiCocoaTests/Pods-SpatiCocoaTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5BB22CC8B37B4510B45BBE29 /* Copy Pods Resources */ = {
