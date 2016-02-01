@@ -12,7 +12,7 @@
 
 - (instancetype)initWithTransform:(id<WDSTransform>)transform
 {
-    return [self initWithTransform:transform queue:nil];
+    return [self initWithTransform:transform queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
 }
 
 - (instancetype)initWithTransform:(id<WDSTransform>)transform queue:(dispatch_queue_t)queue
