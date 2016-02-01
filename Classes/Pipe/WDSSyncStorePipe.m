@@ -35,7 +35,7 @@
             id stored = [_sync setObject:object forKey:key];
             if (block) block(stored, status);
         } else {
-            if (block) block(object, status);
+            if (block) block(nil, status); // TODO: why nil; shouldn't we just return the object?
         }
     }];
 }
