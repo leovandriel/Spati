@@ -27,14 +27,24 @@
 
 - (id<WDSCancel>)get:(id)key block:(void(^)(id, WDSStatus))block
 {
-    return [self.next get:key block:^(id object, WDSStatus status) {
+    WDSMultiCancel *result = [[WDSMultiCancel alloc] init];
+    id<WDSCancel> cancel = [self.next get:key block:^(id object, WDSStatus status) {
         if (status == WDSStatusSuccess) {
             if (_queue) {
+                [result addCancel:[[WDSMultiCancel alloc] init]]; // HACK: so there's something in it
                 dispatch_async(_queue, ^{
-                    id transformed = [_transform transform:object key:key];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if (block) block(transformed, status);
-                    });
+                    if (result.isCancelled) {
+                        if (block) block(nil, WDSStatusCancelled);
+                    } else {
+                        id transformed = [_transform transform:object key:key];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (result.isCancelled) {
+                                if (block) block(nil, WDSStatusCancelled);
+                            } else {
+                                if (block) block(transformed, status);
+                            }
+                        });
+                    }
                 });
             } else {
                 id transformed = [_transform transform:object key:key];
@@ -44,6 +54,13 @@
             if (block) block(object, status);
         }
     }];
+    if (cancel) {
+        [result addCancel:cancel];
+    }
+    if (result.isEmpty) {
+        return nil;
+    }
+    return result;
 }
 
 @end

@@ -21,6 +21,12 @@ typedef NS_ENUM(NSInteger, WDSStatus) {
 @end
 
 
+@interface WDSMultiCancel : NSObject<WDSCancel>
+- (void)addCancel:(id<WDSCancel>)cancel;
+- (BOOL)isEmpty;
+@end
+
+
 @interface WDSPipe : NSObject
 
 @property (nonatomic, strong) WDSPipe *next;

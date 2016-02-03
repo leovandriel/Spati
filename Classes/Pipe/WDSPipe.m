@@ -78,3 +78,52 @@
 }
 
 @end
+
+
+@implementation WDSMultiCancel {
+    NSMutableArray *_cancels;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _cancels = @[].mutableCopy;
+    }
+    return self;
+}
+
+- (void)addCancel:(id<WDSCancel>)cancel
+{
+    if (_cancels) {
+        [_cancels addObject:cancel];
+    } else {
+        [cancel cancel];
+    }
+}
+
+- (void)cancel
+{
+    for (id<WDSCancel> cancel in _cancels) {
+        [cancel cancel];
+    }
+    _cancels = nil;
+}
+
+- (BOOL)isCancelled
+{
+    if (!_cancels) return YES;
+    for (id<WDSCancel> cancel in _cancels) { // TODO: why inspect sub-cancels?
+        if ([cancel isCancelled]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)isEmpty
+{
+    return _cancels.count == 0;
+}
+
+@end

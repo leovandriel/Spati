@@ -8,11 +8,6 @@
 #import "WDSAsyncStorePipe.h"
 
 
-@interface WDSMultiCancel : NSObject<WDSCancel>
-- (void)addCancel:(id<WDSCancel>)cancel;
-@end
-
-
 @implementation WDSAsyncStorePipe
 
 - (instancetype)initWithAsync:(id<WDSAsyncStore>)async
@@ -43,52 +38,13 @@
             if (cancel) [result addCancel:cancel];
         }
     }];
-    if (cancel) [result addCancel:cancel];
+    if (cancel) {
+        [result addCancel:cancel];
+    }
+    if (result.isEmpty) {
+        return nil;
+    }
     return result;
-}
-
-@end
-
-
-@implementation WDSMultiCancel {
-    NSMutableArray *_cancels;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _cancels = @[].mutableCopy;
-    }
-    return self;
-}
-
-- (void)addCancel:(id<WDSCancel>)cancel
-{
-    if (_cancels) {
-        [_cancels addObject:cancel];
-    } else {
-        [cancel cancel];
-    }
-}
-
-- (void)cancel
-{
-    for (id<WDSCancel> cancel in _cancels) {
-        [cancel cancel];
-    }
-    _cancels = nil;
-}
-
-- (BOOL)isCancelled
-{
-    if (!_cancels) return YES;
-    for (id<WDSCancel> cancel in _cancels) {
-        if ([cancel isCancelled]) {
-            return YES;
-        }
-    }
-    return NO;
 }
 
 @end
