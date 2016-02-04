@@ -12,7 +12,13 @@
 
 - (instancetype)initWithTransform:(id<WDSTransform>)transform
 {
-    return [self initWithTransform:transform queue:dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)];
+    return [self initWithTransform:transform queue:nil];
+}
+
+- (instancetype)initWithTransform:(id<WDSTransform>)transform background:(BOOL)background
+{
+    dispatch_queue_t queue = background ? dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) : nil;
+    return [self initWithTransform:transform queue:queue];
 }
 
 - (instancetype)initWithTransform:(id<WDSTransform>)transform queue:(dispatch_queue_t)queue
@@ -34,7 +40,9 @@
                 [result addCancel:[[WDSMultiCancel alloc] init]]; // HACK: so there's something in it
                 dispatch_async(_queue, ^{
                     if (result.isCancelled) {
-                        if (block) block(nil, WDSStatusCancelled);
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (block) block(nil, WDSStatusCancelled);
+                        });
                     } else {
                         id transformed = [_transform transform:object key:key];
                         dispatch_async(dispatch_get_main_queue(), ^{
