@@ -62,4 +62,9 @@
     return [[WDSTransformPipe alloc] initWithTransform:self];
 }
 
+- (WDSTransformPipe *)newPipeOnBackground
+{
+    return [[WDSTransformPipe alloc] initWithTransform:self onBackground:true];
+}
+
 @end

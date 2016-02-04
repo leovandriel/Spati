@@ -15,7 +15,7 @@
     return [self initWithTransform:transform queue:nil];
 }
 
-- (instancetype)initWithTransform:(id<WDSTransform>)transform background:(BOOL)background
+- (instancetype)initWithTransform:(id<WDSTransform>)transform onBackground:(BOOL)background
 {
     dispatch_queue_t queue = background ? dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) : nil;
     return [self initWithTransform:transform queue:queue];

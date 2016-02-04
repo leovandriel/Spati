@@ -20,7 +20,7 @@
 @property (nonatomic, strong) dispatch_queue_t queue;
 
 - (instancetype)initWithTransform:(id<WDSTransform>)transform;
-- (instancetype)initWithTransform:(id<WDSTransform>)transform background:(BOOL)background;
+- (instancetype)initWithTransform:(id<WDSTransform>)transform onBackground:(BOOL)background;
 - (instancetype)initWithTransform:(id<WDSTransform>)transform queue:(dispatch_queue_t)queue;
 
 @end

@@ -25,5 +25,6 @@ typedef enum {
 - (instancetype)initWithScale:(CGFloat)scale;
 
 - (WDSTransformPipe *)newPipe;
+- (WDSTransformPipe *)newPipeOnBackground;
 
 @end

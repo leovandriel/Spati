@@ -18,6 +18,7 @@
 - (instancetype)initWithSize:(CGSize)size;
 
 - (WDSTransformPipe *)newPipe;
+- (WDSTransformPipe *)newPipeOnBackground;
 
 @end
 
