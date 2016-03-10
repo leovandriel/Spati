@@ -77,7 +77,7 @@ static char kSpatiAssociatedObjectKey;
     if (self) {
         _key = key;
         _pipe = pipe;
-        _block = block;
+        _block = [block copy];
     }
     return self;
 }
