@@ -18,11 +18,9 @@ static char kSpatiAssociatedObjectKey;
 @property (nonatomic, strong) id key;
 @property (nonatomic, weak) WDSPipe *pipe;
 @property (nonatomic, copy) void (^block)(id object, WDSStatus status);
+- (instancetype)initWithKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id, WDSStatus))block;
 - (BOOL)hasEqualKey:(id)key pipe:(WDSPipe *)pipe;
-- (void)setupWithKey:(id)key pipe:(WDSPipe *)pipe cancel:(id<WDSCancel>)cancel block:(void (^)(id, WDSStatus))block;
 - (void)replaceBlock:(void (^)(id, WDSStatus))block;
-- (void)clear;
-- (void)cancelAndClear;
 @end
 
 
@@ -31,42 +29,58 @@ static char kSpatiAssociatedObjectKey;
 - (id<WDSCancel>)objectForKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id, WDSStatus))block
 {
     WDSAssociatedContainer *container = self.Spati_associatedContainer;
-    if ([container hasEqualKey:key pipe:pipe] && container.cancel) {
+    if (container.cancel && [container hasEqualKey:key pipe:pipe]) {
         [container replaceBlock:block];
         return container.cancel;
     }
-    [container setupWithKey:key pipe:pipe cancel:nil block:block];
+    [container.cancel cancel];
+    container = [[WDSAssociatedContainer alloc] initWithKey:key pipe:pipe block:block];
+    [self Spati_setAssociatedContainer:container];
     id<WDSCancel> result = [pipe get:key block:^(id object, WDSStatus status) {
         void (^b)(id, WDSStatus) = container.block;
-        [container clear];
+        [self Spati_setAssociatedContainer:nil];
         if (b) b(object, status);
     }];
-    if (result) container.cancel = result;
+    container.cancel = result;
     return result;
 }
 
 - (void)cancelObjectFetch
 {
-    [self.Spati_associatedContainer cancelAndClear];
+    WDSAssociatedContainer *container = self.Spati_associatedContainer;
+    [container.cancel cancel];
 }
 
 - (BOOL)isObjectFetchCancelled
 {
-    return [self.Spati_associatedContainer.cancel isCancelled];
+    WDSAssociatedContainer *container = self.Spati_associatedContainer;
+    return [container.cancel isCancelled];
 }
 
-- (WDSAssociatedContainer *)Spati_associatedContainer {
-    WDSAssociatedContainer *result = (WDSAssociatedContainer *)objc_getAssociatedObject(self, &kSpatiAssociatedObjectKey);
-    if (!result) {
-        result = [[WDSAssociatedContainer alloc] init];
-        objc_setAssociatedObject(self, &kSpatiAssociatedObjectKey, result, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return result;
+- (WDSAssociatedContainer *)Spati_associatedContainer
+{
+    return (WDSAssociatedContainer *)objc_getAssociatedObject(self, &kSpatiAssociatedObjectKey);
+}
+
+- (void)Spati_setAssociatedContainer:(WDSAssociatedContainer *)container
+{
+    objc_setAssociatedObject(self, &kSpatiAssociatedObjectKey, container, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
 
 @implementation WDSAssociatedContainer
+
+- (instancetype)initWithKey:(id)key pipe:(WDSPipe *)pipe block:(void (^)(id, WDSStatus))block
+{
+    self = [super init];
+    if (self) {
+        _key = key;
+        _pipe = pipe;
+        _block = block;
+    }
+    return self;
+}
 
 - (BOOL)hasEqualKey:(id)key pipe:(WDSPipe *)pipe
 {
@@ -79,34 +93,11 @@ static char kSpatiAssociatedObjectKey;
     return YES;
 }
 
-- (void)setupWithKey:(id)key pipe:(WDSPipe *)pipe cancel:(id<WDSCancel>)cancel block:(void (^)(id, WDSStatus))block
-{
-    [_cancel cancel];
-    _key = key;
-    _pipe = pipe;
-    _cancel = cancel;
-    _block = block;
-}
-
 - (void)replaceBlock:(void (^)(id, WDSStatus))block
 {
     void (^b)(id, WDSStatus) = _block;
     _block = block;
     if (b) b(nil, WDSStatusCancelled);
-}
-
-- (void)cancelAndClear
-{
-    [_cancel cancel];
-    [self clear];
-}
-
-- (void)clear
-{
-    _key = nil;
-    _pipe = nil;
-    _cancel = nil;
-    _block = nil;
 }
 
 @end
