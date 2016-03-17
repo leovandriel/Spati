@@ -49,7 +49,9 @@
 
 - (BOOL)removeFile:(NSString *)file
 {
-    NSString *path = [_path stringByAppendingPathComponent:file];
+    if (!file) return NO;
+    NSString *path = [self pathForFile:file];
+    if (!path) return NO;
     if (![NSFileManager.defaultManager fileExistsAtPath:path]) return YES;
     NSError *error = nil;
     BOOL result = [NSFileManager.defaultManager removeItemAtPath:path error:&error];
@@ -81,16 +83,21 @@
 
 - (unsigned long long)sizeOfFile:(NSString *)file
 {
+    if (!file) return 0;
+    NSString *path = [self pathForFile:file];
     NSError *error = nil;
-    NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    if (!path) return 0;
+    NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:path error:&error];
     NWError(error);
     return [result fileSize];
 }
 
 - (NSDate *)modifcationDateOfFile:(NSString *)file
 {
+    if (!file) return 0;
+    NSString *path = [self pathForFile:file];
     NSError *error = nil;
-    NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:[_path stringByAppendingPathComponent:file] error:&error];
+    NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:path error:&error];
     NWError(error);
     return [result fileModificationDate];
 }
@@ -160,13 +167,17 @@
 
 - (NSString *)filenameForKey:(NSString *)key
 {
-    NSString *part = [self filenamePartForKey:key];
-    return [NSString stringWithFormat:@"%@%@%@", part, _extension ? @"." : @"", _extension?:@""];
+    return [NSString stringWithFormat:@"%@%@%@", [self filenamePartForKey:key], _extension ? @"." : @"", _extension?:@""];
+}
+
+- (NSString *)pathForFile:(NSString *)file
+{
+    return file.length ? [_path stringByAppendingPathComponent:file] : nil;
 }
 
 - (NSString *)pathForKey:(NSString *)key
 {
-    return key ? [_path stringByAppendingPathComponent:[self filenameForKey:key]] : nil;
+    return key ? [self pathForFile:[self filenameForKey:key]] : nil;
 }
 
 - (id)objectForKey:(NSString *)key
@@ -177,7 +188,8 @@
         NWLogInfo(@"[%@] miss: expired", self.name);
         return nil;
     }
-    NSString *path = [_path stringByAppendingPathComponent:file];
+    NSString *path = [self pathForFile:file];
+    if (!path) return nil;
     id result = nil;
     if (_pathInsteadOfData) {
         BOOL exists = [NSFileManager.defaultManager fileExistsAtPath:path];
@@ -199,7 +211,8 @@
     NSString *file = [self filenameForKey:key];
     id result = nil;
     if (object) {
-        NSString *path = [_path stringByAppendingPathComponent:file];
+        NSString *path = [self pathForFile:file];
+        if (!path) return nil;
         NSError *error = nil;
         BOOL written = [object writeToFile:path options:NSDataWritingAtomic error:&error];
         NWError(error);
@@ -231,7 +244,10 @@
     NSString *file = [self filenameForKey:key];
     NSString *toFile = [self filenameForKey:toKey];
     NSError *error = nil;
-    BOOL result = [NSFileManager.defaultManager moveItemAtPath:[_path stringByAppendingPathComponent:file] toPath:[_path stringByAppendingPathComponent:toFile] error:&error];
+    NSString *path = [self pathForFile:file];
+    NSString *toPath = [self pathForFile:toFile];
+    if (!path || !toPath) return NO;
+    BOOL result = [NSFileManager.defaultManager moveItemAtPath:path toPath:toPath error:&error];
     NWError(error);
     NWLogInfo(@"[%@] move: %@ -> %@  file: %@ = %@", self.name, key, toKey, file, result ? @"success" : @"failed");
     return result;
