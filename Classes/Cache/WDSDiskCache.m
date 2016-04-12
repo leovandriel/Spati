@@ -59,6 +59,18 @@
     return result;
 }
 
+- (BOOL)moveFile:(NSString *)from to:(NSString *)to
+{
+    if (!from || !to) return NO;
+    NSString *path = [self pathForFile:from];
+    NSString *toPath = [self pathForFile:to];
+    if (!path || !toPath) return NO;
+    NSError *error = nil;
+    BOOL result = [NSFileManager.defaultManager moveItemAtPath:path toPath:toPath error:&error];
+    NWError(error);
+    return result;
+}
+
 - (NSArray *)files
 {
     NSError *error = nil;
@@ -85,8 +97,8 @@
 {
     if (!file) return 0;
     NSString *path = [self pathForFile:file];
-    NSError *error = nil;
     if (!path) return 0;
+    NSError *error = nil;
     NSDictionary *result = [NSFileManager.defaultManager attributesOfItemAtPath:path error:&error];
     NWError(error);
     return [result fileSize];
@@ -243,13 +255,8 @@
     if (!key || !toKey) return NO;
     NSString *file = [self filenameForKey:key];
     NSString *toFile = [self filenameForKey:toKey];
-    NSError *error = nil;
-    NSString *path = [self pathForFile:file];
-    NSString *toPath = [self pathForFile:toFile];
-    if (!path || !toPath) return NO;
-    BOOL result = [NSFileManager.defaultManager moveItemAtPath:path toPath:toPath error:&error];
-    NWError(error);
-    NWLogInfo(@"[%@] move: %@ -> %@  file: %@ = %@", self.name, key, toKey, file, result ? @"success" : @"failed");
+    BOOL result = [self moveFile:file to:toFile];
+    NWLogInfo(@"[%@] move: %@ -> %@  file: %@ -> %@ = %@", self.name, key, toKey, file, toFile, result ? @"success" : @"failed");
     return result;
 }
 
