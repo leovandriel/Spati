@@ -104,21 +104,16 @@
 
 - (void)cancel
 {
-    for (id<WDSCancel> cancel in _cancels) {
+    NSArray *cancels = _cancels;
+    _cancels = nil;
+    for (id<WDSCancel> cancel in cancels) {
         [cancel cancel];
     }
-    _cancels = nil;
 }
 
 - (BOOL)isCancelled
 {
-    if (!_cancels) return YES;
-    for (id<WDSCancel> cancel in _cancels) { // TODO: why inspect sub-cancels?
-        if ([cancel isCancelled]) {
-            return YES;
-        }
-    }
-    return NO;
+    return !_cancels;
 }
 
 - (BOOL)isEmpty
