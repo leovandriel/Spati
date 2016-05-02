@@ -16,6 +16,7 @@
 @property (nonatomic, assign) UIViewContentMode mode;
 
 - (instancetype)initWithSize:(CGSize)size;
+- (instancetype)initWithSize:(CGSize)size mode:(UIViewContentMode)mode;
 
 - (WDSTransformPipe *)newPipe;
 - (WDSTransformPipe *)newPipeOnBackground;

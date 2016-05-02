@@ -13,9 +13,15 @@
 
 - (instancetype)initWithSize:(CGSize)size
 {
+    return [self initWithSize:size mode:UIViewContentModeScaleAspectFill];
+}
+
+- (instancetype)initWithSize:(CGSize)size mode:(UIViewContentMode)mode
+{
     self = [super init];
     if (self) {
         _size = size;
+        _mode = mode;
     }
     return self;
 }
@@ -33,7 +39,8 @@
     CGContextRef context = CGBitmapContextCreate(NULL, realSize.width, realSize.height, 8, realSize.width * 4, space, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(space);
     
-    CGContextDrawImage(context, rect, image.CGImage);
+    CGRect realRect = CGRectMake(rect.origin.x * image.scale, rect.origin.y * image.scale, rect.size.width * image.scale, rect.size.height * image.scale);
+    CGContextDrawImage(context, realRect, image.CGImage);
     
     CGImageRef i = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
