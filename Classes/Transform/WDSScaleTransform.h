@@ -13,7 +13,7 @@
 @interface WDSScaleTransform : NSObject<WDSTransform>
 
 @property (nonatomic, assign) CGSize size;
-@property (nonatomic, assign) BOOL percentScale;
+@property (nonatomic, assign) UIViewContentMode mode;
 
 - (instancetype)initWithSize:(CGSize)size;
 

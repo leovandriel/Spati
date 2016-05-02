@@ -24,21 +24,16 @@
 {
     if (!image) return nil;
     
-    CGSize newSize = _size;
-    if (_percentScale) {
-        newSize.width *= image.size.width;
-        newSize.height *= image.size.height;
-    }
+    CGRect rect = [self rectForCropScaleWithSize:image.size];
+    if (CGSizeEqualToSize(rect.size, image.size)) return image;
     
-    if (CGSizeEqualToSize(newSize, image.size)) return image;
-    
-    CGSize realSize = CGSizeMake(newSize.width * image.scale, newSize.height * image.scale);
-    
+    CGSize realSize = CGSizeMake(_size.width * image.scale, _size.height * image.scale);
+
     CGColorSpaceRef space = CGColorSpaceCreateDeviceRGB();
     CGContextRef context = CGBitmapContextCreate(NULL, realSize.width, realSize.height, 8, realSize.width * 4, space, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(space);
     
-    CGContextDrawImage(context, CGRectMake(0, 0, realSize.width, realSize.height), image.CGImage);
+    CGContextDrawImage(context, rect, image.CGImage);
     
     CGImageRef i = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
@@ -46,6 +41,26 @@
     CGImageRelease(i);
     
     return result;
+}
+
+- (CGRect)rectForCropScaleWithSize:(CGSize)s
+{
+    switch (_mode) {
+        case UIViewContentModeScaleToFill: return CGRectMake(0.0f, 0.0f, _size.width, _size.height);
+        case UIViewContentModeScaleAspectFit: return (_size.width * s.height <= _size.height * s.width) ? CGRectMake(0.0f, (_size.height - _size.width * s.height / s.width) / 2.0f, _size.width, _size.width * s.height / s.width) : CGRectMake((_size.width - _size.height * s.width / s.height) / 2.0f, 0.0f, _size.height * s.width / s.height, _size.height);
+        case UIViewContentModeScaleAspectFill: return (_size.width * s.height >= _size.height * s.width) ? CGRectMake(0.0f, (_size.height - _size.width * s.height / s.width) / 2.0f, _size.width, _size.width * s.height / s.width) : CGRectMake((_size.width - _size.height * s.width / s.height) / 2.0f, 0.0f, _size.height * s.width / s.height, _size.height);
+        case UIViewContentModeRedraw: return CGRectMake(0.0f, 0.0f, _size.width, _size.height);
+        case UIViewContentModeCenter: return CGRectMake((_size.width - s.width) / 2.0f, (_size.height - s.height) / 2.0f, s.width, s.height);
+        case UIViewContentModeTop: return CGRectMake((_size.width - s.width) / 2.0f, 0.0f, s.width, s.height);
+        case UIViewContentModeBottom: return CGRectMake((_size.width - s.width) / 2.0f, _size.height - s.height, s.width, s.height);
+        case UIViewContentModeLeft: return CGRectMake(0.0f, (_size.height - s.height) / 2.0f, s.width, s.height);
+        case UIViewContentModeRight: return CGRectMake(_size.width - s.width, (_size.height - s.height) / 2.0f, s.width, s.height);
+        case UIViewContentModeTopLeft: return CGRectMake(0.0f, 0.0f, s.width, s.height);
+        case UIViewContentModeTopRight: return CGRectMake(_size.width - s.width, 0.0f, s.width, s.height);
+        case UIViewContentModeBottomLeft: return CGRectMake(0.0f, _size.height - s.height, s.width, s.height);
+        case UIViewContentModeBottomRight: return CGRectMake(_size.width - s.width, _size.height - s.height, s.width, s.height);
+    }
+    return CGRectNull;
 }
 
 - (WDSTransformPipe *)newPipe
