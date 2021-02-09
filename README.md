@@ -20,4 +20,4 @@ Spati is licensed under the terms of the MIT License, see the included LICENSE f
 Authors
 -------
 - [Wit Dot](http://www.witdot.com/)
-- [Leonard van Driel](http://www.leonardvandriel.nl/)
+- [Leo Vandriel](http://www.leovandriel.com/)
